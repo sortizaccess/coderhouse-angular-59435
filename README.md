@@ -1,6 +1,6 @@
 # Proyecto final
 
-Proyecto creado con [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+Proyecto creado con [Angular CLI](https://github.com/angular/angular-cli) 18.2.4.
 
 ## Consignas
 
