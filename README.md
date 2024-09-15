@@ -1,27 +1,63 @@
-# ProyectoFinal
+# Proyecto final
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+Proyecto creado con [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
 
-## Development server
+## Levantar proyecto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Correr `ng s --o`.
 
-## Code scaffolding
+## Consignas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Curso Angular: Proyecto Final
+Administración de Alumnos y Cursos
 
-## Build
+Creación de un proyecto frontend basado en Angular para gestionar los asistentes a una serie de cursos.
+Deberá contener el perfil de administrador, el cual podrá listar, realizar altas y bajas de los alumnos, cursos e inscripciones, y modificar sus datos. También podrá crear y modificar usuarios.
+El perfil usuario podrá listar los alumnos y los cursos, pero solo podrá agregar o eliminar inscripciones de alumnos en los cursos. No podrá realizar ninguna operación sobre los usuarios.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Objetivo 1: Dominar los conceptos iniciales, intermedios y avanzados para realizar un desarrollo basado en Angular y TypeScript.
+Objetivo 2: Comprender el concepto de componentes y servicios para su reutilización en otros proyectos.
+Objetivo 3: Comprender el concepto de módulos, lazy loading, rutas y la organización del proyecto en módulos core, shared y feature.
+Objetivo 4: Integrar el patrón de estado global Redux y comprender la importancia de su uso utilizando la librería NgRx.
+Objetivo 5: Realizar tests unitarios del proyecto frontend.
 
-## Running unit tests
+Piezas sugeridas
+Te recomendamos incluir:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    Barra de navegación lateral con las opciones de menú para acceder a las diferentes funcionalidades de la aplicación.
+    Toolbar en la que se muestre el nombre de la aplicación, el título de la funcionalidad que está presente y el nombre del usuario logueado.
+    Componente de Login para autenticar usuarios.
+    Listado de alumnos en formato de tabla con la posibilidad de ver el detalle y los cursos en los que está inscrito, y la posibilidad de agregar, eliminar y modificar datos de los mismos.
+    Vista para inscribir a un alumno en un curso.
+    Vista para desinscribir a un alumno de un curso.
+    Vista para listar, agregar, modificar y eliminar usuarios.
+    Opción de desloguearse en la aplicación desde la barra lateral.
+    Backend de prueba en la nube (sugerido mockapi.io).
 
-## Running end-to-end tests
+Requisitos base
+Los requisitos base serán parte de los criterios de evaluación para aprobar el proyecto.
+Deberá implementar un componente de login que se mostrará al inicio de la aplicación o cuando se intente acceder a cualquier ruta sin un usuario logueado.
+Una vez logueado el usuario, se presentarán las opciones de menú según su perfil: los administradores tienen todas las opciones, mientras que a los usuarios comunes no se les debería mostrar la opción de "Usuarios".
+En el perfil de usuario solo se podrán listar los alumnos y los cursos, pero sí se podrá inscribir o desinscribir alumnos en los cursos.
+Como backend se podrá utilizar una cuenta en mockapi.io (u otro de preferencia) donde se encontrarán los recursos:
+    
+    Usuarios (con email, password, nombre, dirección, teléfono y perfil).
+    Alumnos (nombre, perfil (que puede ser: desarrollador, IT, usuario final), sexo).
+    Curso (nombre, cantidad de horas, cantidad de clases, nombre del profesor asignado).
+    Inscripciones (id del alumno, id del curso inscrito, fecha de inscripción, id del usuario que lo inscribió).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Requisitos Extra
+Los requisitos extra para pro-coders no se incluyen en los criterios de evaluación.
+    
+    Correcta maquetación.
+    Buenas prácticas de codificación.
+    Tests unitarios.
 
-## Further help
+Dont’s
+No es recomendable:
+    
+    No tener errores en la consola.
+    No mostrar console.log().
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
