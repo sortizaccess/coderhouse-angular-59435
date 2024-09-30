@@ -1,0 +1,36 @@
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">         
+                <div class="col-3">
+                    <mat-form-field class="w-100">
+                      <mat-label>Email</mat-label>
+                      <input
+                        matInput
+                        placeholder="ejemplo@ejemplo.com"
+                        [formControl]="email"
+                        (blur)="updateErrorMessage()"
+                        required
+                      />
+                      @if (email.invalid) {
+                        <mat-error>{{errorMessage()}}</mat-error>
+                      }
+                    </mat-form-field>
+                </div>
+
+                <div class="col-3">
+                    <mat-form-field class="w-100">
+                        <mat-label>Nacimiento</mat-label>
+                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" />
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>                                          
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+  
