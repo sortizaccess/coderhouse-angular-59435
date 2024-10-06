@@ -11,20 +11,19 @@
 </div>
 
 
-<div class="toast text-bg-success" role="alert" id="id-success-toast">
-    <div class="toast-body">
-      <div class="d-flex gap-4">
-        <span><i class="fa-solid fa-circle-check fa-lg"></i></span>
-        <div class="d-flex flex-grow-1 align-items-center">
-          <span class="fw-semibold">Welcome to the room</span>
-          ...
+<div aria-live="polite" aria-atomic="true" class="toast-container bottom-0 start-50 translate-middle-x p-3">
+  <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="id-toast-success">
+    <div class="d-flex">
+        <div class="toast-body">
+            <strong>¡Acción completada con éxito!</strong>
         </div>
-      </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
+</div>
   
 
-  <div class="toast text-bg-danger" role="alert" id="id-error-toast">
+  <div class="toast text-bg-danger" role="alert" id="id-toast-error">
     <div class="toast-body">
       <div class="d-flex gap-4">
         <span><i class="fa-solid fa-circle-exclamation fa-lg"></i></span>

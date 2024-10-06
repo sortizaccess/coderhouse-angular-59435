@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Alumno } from '../models/alumno';
-import * as bootstrap from 'bootstrap';
+import { Toast } from 'bootstrap';
 
 let ALUMNOS: Alumno[] = [
   new Alumno(1, new Date('2023-01-15'), 'Juan', 'Pérez', new Date('2000-05-20'), 'Masculino'),
@@ -19,35 +19,52 @@ let ALUMNOS: Alumno[] = [
 
 export class ListarAlumnosComponent  {
   displayedColumns: string[] = ['legajo', 'fechaInscripcion', 'nombre', 'apellido', 'genero', 'acciones'];
+
   dataSource = ALUMNOS;
 
-  eliminarAlumno(alumno: Alumno) : void {
-    if (this.confirmarToast()) {
-      this.dataSource = this.dataSource.filter(x => x.legajo !== alumno.legajo);
-    }
-  }
-
-  confirmarToast(): boolean {
-    const toastElement = document.getElementById('id-toast');
-
-    if (toastElement) {
-      const toast = new bootstrap.Toast(toastElement);
-      toast.show(); 
-
-      const actionButton = document.getElementById('take-action-btn');
-      if (actionButton) {
-        actionButton.addEventListener('click', () => {
-          return true;        
-        });
-      } else {
-        console.error('actionButton no encontrado en el DOM');
+  eliminarAlumno(alumno: Alumno): void {
+    this.confirmarToast().then((confirmed) => {
+      if (confirmed) {
+        this.dataSource = this.dataSource.filter(x => x.legajo !== alumno.legajo);
       }
-    } else {
-      console.error('toast no encontrado en el DOM');
-    }
-
-    return false;
+    }).catch(() => {
+      console.error('Error al confirmar la eliminación');
+    });
   }
+
+  
+  confirmarToast(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const toastElement = document.getElementById('id-toast');
+    
+      if (toastElement) {
+        const toast = new Toast(toastElement);
+        toast.show();
+    
+        const actionButton = document.getElementById('take-action-btn');
+        if (actionButton) {
+          actionButton.addEventListener('click', () => {
+            toast.hide();
+            resolve(true);
+            const toastElementSuccess = document.getElementById('id-toast-success');
+            if (toastElementSuccess) {
+              const toastSuccess = new Toast(toastElementSuccess);
+              toastSuccess.show();
+            }
+          });
+        } else {
+          console.error('actionButton no encontrado en el DOM');
+          reject(false);  // Si no se encuentra el botón, rechaza la promesa
+        }
+      } else {
+        console.error('toast no encontrado en el DOM');
+        reject(false);  // Si no se encuentra el toast, rechaza la promesa
+      }
+    });
+  }
+
+
+
 }
 
 
