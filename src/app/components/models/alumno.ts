@@ -2,20 +2,18 @@ import { Persona } from './persona';
 
 export class Alumno implements Persona {
     legajo: number;
-    fechaInscripcion: Date;
-    activo: boolean;
     nombre: string;
     apellido: string;
-    nacimiento: Date;
+    email: string;
+    fechaNacimiento: Date;
     genero: string;
 
-    constructor(legajo: number, fechaInscripcion: Date, nombre: string, apellido: string, nacimiento: Date, genero: string) {
+    constructor(legajo: number, nombre: string, apellido: string, email: string, fechaNacimiento: Date, genero: string) {
         this.legajo = legajo;
-        this.fechaInscripcion = fechaInscripcion;
-        this.activo = true;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.nacimiento = nacimiento;
+        this.email = email;
+        this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
     }
 }

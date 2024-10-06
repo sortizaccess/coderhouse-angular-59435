@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Inject, signal } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { merge } from 'rxjs';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { generarIdRandom } from '../../utils';
+import { Alumno } from '../models/alumno';
+
+interface alumnoDialogData {
+  modificarAlumno?: Alumno
+}
 
 @Component({
   selector: 'app-crear-editar-alumnos',
@@ -11,30 +16,40 @@ import { merge } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideNativeDateAdapter()],
 })
+
 export class CrearEditarAlumnosComponent {
   readonly email = new FormControl('', [Validators.required, Validators.email]);
+  public userForm: FormGroup;
 
-  errorMessage = signal('');
+  constructor(
+    private matDialogRef: MatDialogRef<CrearEditarAlumnosComponent>, 
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) private data?: alumnoDialogData) {
+    this.userForm = this.formBuilder.group({
+      nombre: [null, [Validators.required]],
+      apellido: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      fechaNacimiento: [null, [Validators.required]],
+      genero: [null, [Validators.required]]
+    });
 
-  constructor() {
-    merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.updateErrorMessage());
+    this.patchFormValue();
   }
 
-  updateErrorMessage() {
-    if (this.email.hasError('required')) {
-      this.errorMessage.set('Requerido');
-    } else if (this.email.hasError('email')) {
-      this.errorMessage.set('Email inválido');
-    } else {
-      this.errorMessage.set('');
+  patchFormValue() {
+    if(this.data?.modificarAlumno){
+      this.userForm.patchValue(this.data.modificarAlumno);
     }
   }
 
-
-  private readonly _currentYear = new Date().getFullYear();
-  readonly minDate = new Date(this._currentYear - 40, 0, 1);
-  readonly maxDate = new Date(this._currentYear + 1, 11, 31);
-
+  onSave(): void {
+    if (this.userForm.invalid){
+      this.userForm.markAllAsTouched();
+    } else {
+      this.matDialogRef.close({
+        ...this.userForm.value,
+        legajo: generarIdRandom()
+      });
+    }
+  }
 }

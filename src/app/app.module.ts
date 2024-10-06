@@ -6,19 +6,18 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListarAlumnosComponent } from './components/listar-alumnos/listar-alumnos.component';
 import { CrearEditarAlumnosComponent } from './components/crear-editar-alumnos/crear-editar-alumnos.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ToastsComponent } from './utils/toasts/toasts.component';
 import { SharedModule } from './shared/shared.module';
-
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListarAlumnosComponent,
-    ToolbarComponent,
     ToastsComponent,
-    CrearEditarAlumnosComponent
+    CrearEditarAlumnosComponent,
+    SidenavComponent,
   ],
   imports: [
     BrowserModule,

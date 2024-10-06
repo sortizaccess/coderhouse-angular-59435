@@ -1,7 +1,7 @@
 <div class="container">
     
     <section class="pb-3">
-         <button mat-flat-button><mat-icon>add</mat-icon> Crear</button>
+         <button mat-flat-button (click)="openModal()"><mat-icon>add</mat-icon> Crear</button>
     </section>
     
     
@@ -12,25 +12,20 @@
           <td mat-cell *matCellDef="let alumno"> {{alumno.legajo}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="fechaInscripcion">
-            <th mat-header-cell *matHeaderCellDef> Fecha de Inscripción </th>
-            <td mat-cell *matCellDef="let alumno"> {{alumno.fechaInscripcion | date}} </td>
-        </ng-container>
-
         <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let alumno"> {{alumno.nombre}} </td>
+            <th mat-header-cell *matHeaderCellDef> Nombre Completo</th>
+            <td mat-cell *matCellDef="let alumno"> {{ {nombre: alumno.nombre, apellido: alumno.apellido} | nombreCompleto}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="apellido">
-            <th mat-header-cell *matHeaderCellDef> Apellido </th>
-            <td mat-cell *matCellDef="let alumno"> {{alumno.apellido}} </td>
-        </ng-container>
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let alumno"> {{alumno.email}} </td>
+        </ng-container>        
 
-        <!-- <ng-container matColumnDef="fechaNacimiento">
+        <ng-container matColumnDef="fechaNacimiento">
             <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
-            <td mat-cell *matCellDef="let alumno"> {{alumno.fechaNacimiento}} </td>
-        </ng-container> -->
+            <td mat-cell *matCellDef="let alumno"> {{alumno.fechaNacimiento | date}} </td>
+        </ng-container>
 
         <ng-container matColumnDef="genero">
             <th mat-header-cell *matHeaderCellDef> Genero </th>
@@ -39,9 +34,9 @@
   
         <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
-            <td mat-cell *matCellDef="let row"> 
-                <a><mat-icon>edit</mat-icon></a> 
-                <a (click)="eliminarAlumno(row)"><mat-icon>delete</mat-icon></a>
+            <td mat-cell *matCellDef="let alumno"> 
+                <a (click)="openModal(alumno)"><mat-icon>edit</mat-icon></a> 
+                <a (click)="eliminarAlumno(alumno)"><mat-icon>delete</mat-icon></a>
             </td>
         </ng-container>       
 

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { Alumno } from '../models/alumno';
 import { Toast } from 'bootstrap';
+import { MatDialog } from '@angular/material/dialog';
+import { CrearEditarAlumnosComponent } from '../crear-editar-alumnos/crear-editar-alumnos.component';
 
 let ALUMNOS: Alumno[] = [
-  new Alumno(1, new Date('2023-01-15'), 'Juan', 'Pérez', new Date('2000-05-20'), 'Masculino'),
-  new Alumno(2, new Date('2023-02-10'), 'Ana', 'Gómez', new Date('1999-03-15'), 'Femenino'),
-  new Alumno(3, new Date('2023-03-05'), 'Luis', 'Fernández', new Date('2001-07-30'), 'Masculino'),
-  new Alumno(4, new Date('2023-04-20'), 'María', 'López', new Date('2000-12-10'), 'Femenino'),
-  new Alumno(5, new Date('2023-05-25'), 'Carlos', 'Martínez', new Date('1998-11-22'), 'Masculino'),
+  new Alumno(254084299, 'Juan', 'Pérez', 'jperez@gmail.com', new Date('2000-05-20'), 'Masculino'),
+  new Alumno(322063478, 'Ana', 'Gómez', 'agomez@gmail.com', new Date('1999-03-15'), 'Femenino'),
+  new Alumno(433056889, 'Luis', 'Fernández', 'lfernandez@gmail.com', new Date('2001-07-30'), 'Masculino'),
+  new Alumno(747016311, 'María', 'López', 'mlopez@gmail.com', new Date('2000-12-10'), 'Femenino'),
+  new Alumno(995023300, 'Carlos', 'Martínez', 'cmartinez@gmail.com', new Date('1998-11-22'), 'Masculino'),
 ];
 
 @Component({
@@ -18,9 +20,10 @@ let ALUMNOS: Alumno[] = [
 
 
 export class ListarAlumnosComponent  {
-  displayedColumns: string[] = ['legajo', 'fechaInscripcion', 'nombre', 'apellido', 'genero', 'acciones'];
-
+  displayedColumns: string[] = ['legajo', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource = ALUMNOS;
+
+  constructor(private matDialog: MatDialog){}
 
   eliminarAlumno(alumno: Alumno): void {
     this.confirmarToast().then((confirmed) => {
@@ -32,7 +35,6 @@ export class ListarAlumnosComponent  {
     });
   }
 
-  
   confirmarToast(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       const toastElement = document.getElementById('id-toast');
@@ -63,8 +65,25 @@ export class ListarAlumnosComponent  {
     });
   }
 
-
-
+  openModal(modificarAlumno?: Alumno): void {
+    this.matDialog.open(CrearEditarAlumnosComponent, {
+      data: {
+        modificarAlumno
+      },
+      height: '450px',
+      width: '600px',
+    })
+    .afterClosed()
+    .subscribe({
+      next: (result) => {
+        if (!!result) {
+          this.dataSource = [
+            ...this.dataSource, {...result}
+          ];
+        }
+      }
+    });
+  }
 }
 
 

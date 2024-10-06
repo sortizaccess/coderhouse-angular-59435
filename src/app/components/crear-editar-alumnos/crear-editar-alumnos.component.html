@@ -1,36 +1,85 @@
 
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">         
-                <div class="col-3">
-                    <mat-form-field class="w-100">
-                      <mat-label>Email</mat-label>
-                      <input
-                        matInput
-                        placeholder="ejemplo@ejemplo.com"
-                        [formControl]="email"
-                        (blur)="updateErrorMessage()"
-                        required
-                      />
-                      @if (email.invalid) {
-                        <mat-error>{{errorMessage()}}</mat-error>
-                      }
-                    </mat-form-field>
-                </div>
-
-                <div class="col-3">
-                    <mat-form-field class="w-100">
-                        <mat-label>Nacimiento</mat-label>
-                        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" />
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>                                          
-                </div>
-
-            </div>
-        </div>
+<h2 appTitulos mat-dialog-title>Alumnos</h2>
+<mat-dialog-content>
+  <hr>
+  <form [formGroup]="userForm">
+    <div class="row my-2" appTitulos>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input formControlName="nombre" matInput placeholder="John" />
+          <mat-error>
+            @if(userForm.get('nombre')?.hasError('required')){
+              Requerido
+            }
+          </mat-error>
+        </mat-form-field>        
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Apellido</mat-label>
+          <input formControlName="apellido" matInput placeholder="Doe" />
+          <mat-error>
+            @if(userForm.get('apellido')?.hasError('required')){
+              Requerido
+            }
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
-</div>
-  
+
+    <div class="row my-2">
+      <div class="col-6">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            formControlName="email"
+            matInput
+            placeholder="ejemplo@ejemplo.com" />
+            <mat-error>
+              @if(userForm.get('email')?.hasError('required')){
+                Requerido
+              }
+            </mat-error>
+        </mat-form-field>
+      </div>  
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Género</mat-label>
+          <mat-select formControlName="genero">
+            <mat-option [value]="'Masculino'">Masculino</mat-option>
+            <mat-option [value]="'Femenino'">Femenino</mat-option>
+          </mat-select>
+          <mat-error>
+            @if(userForm.get('genero')?.hasError('required')){
+              Requerido
+            }
+          </mat-error>
+        </mat-form-field>                                  
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input formControlName="fechaNacimiento" matInput [matDatepicker]="picker" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>
+            @if(userForm.get('fechaNacimiento')?.hasError('required')){
+              Requerido
+            }
+          </mat-error>
+      </mat-form-field>     
+      </div>
+    </div>
+
+  </form>
+  <hr>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onSave()">Guardar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
