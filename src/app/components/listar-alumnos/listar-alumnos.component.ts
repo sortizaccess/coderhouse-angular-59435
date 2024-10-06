@@ -18,12 +18,12 @@ let ALUMNOS: Alumno[] = [
   styleUrl: './listar-alumnos.component.css'
 })
 
-
 export class ListarAlumnosComponent  {
   displayedColumns: string[] = ['legajo', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource = ALUMNOS;
 
-  constructor(private matDialog: MatDialog){}
+  constructor(private matDialog: MatDialog){
+  }
 
   eliminarAlumno(alumno: Alumno): void {
     this.confirmarToast().then((confirmed) => {
@@ -56,11 +56,11 @@ export class ListarAlumnosComponent  {
           });
         } else {
           console.error('actionButton no encontrado en el DOM');
-          reject(false);  // Si no se encuentra el botón, rechaza la promesa
+          reject(false);  //Si no se encuentra el boton, rechaza la promesa
         }
       } else {
         console.error('toast no encontrado en el DOM');
-        reject(false);  // Si no se encuentra el toast, rechaza la promesa
+        reject(false);  //Si no se encuentra el toast, rechaza la promesa
       }
     });
   }
@@ -77,9 +77,19 @@ export class ListarAlumnosComponent  {
     .subscribe({
       next: (result) => {
         if (!!result) {
-          this.dataSource = [
-            ...this.dataSource, {...result}
-          ];
+          if (modificarAlumno) {
+            this.dataSource = this.dataSource.map((alumno) => alumno.legajo === modificarAlumno.legajo ? {...alumno, ...result} : alumno)
+          } else {
+            this.dataSource = [
+              ...this.dataSource, {...result}
+            ];
+          }
+
+          const toastElementSuccess = document.getElementById('id-toast-success');
+          if (toastElementSuccess) {
+            const toastSuccess = new Toast(toastElementSuccess);
+            toastSuccess.show();
+          }          
         }
       }
     });

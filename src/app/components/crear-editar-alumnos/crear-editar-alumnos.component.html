@@ -1,5 +1,5 @@
 
-<h2 appTitulos mat-dialog-title>Alumnos</h2>
+<h2 appTitulos mat-dialog-title> {{data?.modificarAlumno ? 'Editar' : 'Crear'}} Alumnos</h2>
 <mat-dialog-content>
   <hr>
   <form [formGroup]="userForm">

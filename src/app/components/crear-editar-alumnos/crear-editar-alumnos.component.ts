@@ -24,7 +24,7 @@ export class CrearEditarAlumnosComponent {
   constructor(
     private matDialogRef: MatDialogRef<CrearEditarAlumnosComponent>, 
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) private data?: alumnoDialogData) {
+    @Inject(MAT_DIALOG_DATA) public data?: alumnoDialogData) {
     this.userForm = this.formBuilder.group({
       nombre: [null, [Validators.required]],
       apellido: [null, [Validators.required]],
@@ -34,6 +34,10 @@ export class CrearEditarAlumnosComponent {
     });
 
     this.patchFormValue();
+  }
+
+  private get esModificar() {
+    return !!this.data?.modificarAlumno;
   }
 
   patchFormValue() {
@@ -48,7 +52,7 @@ export class CrearEditarAlumnosComponent {
     } else {
       this.matDialogRef.close({
         ...this.userForm.value,
-        legajo: generarIdRandom()
+        legajo: this.esModificar ? this.data!.modificarAlumno!.legajo : generarIdRandom()
       });
     }
   }
