@@ -28,7 +28,7 @@ export class CrearEditarAlumnosComponent {
     this.userForm = this.formBuilder.group({
       nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
       apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
-      email: [null, [Validators.required, Validators.email, Validators.maxLength(30), Validators.minLength(12), soloNumerosLetras()]],
+      email: [null, [Validators.required, Validators.email, Validators.maxLength(30), Validators.minLength(12)]],
       fechaNacimiento: [null, [Validators.required]],
       genero: [null, [Validators.required]]
     });
