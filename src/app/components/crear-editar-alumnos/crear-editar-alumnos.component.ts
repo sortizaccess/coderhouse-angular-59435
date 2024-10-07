@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject, signal } from '@angular/cor
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { generarIdRandom } from '../../utils';
+import { generarIdRandom, soloLetras, soloNumerosLetras } from '../../utils';
 import { Alumno } from '../models/alumno';
 
 interface alumnoDialogData {
@@ -26,9 +26,9 @@ export class CrearEditarAlumnosComponent {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data?: alumnoDialogData) {
     this.userForm = this.formBuilder.group({
-      nombre: [null, [Validators.required]],
-      apellido: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email]],
+      nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
+      apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
+      email: [null, [Validators.required, Validators.email, Validators.maxLength(30), Validators.minLength(12), soloNumerosLetras()]],
       fechaNacimiento: [null, [Validators.required]],
       genero: [null, [Validators.required]]
     });

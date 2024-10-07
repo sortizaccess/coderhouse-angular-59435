@@ -16,3 +16,8 @@ table {
 .mat-mdc-row:hover .mat-mdc-cell {
   background-color: rgb(243, 243, 243);
 }
+
+.mat-danger {
+  background-color: rgb(213, 111, 111);
+  color: #fff;
+}
