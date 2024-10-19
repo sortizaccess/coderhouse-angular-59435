@@ -1,0 +1,7 @@
+#toastContainer {
+    width: 50vw;
+  }
+  
+  #toastContainer .toast {
+    max-width: unset;
+  }

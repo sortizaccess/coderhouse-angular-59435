@@ -1,0 +1,50 @@
+<div aria-live="polite" aria-atomic="true" class="toast-container bottom-0 end-0 p-3" id="toastContainer" style="width: 360px;">
+  <div class="toast" role="alert" style="width: 330px;" id="id-toast" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body">
+          ¿Está seguro que desea continuar?
+          <div class="mt-2 pt-2 border-top">
+              <button type="button" mat-raised-button aria-label="Eliminar" class="mx-1" id="take-action-btn">Eliminar</button>
+              <button type="button" mat-button aria-label="Cancelar" class="mx-2" data-bs-dismiss="toast">Cancelar</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div aria-live="polite" aria-atomic="true" class="toast-container bottom-0 start-50 translate-middle-x p-3">
+  <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="id-toast-success">
+    <div class="d-flex">
+        <div class="toast-body d-flex align-items-center">
+          <span class="d-flex align-items-center">
+            <mat-icon class="mx-2">check_circle_outline</mat-icon>
+            <strong class="mx-1">¡Acción completada con éxito!</strong>
+          </span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast text-bg-danger" role="alert" id="id-toast-error">
+  <div class="toast-body">
+    <div class="d-flex gap-4">
+      <span><i class="fa-solid fa-circle-exclamation fa-lg"></i></span>
+      <div class="d-flex flex-grow-1 align-items-center">
+        <span class="fw-semibold">We are having issues</span>
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast text-bg-warning" role="alert" id="id-warning-toast">
+  <div class="toast-body">
+    <div class="d-flex gap-4">
+      <span><i class="fa-solid fa-triangle-exclamation fa-lg"></i></span>
+      <div class="d-flex flex-grow-1 align-items-center">
+        <span class="fw-semibold">Trying again...</span>
+        ...
+      </div>
+    </div>
+  </div>
+</div>
+  
