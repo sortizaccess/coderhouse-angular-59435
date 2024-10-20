@@ -5,9 +5,9 @@ import { NotfoundComponent } from './features/auth/notfound/notfound.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
-import { AlumnosComponent } from './features/alumnos/alumnos.component';
-import { ListarAlumnosComponent } from './features/alumnos/listar-alumnos/listar-alumnos.component';
-import { CrearEditarAlumnosComponent } from './features/alumnos/crear-editar-alumnos/crear-editar-alumnos.component';
+import { ListarAlumnosComponent } from './features/dashboard/alumnos/listar-alumnos/listar-alumnos.component';
+import { ListarCursosComponent } from './features/dashboard/cursos/listar-cursos/listar-cursos.component';
+import { IntroComponent } from './features/dashboard/home/intro/intro.component';
 
 const routes: Routes = [
   {
@@ -25,22 +25,22 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'alumnos',
-    component: AlumnosComponent,
+    path: 'dashboard',
+    component: DashboardComponent,
     children: [
       {
-        path: 'listar',
+        path: 'home',
+        component: IntroComponent
+      },
+      {
+        path: 'alumnos',
         component: ListarAlumnosComponent
       },
       {
-        path: 'crearEditar',
-        component: CrearEditarAlumnosComponent
-      }
+        path: 'cursos',
+        component: ListarCursosComponent
+      },
     ]
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
   },
   { 
     path: '**', //DEJAR SIEMPRE AL FINAL

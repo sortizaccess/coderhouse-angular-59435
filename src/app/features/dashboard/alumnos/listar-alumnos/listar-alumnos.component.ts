@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Alumno } from '../../../core/models/alumno';
+import { Alumno } from '../../../../core/models/alumno';
 import { Toast } from 'bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearEditarAlumnosComponent } from '../crear-editar-alumnos/crear-editar-alumnos.component';
