@@ -1,30 +1,50 @@
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <p>Auto-resizing sidenav</p>
-        @if (showFiller) {
-            <p>Lorem, ipsum dolor sit amet consectetur.</p>
-        }
-        <button (click)="showFiller = !showFiller" mat-raised-button>
-            Toggle extra text
-        </button>
-    </mat-drawer>
-    
-    <div class="example-sidenav-content">
-        <mat-toolbar>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
-              <mat-icon>menu</mat-icon>
-            </button>
-            <span appTitulos class="px-5">Alumnos</span>
-            <span class="example-spacer"></span>
-            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-              <mat-icon>share</mat-icon>
-            </button>
-        </mat-toolbar>
-        <br>
-        <app-listar-alumnos></app-listar-alumnos>
+  <mat-drawer #drawer class="example-sidenav" mode="over">
+    <mat-nav-list role="list" class="mx-auto">
+
+      <a mat-list-item href="#">
+        <span class="d-flex align-items-center">
+          <mat-icon class="mx-2" color="primary">home</mat-icon>Inicio
+        </span>
+      </a>
+
+      <a mat-list-item routerLink="/alumnos/listar">
+        <span class="d-flex align-items-center">
+          <mat-icon class="mx-2" color="primary">group</mat-icon>Alumnos
+        </span>
+      </a>
+
+      <a mat-list-item href="#">
+        <span class="d-flex align-items-center">
+          <mat-icon class="mx-2" color="primary">newspaper</mat-icon>Cursos
+        </span>
+      </a>
+
+      <a mat-list-item routerLink="/auth/login">
+        <span class="d-flex align-items-center">
+          <mat-icon class="mx-2" color="primary">power_settings_new</mat-icon>Cerrar Sesión
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <mat-toolbar>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span appTitulos class="px-5">Alumnos</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+    <br>
+
+    <!-- SELECTOR -->
   </div>
 </mat-drawer-container>
-

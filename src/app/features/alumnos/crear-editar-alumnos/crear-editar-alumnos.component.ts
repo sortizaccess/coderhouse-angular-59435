@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, Inject, signal } from '@angular/cor
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { generarIdRandom, soloLetras } from '../../shared/utils';
-import { Alumno } from '../../core/models/alumno';
+import { generarIdRandom, soloLetras } from '../../../shared/utils';
+import { Alumno } from '../../../core/models/alumno';
 
 interface alumnoDialogData {
   modificarAlumno?: Alumno

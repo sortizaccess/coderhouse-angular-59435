@@ -4,28 +4,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListarAlumnosComponent } from './features/listar-alumnos/listar-alumnos.component';
-import { CrearEditarAlumnosComponent } from './features/crear-editar-alumnos/crear-editar-alumnos.component';
-import { ToastsComponent } from './shared/utils/toasts/toasts.component';
 import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { AuthModule } from './features/auth/auth.module';
-
+import { HomeComponent } from './features/home/home.component';
+import { AlumnosComponent } from './features/alumnos/alumnos.component';
+import { CursosComponent } from './features/cursos/cursos.component';
+import { AlumnosModule } from './features/alumnos/alumnos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListarAlumnosComponent,
-    ToastsComponent,
-    CrearEditarAlumnosComponent,
-    DashboardComponent
+    DashboardComponent,
+    HomeComponent,
+    AlumnosComponent,
+    CursosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    AlumnosModule
   ],
   providers: [
     provideAnimationsAsync('noop'),

@@ -9,5 +9,9 @@
   
   .example-sidenav {
     padding: 20px;
+    width: 300px;
   }
   
+  .mat-nav-list a {
+    text-align: center;
+  }
