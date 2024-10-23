@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Alumno } from '../../../../core/models/alumno';
 import { Toast } from 'bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearEditarAlumnosComponent } from '../crear-editar-alumnos/crear-editar-alumnos.component';
 import { AlumnosService } from '../../../../core/services/alumnos.service';
-import { Observable } from 'rxjs';
-
+import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
 
 @Component({
   selector: 'app-listar-alumnos',
@@ -16,24 +15,25 @@ import { Observable } from 'rxjs';
 export class ListarAlumnosComponent implements OnInit  {
   displayedColumns: string[] = ['legajo', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource: Alumno[] = [];
-
+  @ViewChild(ToastsComponent) toast!: ToastsComponent;
   constructor(private matDialog: MatDialog, private alumnos$: AlumnosService){ }
 
   ngOnInit(): void {
     this.listarAlumnos();
   }
 
+  //ABM ALUMNOS
   listarAlumnos(): void {
-    this.alumnos$.getAlumnos().subscribe({
+    this.alumnos$.getAll().subscribe({
       next: (alumnos) => {
         this.dataSource = alumnos
       }
     });
   }
   eliminarAlumno(alumno: Alumno): void {
-    this.confirmarToast().then((confirmed) => {
+    this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
-        this.alumnos$.eliminarAlumno(alumno.legajo).subscribe({
+        this.alumnos$.delete(alumno.legajo).subscribe({
           next: (alumnos) => {
             this.dataSource = alumnos
           }
@@ -44,43 +44,14 @@ export class ListarAlumnosComponent implements OnInit  {
     });
   }
   modificarAlumno(legajo: number, alumnoModificado: Alumno): void {
-    this.alumnos$.modificarAlumno(legajo, alumnoModificado).subscribe({
+    this.alumnos$.update(legajo, alumnoModificado).subscribe({
       next: (alumnos) => {
         this.dataSource = alumnos
       }
     });
   }
 
-  confirmarToast(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      const toastElement = document.getElementById('id-toast');
-    
-      if (toastElement) {
-        const toast = new Toast(toastElement);
-        toast.show();
-    
-        const actionButton = document.getElementById('take-action-btn');
-        if (actionButton) {
-          actionButton.addEventListener('click', () => {
-            toast.hide();
-            resolve(true);
-            const toastElementSuccess = document.getElementById('id-toast-success');
-            if (toastElementSuccess) {
-              const toastSuccess = new Toast(toastElementSuccess);
-              toastSuccess.show();
-            }
-          });
-        } else {
-          console.error('actionButton no encontrado en el DOM');
-          reject(false);  //Si no se encuentra el boton, rechaza la promesa
-        }
-      } else {
-        console.error('toast no encontrado en el DOM');
-        reject(false);  //Si no se encuentra el toast, rechaza la promesa
-      }
-    });
-  }
-  
+  //MANEJO DE MODAL
   openModal(alumnoModificado?: Alumno): void {
     this.matDialog.open(CrearEditarAlumnosComponent, {
       data: {
@@ -101,15 +72,12 @@ export class ListarAlumnosComponent implements OnInit  {
             ];
           }
 
-          const toastElementSuccess = document.getElementById('id-toast-success');
-          if (toastElementSuccess) {
-            const toastSuccess = new Toast(toastElementSuccess);
-            toastSuccess.show();
-          }          
+          this.toast.show();          
         }
       }
     });
   }
+  
 }
 
 

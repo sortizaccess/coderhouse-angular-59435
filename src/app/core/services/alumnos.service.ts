@@ -16,29 +16,29 @@ export let DATABASE: Alumno[] = [
 })
 export class AlumnosService {
 
-  getAlumnos(): Observable<Alumno[]> {
+  // get(legajo: number): Observable<Alumno | undefined> {
+  //   return this.getAll().pipe(map((alumnos) => alumnos.find((a) => a.legajo === legajo)));
+  // }
+  
+  getAll(): Observable<Alumno[]> {
     return of([...DATABASE]);
   }
-
-  getAlumno(legajo: number): Observable<Alumno | undefined> {
-    return this.getAlumnos().pipe(map((alumnos) => alumnos.find((a) => a.legajo === legajo)));
+    
+  delete(legajo: number): Observable<Alumno[]>{
+    DATABASE = DATABASE.filter((x) => x.legajo != legajo);
+    return this.getAll();
   }
 
-  eliminarAlumno(legajo: number): Observable<Alumno[]>{
-    DATABASE = DATABASE.filter((a) => a.legajo != legajo);
-    return this.getAlumnos();
-  }
-
-  modificarAlumno(legajo: number, modificar: Partial<Alumno>) {
-    DATABASE = DATABASE.map((alumno) =>
-      alumno.legajo === legajo ? { ...alumno, ...modificar } : alumno
+  update(legajo: number, modificar: Partial<Alumno>) {
+    DATABASE = DATABASE.map((x) =>
+      x.legajo === legajo ? { ...x, ...modificar } : x
     );
-    return this.getAlumnos();
+    return this.getAll();
   }
 
-  agregarAlumno(data: Omit<Alumno, 'legajo'>): Observable<Alumno[]> {
+  add(data: Omit<Alumno, 'legajo'>): Observable<Alumno[]> {
     DATABASE.push({ ...data, legajo: generarIdRandom() });
-    return this.getAlumnos();
+    return this.getAll();
   }
 
   constructor() { }

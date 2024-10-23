@@ -1,44 +1,41 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Clase } from '../models/clase';
+import { generarIdRandom } from '../../shared/utils';
 
-// export let DATABASE: Alumno[] = [
-//   new Alumno(254084299, 'Juan', 'Pérez', 'jperez@gmail.com', new Date('2000-05-20'), 'Masculino'),
-//   new Alumno(322063478, 'Ana', 'Gómez', 'agomez@gmail.com', new Date('1999-03-15'), 'Femenino'),
-//   new Alumno(433056889, 'Luis', 'Fernández', 'lfernandez@gmail.com', new Date('2001-07-30'), 'Masculino'),
-//   new Alumno(747016311, 'María', 'López', 'mlopez@gmail.com', new Date('2000-12-10'), 'Femenino'),
-//   new Alumno(995023300, 'Carlos', 'Martínez', 'cmartinez@gmail.com', new Date('1998-11-22'), 'Masculino'),
-// ];
+export let DATABASE: Clase[] = [
+  new Clase(1, 'Matemáticas', { nombre: 'Juan', apellido: 'Pérez', fechaNacimiento: new Date('1980-05-10'), genero: 'Masculino' }, 'Aula 101'),
+  new Clase(2, 'Física', { nombre: 'María', apellido: 'López', fechaNacimiento: new Date('1975-03-22'), genero: 'Femenino' }, 'Aula 202'),
+  new Clase(3, 'Química', { nombre: 'Carlos', apellido: 'González', fechaNacimiento: new Date('1982-08-15'), genero: 'Masculino' }, 'Aula 303'),
+  new Clase(4, 'Historia', { nombre: 'Laura', apellido: 'Fernández', fechaNacimiento: new Date('1978-11-30'), genero: 'Femenino' }, 'Aula 404'),
+  new Clase(5, 'Literatura', { nombre: 'Jorge', apellido: 'Ramírez', fechaNacimiento: new Date('1985-01-25'), genero: 'Masculino' }, 'Aula 505')
+];
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ClasesService {
+  getAll(): Observable<Clase[]> {
+    return of([...DATABASE]);
+  }
 
-  // getAlumnos(): Observable<Alumno[]> {
-  //   return of([...DATABASE]);
-  // }
+  delete(id: number): Observable<Clase[]>{
+    DATABASE = DATABASE.filter((x) => x.id != id);
+    return this.getAll();
+  }
 
-  // getAlumno(legajo: number): Observable<Alumno | undefined> {
-  //   return this.getAlumnos().pipe(map((alumnos) => alumnos.find((a) => a.legajo === legajo)));
-  // }
+  update(id: number, modificar: Partial<Clase>) {
+    DATABASE = DATABASE.map((x) =>
+      x.id === id ? { ...x, ...modificar } : x
+    );
+    return this.getAll();
+  }
 
-  // eliminarAlumno(legajo: number): Observable<Alumno[]>{
-  //   DATABASE = DATABASE.filter((a) => a.legajo != legajo);
-  //   return this.getAlumnos();
-  // }
-
-  // modificarAlumno(legajo: number, modificar: Partial<Alumno>) {
-  //   DATABASE = DATABASE.map((alumno) =>
-  //     alumno.legajo === legajo ? { ...alumno, ...modificar } : alumno
-  //   );
-  //   return this.getAlumnos();
-  // }
-
-  // agregarAlumno(data: Omit<Alumno, 'legajo'>): Observable<Alumno[]> {
-  //   DATABASE.push({ ...data, legajo: generarIdRandom() });
-  //   return this.getAlumnos();
-  // }
+  add(data: Omit<Clase, 'legajo'>): Observable<Clase[]> {
+    DATABASE.push({ ...data, id: generarIdRandom() });
+    return this.getAll();
+  }
 
   constructor() { }
 }

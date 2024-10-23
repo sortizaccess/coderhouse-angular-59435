@@ -1,44 +1,42 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Curso } from '../models/curso';
+import { generarIdRandom } from '../../shared/utils';
 
-// export let DATABASE: Alumno[] = [
-//   new Alumno(254084299, 'Juan', 'Pérez', 'jperez@gmail.com', new Date('2000-05-20'), 'Masculino'),
-//   new Alumno(322063478, 'Ana', 'Gómez', 'agomez@gmail.com', new Date('1999-03-15'), 'Femenino'),
-//   new Alumno(433056889, 'Luis', 'Fernández', 'lfernandez@gmail.com', new Date('2001-07-30'), 'Masculino'),
-//   new Alumno(747016311, 'María', 'López', 'mlopez@gmail.com', new Date('2000-12-10'), 'Femenino'),
-//   new Alumno(995023300, 'Carlos', 'Martínez', 'cmartinez@gmail.com', new Date('1998-11-22'), 'Masculino'),
-// ];
+export let DATABASE: Curso[] = [
+  new Curso(1, 'Introducción a la Programación', 'Curso básico para aprender los fundamentos de la programación.', new Date('2024-01-15'), 'Principiante'),
+  new Curso(2, 'JavaScript Avanzado', 'Aprende técnicas avanzadas de desarrollo con JavaScript.', new Date('2024-02-20'), 'Avanzado'),
+  new Curso(3, 'Diseño de Bases de Datos', 'Diseño y normalización de bases de datos relacionales.', new Date('2024-03-10'), 'Intermedio'),
+  new Curso(4, 'Fundamentos de Redes', 'Conceptos básicos de redes y protocolos de comunicación.', new Date('2024-04-05'), 'Principiante'),
+  new Curso(5, 'Machine Learning', 'Introducción al aprendizaje automático y sus aplicaciones.', new Date('2024-05-01'), 'Avanzado')
+];
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CursosService {
+  getAll(): Observable<Curso[]> {
+    return of([...DATABASE]);
+  }
 
-  // getAlumnos(): Observable<Alumno[]> {
-  //   return of([...DATABASE]);
-  // }
+  delete(id: number): Observable<Curso[]>{
+    DATABASE = DATABASE.filter((x) => x.id != id);
+    return this.getAll();
+  }
 
-  // getAlumno(legajo: number): Observable<Alumno | undefined> {
-  //   return this.getAlumnos().pipe(map((alumnos) => alumnos.find((a) => a.legajo === legajo)));
-  // }
+  update(id: number, modificar: Partial<Curso>) {
+    DATABASE = DATABASE.map((x) =>
+      x.id === id ? { ...x, ...modificar } : x
+    );
+    return this.getAll();
+  }
 
-  // eliminarAlumno(legajo: number): Observable<Alumno[]>{
-  //   DATABASE = DATABASE.filter((a) => a.legajo != legajo);
-  //   return this.getAlumnos();
-  // }
-
-  // modificarAlumno(legajo: number, modificar: Partial<Alumno>) {
-  //   DATABASE = DATABASE.map((alumno) =>
-  //     alumno.legajo === legajo ? { ...alumno, ...modificar } : alumno
-  //   );
-  //   return this.getAlumnos();
-  // }
-
-  // agregarAlumno(data: Omit<Alumno, 'legajo'>): Observable<Alumno[]> {
-  //   DATABASE.push({ ...data, legajo: generarIdRandom() });
-  //   return this.getAlumnos();
-  // }
+  add(data: Omit<Curso, 'legajo'>): Observable<Curso[]> {
+    DATABASE.push({ ...data, id: generarIdRandom() });
+    return this.getAll();
+  }
 
   constructor() { }
 }

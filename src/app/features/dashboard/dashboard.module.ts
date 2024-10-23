@@ -5,6 +5,8 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { HomeComponent } from './home/home.component';
+import { CursosModule } from './cursos/cursos.module';
+import { ClasesModule } from './clases/clases.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { HomeComponent } from './home/home.component';
     CommonModule,
     AppRoutingModule,
     SharedModule,
-    AlumnosModule
+    AlumnosModule,
+    CursosModule,
+    ClasesModule
   ]
 })
 export class DashboardModule { }
