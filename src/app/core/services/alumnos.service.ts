@@ -15,10 +15,9 @@ export let DATABASE: Alumno[] = [
   providedIn: 'root'
 })
 export class AlumnosService {
-
-  // get(legajo: number): Observable<Alumno | undefined> {
-  //   return this.getAll().pipe(map((alumnos) => alumnos.find((a) => a.legajo === legajo)));
-  // }
+  get(legajo: number): Observable<Alumno | undefined> {
+    return this.getAll().pipe(map((x) => x.find((y) => y.legajo === legajo)));
+  }
   
   getAll(): Observable<Alumno[]> {
     return of([...DATABASE]);

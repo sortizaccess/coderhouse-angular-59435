@@ -15,7 +15,7 @@ export class ListarClasesComponent implements OnInit {
   dataSource: Clase[] = [];
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
 
-  constructor(private matDialog: MatDialog, private clases$: ClasesService){ }
+  constructor(private matDialog: MatDialog, private clasesService: ClasesService){ }
 
   ngOnInit(): void {
     this.listarClases();
@@ -23,7 +23,7 @@ export class ListarClasesComponent implements OnInit {
 
   //ABM CLASES
   listarClases(): void {
-    this.clases$.getAll().subscribe({
+    this.clasesService.getAll().subscribe({
       next: (clases) => {
         this.dataSource = clases
       }
@@ -32,7 +32,7 @@ export class ListarClasesComponent implements OnInit {
   eliminarClase(clase: Clase): void {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
-        this.clases$.delete(clase.id).subscribe({
+        this.clasesService.delete(clase.id).subscribe({
           next: (clases) => {
             this.dataSource = clases
           }
@@ -43,7 +43,7 @@ export class ListarClasesComponent implements OnInit {
     });
   }
   modificarClase(id: number, claseModificada: Clase): void {
-    this.clases$.update(id, claseModificada).subscribe({
+    this.clasesService.update(id, claseModificada).subscribe({
       next: (clases) => {
         this.dataSource = clases
       }

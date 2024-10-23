@@ -16,7 +16,7 @@ export class ListarCursosComponent implements OnInit {
   dataSource: Curso[] = [];
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
   
-  constructor(private matDialog: MatDialog, private cursos$: CursosService){ }
+  constructor(private matDialog: MatDialog, private cursosService: CursosService){ }
 
   ngOnInit(): void {
     this.listarCursos();
@@ -24,7 +24,7 @@ export class ListarCursosComponent implements OnInit {
 
   //ABM CURSOS
   listarCursos(): void {
-    this.cursos$.getAll().subscribe({
+    this.cursosService.getAll().subscribe({
       next: (cursos) => {
         this.dataSource = cursos
       }
@@ -33,7 +33,7 @@ export class ListarCursosComponent implements OnInit {
   eliminarCurso(curso: Curso): void {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
-        this.cursos$.delete(curso.id).subscribe({
+        this.cursosService.delete(curso.id).subscribe({
           next: (cursos) => {
             this.dataSource = cursos
           }
@@ -44,7 +44,7 @@ export class ListarCursosComponent implements OnInit {
     });
   }
   modificarCurso(legajo: number, cursoModificado: Curso): void {
-    this.cursos$.update(legajo, cursoModificado).subscribe({
+    this.cursosService.update(legajo, cursoModificado).subscribe({
       next: (cursos) => {
         this.dataSource = cursos
       }

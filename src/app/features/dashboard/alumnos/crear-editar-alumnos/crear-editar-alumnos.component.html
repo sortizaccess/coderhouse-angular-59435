@@ -2,7 +2,7 @@
 <h2 appTitulos mat-dialog-title> {{data?.alumnoModificado ? 'Editar' : 'Crear'}} Alumno</h2>
 <mat-dialog-content>
   <hr>
-  <form [formGroup]="userForm">
+  <form [formGroup]="alumnoForm">
     <div class="row my-2" appTitulos>
       <div class="col-6">
         <mat-form-field>
@@ -10,16 +10,16 @@
           <mat-label>Nombre</mat-label>
           <input formControlName="nombre" matInput />
           <mat-error>
-            @if(userForm.get('nombre')?.hasError('required')){
+            @if(alumnoForm.get('nombre')?.hasError('required')){
               Requerido
             }
-            @else if (userForm.get('nombre')?.hasError('maxlength')) {
+            @else if (alumnoForm.get('nombre')?.hasError('maxlength')) {
               Máximo 15 caracteres
             }
-            @else if (userForm.get('nombre')?.hasError('minlength')) {
+            @else if (alumnoForm.get('nombre')?.hasError('minlength')) {
               Mínimo 3 caracteres
             }
-            @else if (userForm.get('nombre')?.hasError('soloLetras')) {
+            @else if (alumnoForm.get('nombre')?.hasError('soloLetras')) {
               Caracteres inválidos
             }
           </mat-error>
@@ -31,16 +31,16 @@
           <mat-label>Apellido</mat-label>
           <input formControlName="apellido" matInput />
           <mat-error>
-            @if(userForm.get('apellido')?.hasError('required')){
+            @if(alumnoForm.get('apellido')?.hasError('required')){
               Requerido
             }
-            @else if (userForm.get('apellido')?.hasError('maxlength')) {
+            @else if (alumnoForm.get('apellido')?.hasError('maxlength')) {
               Máximo 15 caracteres
             }
-            @else if (userForm.get('apellido')?.hasError('minlength')) {
+            @else if (alumnoForm.get('apellido')?.hasError('minlength')) {
               Mínimo 3 caracteres
             }
-            @else if (userForm.get('apellido')?.hasError('soloLetras')) {
+            @else if (alumnoForm.get('apellido')?.hasError('soloLetras')) {
               Caracteres inválidos
             }
           </mat-error>
@@ -58,13 +58,13 @@
             matInput
             placeholder="ejemplo@ejemplo.com" />
             <mat-error>
-              @if(userForm.get('email')?.hasError('required')){
+              @if(alumnoForm.get('email')?.hasError('required')){
                 Requerido
               }
-              @else if (userForm.get('email')?.hasError('maxlength')) {
+              @else if (alumnoForm.get('email')?.hasError('maxlength')) {
                 Máximo 30 caracteres
               }
-              @else if (userForm.get('email')?.hasError('minlength')) {
+              @else if (alumnoForm.get('email')?.hasError('minlength')) {
                 Mínimo 12 caracteres
               }
             </mat-error>
@@ -79,7 +79,7 @@
             <mat-option [value]="'Femenino'">Femenino</mat-option>
           </mat-select>
           <mat-error>
-            @if(userForm.get('genero')?.hasError('required')){
+            @if(alumnoForm.get('genero')?.hasError('required')){
               Requerido
             }
           </mat-error>
@@ -96,7 +96,7 @@
           <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <mat-error>
-            @if(userForm.get('fechaNacimiento')?.hasError('required')){
+            @if(alumnoForm.get('fechaNacimiento')?.hasError('required')){
               Requerido
             }
           </mat-error>

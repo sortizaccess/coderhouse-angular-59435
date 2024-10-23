@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 // Generar un ID aleatorio
 export function generarIdRandom(): number {
-    return Math.floor(Math.random() * (999999999 - 100000000 + 1)) + 100000000;
+    return Math.floor(Math.random() * (999 - 100 + 1)) + 999;
 }
 
 // Permitir solo letras

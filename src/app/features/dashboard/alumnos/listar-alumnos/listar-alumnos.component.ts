@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Alumno } from '../../../../core/models/alumno';
-import { Toast } from 'bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearEditarAlumnosComponent } from '../crear-editar-alumnos/crear-editar-alumnos.component';
 import { AlumnosService } from '../../../../core/services/alumnos.service';
@@ -16,7 +15,7 @@ export class ListarAlumnosComponent implements OnInit  {
   displayedColumns: string[] = ['legajo', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource: Alumno[] = [];
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
-  constructor(private matDialog: MatDialog, private alumnos$: AlumnosService){ }
+  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService){ }
 
   ngOnInit(): void {
     this.listarAlumnos();
@@ -24,7 +23,7 @@ export class ListarAlumnosComponent implements OnInit  {
 
   //ABM ALUMNOS
   listarAlumnos(): void {
-    this.alumnos$.getAll().subscribe({
+    this.alumnosService.getAll().subscribe({
       next: (alumnos) => {
         this.dataSource = alumnos
       }
@@ -33,7 +32,7 @@ export class ListarAlumnosComponent implements OnInit  {
   eliminarAlumno(alumno: Alumno): void {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
-        this.alumnos$.delete(alumno.legajo).subscribe({
+        this.alumnosService.delete(alumno.legajo).subscribe({
           next: (alumnos) => {
             this.dataSource = alumnos
           }
@@ -44,7 +43,7 @@ export class ListarAlumnosComponent implements OnInit  {
     });
   }
   modificarAlumno(legajo: number, alumnoModificado: Alumno): void {
-    this.alumnos$.update(legajo, alumnoModificado).subscribe({
+    this.alumnosService.update(legajo, alumnoModificado).subscribe({
       next: (alumnos) => {
         this.dataSource = alumnos
       }

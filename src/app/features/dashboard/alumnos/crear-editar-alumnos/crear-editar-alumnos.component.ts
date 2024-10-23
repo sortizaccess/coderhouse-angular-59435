@@ -18,13 +18,13 @@ interface alumnoDialogData {
 })
 
 export class CrearEditarAlumnosComponent {
-  public userForm: FormGroup;
+  public alumnoForm: FormGroup;
 
   constructor(
     private matDialogRef: MatDialogRef<CrearEditarAlumnosComponent>, 
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data?: alumnoDialogData) {
-    this.userForm = this.formBuilder.group({
+    this.alumnoForm = this.formBuilder.group({
       nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
       apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
       email: [null, [Validators.required, Validators.email, Validators.maxLength(30), Validators.minLength(15)]],
@@ -41,16 +41,16 @@ export class CrearEditarAlumnosComponent {
 
   patchFormValue() {
     if(this.data?.alumnoModificado){
-      this.userForm.patchValue(this.data.alumnoModificado);
+      this.alumnoForm.patchValue(this.data.alumnoModificado);
     }
   }
 
   onSave(): void {
-    if (this.userForm.invalid){
-      this.userForm.markAllAsTouched();
+    if (this.alumnoForm.invalid){
+      this.alumnoForm.markAllAsTouched();
     } else {
       this.matDialogRef.close({
-        ...this.userForm.value,
+        ...this.alumnoForm.value,
         legajo: this.esModificar ? this.data!.alumnoModificado!.legajo : generarIdRandom()
       });
     }
