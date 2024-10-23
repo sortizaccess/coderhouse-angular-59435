@@ -7,7 +7,8 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { ListarAlumnosComponent } from './features/dashboard/alumnos/listar-alumnos/listar-alumnos.component';
 import { ListarCursosComponent } from './features/dashboard/cursos/listar-cursos/listar-cursos.component';
-import { IntroComponent } from './features/dashboard/home/intro/intro.component';
+import { HomeComponent } from './features/dashboard/home/home.component';
+import { ListarClasesComponent } from './features/dashboard/clases/listar-clases/listar-clases.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: IntroComponent
+        component: HomeComponent
       },
       {
         path: 'alumnos',
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'cursos',
         component: ListarCursosComponent
+      },
+      {
+        path: 'clases',
+        component: ListarClasesComponent
       },
     ]
   },

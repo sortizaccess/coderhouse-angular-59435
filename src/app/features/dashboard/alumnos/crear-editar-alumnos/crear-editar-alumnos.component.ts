@@ -6,7 +6,7 @@ import { generarIdRandom, soloLetras } from '../../../../shared/utils';
 import { Alumno } from '../../../../core/models/alumno';
 
 interface alumnoDialogData {
-  modificarAlumno?: Alumno
+  alumnoModificado?: Alumno
 }
 
 @Component({
@@ -36,12 +36,12 @@ export class CrearEditarAlumnosComponent {
   }
 
   private get esModificar() {
-    return !!this.data?.modificarAlumno;
+    return !!this.data?.alumnoModificado;
   }
 
   patchFormValue() {
-    if(this.data?.modificarAlumno){
-      this.userForm.patchValue(this.data.modificarAlumno);
+    if(this.data?.alumnoModificado){
+      this.userForm.patchValue(this.data.alumnoModificado);
     }
   }
 
@@ -51,7 +51,7 @@ export class CrearEditarAlumnosComponent {
     } else {
       this.matDialogRef.close({
         ...this.userForm.value,
-        legajo: this.esModificar ? this.data!.modificarAlumno!.legajo : generarIdRandom()
+        legajo: this.esModificar ? this.data!.alumnoModificado!.legajo : generarIdRandom()
       });
     }
   }

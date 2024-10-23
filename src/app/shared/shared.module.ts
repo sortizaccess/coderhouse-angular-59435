@@ -28,6 +28,7 @@ import { ToastsComponent } from './utils/toasts/toasts.component';
   imports: [
     CommonModule,
     MatIconModule,
+    MatButtonModule,
     MatDialogModule
   ],
   exports: [

@@ -1,16 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Alumno } from '../../../../core/models/alumno';
 import { Toast } from 'bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearEditarAlumnosComponent } from '../crear-editar-alumnos/crear-editar-alumnos.component';
+import { AlumnosService } from '../../../../core/services/alumnos.service';
+import { Observable } from 'rxjs';
 
-let ALUMNOS: Alumno[] = [
-  new Alumno(254084299, 'Juan', 'Pérez', 'jperez@gmail.com', new Date('2000-05-20'), 'Masculino'),
-  new Alumno(322063478, 'Ana', 'Gómez', 'agomez@gmail.com', new Date('1999-03-15'), 'Femenino'),
-  new Alumno(433056889, 'Luis', 'Fernández', 'lfernandez@gmail.com', new Date('2001-07-30'), 'Masculino'),
-  new Alumno(747016311, 'María', 'López', 'mlopez@gmail.com', new Date('2000-12-10'), 'Femenino'),
-  new Alumno(995023300, 'Carlos', 'Martínez', 'cmartinez@gmail.com', new Date('1998-11-22'), 'Masculino'),
-];
 
 @Component({
   selector: 'app-listar-alumnos',
@@ -18,20 +13,41 @@ let ALUMNOS: Alumno[] = [
   styleUrl: './listar-alumnos.component.css'
 })
 
-export class ListarAlumnosComponent  {
+export class ListarAlumnosComponent implements OnInit  {
   displayedColumns: string[] = ['legajo', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
-  dataSource = ALUMNOS;
+  dataSource: Alumno[] = [];
 
-  constructor(private matDialog: MatDialog){
+  constructor(private matDialog: MatDialog, private alumnos$: AlumnosService){ }
+
+  ngOnInit(): void {
+    this.listarAlumnos();
   }
 
+  listarAlumnos(): void {
+    this.alumnos$.getAlumnos().subscribe({
+      next: (alumnos) => {
+        this.dataSource = alumnos
+      }
+    });
+  }
   eliminarAlumno(alumno: Alumno): void {
     this.confirmarToast().then((confirmed) => {
       if (confirmed) {
-        this.dataSource = this.dataSource.filter(x => x.legajo !== alumno.legajo);
+        this.alumnos$.eliminarAlumno(alumno.legajo).subscribe({
+          next: (alumnos) => {
+            this.dataSource = alumnos
+          }
+        });
       }
     }).catch(() => {
       console.error('Error al confirmar la eliminación');
+    });
+  }
+  modificarAlumno(legajo: number, alumnoModificado: Alumno): void {
+    this.alumnos$.modificarAlumno(legajo, alumnoModificado).subscribe({
+      next: (alumnos) => {
+        this.dataSource = alumnos
+      }
     });
   }
 
@@ -64,11 +80,11 @@ export class ListarAlumnosComponent  {
       }
     });
   }
-
-  openModal(modificarAlumno?: Alumno): void {
+  
+  openModal(alumnoModificado?: Alumno): void {
     this.matDialog.open(CrearEditarAlumnosComponent, {
       data: {
-        modificarAlumno
+        alumnoModificado
       },
       height: '450px',
       width: '600px',
@@ -77,8 +93,8 @@ export class ListarAlumnosComponent  {
     .subscribe({
       next: (result) => {
         if (!!result) {
-          if (modificarAlumno) {
-            this.dataSource = this.dataSource.map((alumno) => alumno.legajo === modificarAlumno.legajo ? {...alumno, ...result} : alumno)
+          if (alumnoModificado) {
+            this.modificarAlumno(alumnoModificado.legajo, result);            
           } else {
             this.dataSource = [
               ...this.dataSource, {...result}
