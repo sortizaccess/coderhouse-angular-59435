@@ -4,14 +4,14 @@ import { SharedModule } from '../../shared/shared.module';
 import { AppRoutingModule } from '../../app-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { AlumnosModule } from './alumnos/alumnos.module';
-import { HomeComponent } from './home/home.component';
 import { CursosModule } from './cursos/cursos.module';
 import { ClasesModule } from './clases/clases.module';
+import { HomeModule } from './home/home.module';
+import { InscripcionesModule } from './inscripciones/inscripciones.module';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    HomeComponent
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +19,9 @@ import { ClasesModule } from './clases/clases.module';
     SharedModule,
     AlumnosModule,
     CursosModule,
-    ClasesModule
+    ClasesModule,
+    HomeModule,
+    InscripcionesModule
   ]
 })
 export class DashboardModule { }

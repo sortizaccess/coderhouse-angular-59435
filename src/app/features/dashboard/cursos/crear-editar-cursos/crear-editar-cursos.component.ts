@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Curso } from '../../../../core/models/curso';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { ClasesService } from '../../../../core/services/clases.service';
-import { Observable } from 'rxjs';
-import { Clase } from '../../../../core/models/clase';
 
 interface cursoDialogData {
   cursoModificado?: Curso
@@ -21,22 +18,18 @@ interface cursoDialogData {
 })
 export class CrearEditarCursosComponent {
   public cursoForm: FormGroup;
-  public clases$: Observable<Clase[]>;
 
   constructor(
     private matDialogRef: MatDialogRef<CrearEditarCursosComponent>, 
     private formBuilder: FormBuilder,
-    private clasesService: ClasesService,
     @Inject(MAT_DIALOG_DATA) public data?: cursoDialogData) {
     this.cursoForm = this.formBuilder.group({
       nombre: [null],
       fechaInicio: [null],
       dificultad: [null],
-      descripcion: [null],
-      idClase: [null]
+      descripcion: [null]
     });
 
-    this.clases$ = this.clasesService.getAll();
     this.patchFormValue();
   }
 

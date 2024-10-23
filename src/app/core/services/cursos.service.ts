@@ -4,11 +4,11 @@ import { Curso } from '../models/curso';
 import { generarIdRandom } from '../../shared/utils';
 
 export let DATABASE: Curso[] = [
-  new Curso(991, 'Introducción a la Programación', 'Curso básico para aprender los fundamentos de la programación.', new Date('2024-01-15'), 'Principiante', 5),
-  new Curso(992, 'JavaScript Avanzado', 'Aprende técnicas avanzadas de desarrollo con JavaScript.', new Date('2024-02-20'), 'Avanzado', 4),
-  new Curso(993, 'Diseño de Bases de Datos', 'Diseño y normalización de bases de datos relacionales.', new Date('2024-03-10'), 'Intermedio', 3),
-  new Curso(994, 'Fundamentos de Redes', 'Conceptos básicos de redes y protocolos de comunicación.', new Date('2024-04-05'), 'Principiante', 2),
-  new Curso(995, 'Machine Learning', 'Introducción al aprendizaje automático y sus aplicaciones.', new Date('2024-05-01'), 'Avanzado', 1)
+  new Curso(991, 'Introducción a la Programación', 'Curso básico para aprender los fundamentos de la programación.', new Date('2024-01-15'), 'Principiante'),
+  new Curso(992, 'JavaScript Avanzado', 'Aprende técnicas avanzadas de desarrollo con JavaScript.', new Date('2024-02-20'), 'Avanzado'),
+  new Curso(993, 'Diseño de Bases de Datos', 'Diseño y normalización de bases de datos relacionales.', new Date('2024-03-10'), 'Intermedio'),
+  new Curso(994, 'Fundamentos de Redes', 'Conceptos básicos de redes y protocolos de comunicación.', new Date('2024-04-05'), 'Principiante'),
+  new Curso(995, 'Machine Learning', 'Introducción al aprendizaje automático y sus aplicaciones.', new Date('2024-05-01'), 'Avanzado')
 ];
 
 

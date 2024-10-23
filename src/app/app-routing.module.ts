@@ -9,6 +9,7 @@ import { ListarAlumnosComponent } from './features/dashboard/alumnos/listar-alum
 import { ListarCursosComponent } from './features/dashboard/cursos/listar-cursos/listar-cursos.component';
 import { HomeComponent } from './features/dashboard/home/home.component';
 import { ListarClasesComponent } from './features/dashboard/clases/listar-clases/listar-clases.component';
+import { ListarInscripcionesComponent } from './features/dashboard/inscripciones/listar-inscripciones/listar-inscripciones.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
         path: 'clases',
         component: ListarClasesComponent
       },
+      {
+        path: 'inscripciones',
+        component: ListarInscripcionesComponent
+      },      
     ]
   },
   { 

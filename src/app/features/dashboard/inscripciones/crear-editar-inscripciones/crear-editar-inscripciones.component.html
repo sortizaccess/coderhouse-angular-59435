@@ -1,14 +1,14 @@
 
-<h2 appTitulos mat-dialog-title> {{data?.cursoModificado ? 'Editar' : 'Crear'}} Curso</h2>
+<h2 appTitulos mat-dialog-title> {{data?.inscripcionModificada ? 'Editar' : 'Crear'}} Curso</h2>
 <mat-dialog-content>
   <hr>
-  <form [formGroup]="cursoForm">
+  <form [formGroup]="inscripcionForm">
     <div class="row my-2" appTitulos>
       <div class="col-6">
         <mat-form-field>
           <mat-icon matPrefix>book</mat-icon>
-          <mat-label>Nombre</mat-label>
-          <input formControlName="nombre" matInput />
+          <mat-label>Curso</mat-label>
+          <input formControlName="idCurso" matInput />
           <!-- <mat-error>
             @if(cursoForm.get('nombre')?.hasError('required')){
               Requerido
@@ -18,9 +18,9 @@
       </div>
       <div class="col-6">
         <mat-form-field>
-          <mat-icon matPrefix>description</mat-icon>
-          <mat-label>Descripción</mat-label>
-          <input formControlName="descripcion" matInput />
+          <mat-icon matPrefix>assignment_ind</mat-icon>
+          <mat-label>Alumno</mat-label>
+          <input formControlName="idAlumno" matInput />
           <!-- <mat-error>
             @if(cursoForm.get('apellido')?.hasError('required')){
               Requerido
@@ -34,8 +34,8 @@
       <div class="col-6">
         <mat-form-field>
           <mat-icon matPrefix>summarize</mat-icon>     
-          <mat-label>Dificultad</mat-label>
-          <input formControlName="dificultad" matInput />
+          <mat-label>Estado</mat-label>
+          <input formControlName="estado" matInput />
             <!-- <mat-error>
               @if(cursoForm.get('email')?.hasError('required')){
                 Requerido
@@ -46,8 +46,8 @@
 
       <div class="col-6">
         <mat-form-field>          
-          <mat-label>Fecha de Inicio</mat-label>
-          <input formControlName="fechaInicio" matInput [matDatepicker]="picker" />
+          <mat-label>Fecha de Inscripción</mat-label>
+          <input formControlName="fechaInscripcion" matInput [matDatepicker]="picker" />
           <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
           <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>

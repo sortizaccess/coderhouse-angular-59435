@@ -2,30 +2,36 @@
   <mat-drawer #drawer class="example-sidenav" mode="over">
     <mat-nav-list role="list" class="mx-auto">
 
-      <a mat-list-item routerLink="/dashboard/home">
+      <a mat-list-item routerLink="/dashboard/home" routerLinkActive #homeLink="routerLinkActive">
         <span class="d-flex align-items-center">
           <mat-icon class="mx-2" color="primary">home</mat-icon>Inicio
         </span>
       </a>
 
-      <a mat-list-item routerLink="/dashboard/alumnos">
+      <a mat-list-item routerLink="/dashboard/alumnos" routerLinkActive #alumnosLink="routerLinkActive">
         <span class="d-flex align-items-center">
           <mat-icon class="mx-2" color="primary">group</mat-icon>Alumnos
         </span>
       </a>
 
-      <a mat-list-item routerLink="/dashboard/cursos">
+      <a mat-list-item routerLink="/dashboard/cursos" routerLinkActive #cursosLink="routerLinkActive">
         <span class="d-flex align-items-center">
           <mat-icon class="mx-2" color="primary">newspaper</mat-icon>Cursos
         </span>
       </a>
 
-      <a mat-list-item routerLink="/dashboard/clases">
+      <a mat-list-item routerLink="/dashboard/clases" routerLinkActive #clasesLink="routerLinkActive">
         <span class="d-flex align-items-center">
           <mat-icon class="mx-2" color="primary">school</mat-icon>Clases
         </span>
       </a>
       
+      <a mat-list-item routerLink="/dashboard/inscripciones" routerLinkActive #inscripcionesLink="routerLinkActive">
+        <span class="d-flex align-items-center">
+          <mat-icon class="mx-2" color="primary">book</mat-icon>Inscripciones
+        </span>
+      </a>
+
       <a mat-list-item routerLink="/auth/login">
         <span class="d-flex align-items-center">
           <mat-icon class="mx-2" color="primary">power_settings_new</mat-icon>Cerrar Sesión

@@ -11,7 +11,7 @@ import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.componen
   styleUrl: './listar-clases.component.css'
 })
 export class ListarClasesComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'materia', 'profesor', 'aula', 'acciones'];
+  displayedColumns: string[] = ['id', 'contenido', 'profesor', 'aula', 'acciones'];
   dataSource: Clase[] = [];
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
 
