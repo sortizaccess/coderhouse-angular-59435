@@ -32,7 +32,7 @@ export class ListarAlumnosComponent implements OnInit  {
   eliminarAlumno(alumno: Alumno): void {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
-        this.alumnosService.delete(alumno.legajo).subscribe({
+        this.alumnosService.delete(alumno.id).subscribe({
           next: (alumnos) => {
             this.dataSource = alumnos
           }
@@ -42,8 +42,8 @@ export class ListarAlumnosComponent implements OnInit  {
       console.error('Error al confirmar la eliminación');
     });
   }
-  modificarAlumno(legajo: number, alumnoModificado: Alumno): void {
-    this.alumnosService.update(legajo, alumnoModificado).subscribe({
+  modificarAlumno(id: string, alumnoModificado: Alumno): void {
+    this.alumnosService.update(id, alumnoModificado).subscribe({
       next: (alumnos) => {
         this.dataSource = alumnos
       }
@@ -64,11 +64,9 @@ export class ListarAlumnosComponent implements OnInit  {
       next: (result) => {
         if (!!result) {
           if (alumnoModificado) {
-            this.modificarAlumno(alumnoModificado.legajo, result);            
+            this.modificarAlumno(alumnoModificado.id, result);            
           } else {
-            this.dataSource = [
-              ...this.dataSource, {...result}
-            ];
+            this.alumnosService.add(result).subscribe({ next: () => this.listarAlumnos()});
           }
 
           this.toast.show();          

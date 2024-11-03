@@ -51,7 +51,7 @@ export class CrearEditarAlumnosComponent {
     } else {
       this.matDialogRef.close({
         ...this.alumnoForm.value,
-        legajo: this.esModificar ? this.data!.alumnoModificado!.legajo : generarIdRandom()
+        id: this.esModificar ? this.data!.alumnoModificado!.id : generarIdRandom()
       });
     }
   }

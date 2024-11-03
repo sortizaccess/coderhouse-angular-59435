@@ -1,44 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Alumno } from '../models/alumno';
-import { map, Observable, of } from 'rxjs';
-import { generarIdRandom } from '../../shared/utils';
+import { concatMap, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
+import { HttpClient } from '@angular/common/http';
 
-export let DATABASE: Alumno[] = [
-  new Alumno(254084299, 'Juan', 'Pérez', 'jperez@gmail.com', new Date('2000-05-20'), 'Masculino', '123', 'ASD1'),
-  new Alumno(322063478, 'Ana', 'Gómez', 'agomez@gmail.com', new Date('1999-03-15'), 'Femenino', '123', 'ASD2'),
-  new Alumno(433056889, 'Luis', 'Fernández', 'lfernandez@gmail.com', new Date('2001-07-30'), 'Masculino', '123', 'ASD3'),
-  new Alumno(747016311, 'María', 'López', 'mlopez@gmail.com', new Date('2000-12-10'), 'Femenino', '123', 'ASD4'),
-  new Alumno(995023300, 'Carlos', 'Martínez', 'cmartinez@gmail.com', new Date('1998-11-22'), 'Masculino', '123', 'ASD5'),
-];
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumnosService {
-  get(legajo: number): Observable<Alumno | undefined> {
-    return this.getAll().pipe(map((x) => x.find((y) => y.legajo === legajo)));
+  private baseURL = environment.apiBaseURL;
+  constructor(private httpClient: HttpClient) { }
+
+  get(id: string): Observable<Alumno | undefined> {
+    return this.httpClient.get<Alumno>(`${this.baseURL}alumnos/${id}`);
   }
-  
   getAll(): Observable<Alumno[]> {
-    return of([...DATABASE]);
+    return this.httpClient.get<Alumno[]>(`${this.baseURL}alumnos`);
   }
-    
-  delete(legajo: number): Observable<Alumno[]>{
-    DATABASE = DATABASE.filter((x) => x.legajo != legajo);
-    return this.getAll();
+  add(data: Omit<Alumno, 'id'>): Observable<Alumno> {
+    return this.httpClient.post<Alumno>(`${this.baseURL}alumnos`, { ...data });
+  }  
+  delete(id: string): Observable<Alumno[]>{
+    return this.httpClient.delete<Alumno>(`${this.baseURL}alumnos/${id}`).pipe(concatMap(() => this.getAll()));
   }
-
-  update(legajo: number, modificar: Partial<Alumno>) {
-    DATABASE = DATABASE.map((x) =>
-      x.legajo === legajo ? { ...x, ...modificar } : x
-    );
-    return this.getAll();
+  update(id: string, modificar: Partial<Alumno>) {
+    return this.httpClient.patch(`${this.baseURL}alumnos/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
 
-  add(data: Omit<Alumno, 'legajo'>): Observable<Alumno[]> {
-    DATABASE.push({ ...data, legajo: generarIdRandom() });
-    return this.getAll();
-  }
-
-  constructor() { }
 }

@@ -1,7 +1,7 @@
 import { Persona } from './persona'; 
 
 export class Alumno implements Persona {
-    legajo: number;
+    id: string;
     nombre: string;
     apellido: string;
     email: string;
@@ -10,8 +10,8 @@ export class Alumno implements Persona {
     password: string;
     token: string;
 
-    constructor(legajo: number, nombre: string, apellido: string, email: string, fechaNacimiento: Date, genero: string, password: string, token: string) {
-        this.legajo = legajo;
+    constructor(id: string, nombre: string, apellido: string, email: string, fechaNacimiento: Date, genero: string, password: string, token: string) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
