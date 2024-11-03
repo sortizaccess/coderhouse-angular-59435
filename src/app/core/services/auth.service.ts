@@ -1,37 +1,29 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, throwError } from 'rxjs';
 import { Alumno } from '../../core/models/alumno';
 import { AuthData } from '../../core/models/authData';
-import { generarIdRandom } from '../../shared/utils';
 import { Router } from '@angular/router';
-
-const FAKE_USER: Alumno = {
-  email: 'admin_test@email.com',
-  legajo: generarIdRandom(),
-  nombre: 'Sebastián',
-  apellido: 'Ortiz',
-  fechaNacimiento: new Date(2024, 12, 12),
-  genero: 'Masculino',
-  password: '1234',
-  token: 'ASD123'
-}
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private _authAlumno$ = new BehaviorSubject<null | Alumno>(null);
   public authAlumno$ = this._authAlumno$.asObservable();
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private httpClient: HttpClient){}
 
   login(data: AuthData): Observable<Alumno> {
-    if (data.email != FAKE_USER.email || data.password != FAKE_USER.password) {
-      return throwError(() => new Error('Acceso incorrecto'));
-    }
+    return this.httpClient.get<Alumno[]>(`http://localhost:3000/alumnos?email=${data.email}&password=${data.password}`)
+    .pipe(map((alumnos) => {
+      const alumno = this.autentificarToken(alumnos);
 
-    this._authAlumno$.next(FAKE_USER);
-    localStorage.setItem('token', FAKE_USER.token);
-
-    return of(FAKE_USER);
+      if (alumno) {
+        return alumno
+      }
+      else {
+        throw throwError(() => new Error('Acceso incorrecto'));
+      }
+    }));
   }
 
   logout(): void {
@@ -41,15 +33,21 @@ export class AuthService {
   }
 
   validarToken(): Observable<boolean>{
-    const esValido = localStorage.getItem('token') === FAKE_USER.token;
+    return this.httpClient.get<Alumno[]>(`http://localhost:3000/alumnos?token=${localStorage.getItem('token')}`)
+    .pipe(map((alumnos) => {
+      const alumno = this.autentificarToken(alumnos);
+      return !!alumno;
+    }));
+  }
 
-    if(esValido) {
-      this._authAlumno$.next(FAKE_USER);
+  private autentificarToken(alumnos: Alumno[]): Alumno | null {
+    if(alumnos[0]){
+      localStorage.setItem('token', alumnos[0].token);
+      this._authAlumno$.next(alumnos[0]);
+      return alumnos[0];
     }
     else {
-      this._authAlumno$.next(null);
+      return null;
     }
-
-    return of(esValido);
   }
 }

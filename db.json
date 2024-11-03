@@ -1,5 +1,16 @@
 {
-    "alumnos": [],
+    "alumnos": [
+        {
+            "email": "admin_test@email.com",
+            "legajo": 123,
+            "nombre": "Sebastián",
+            "apellido": "Ortiz",
+            "fechaNacimiento": "2024-11-03T09:32:02.250Z",
+            "genero": "Masculino",
+            "password": "1234",
+            "token": "ASD123"
+        }
+    ],
     "clases": [],
     "cursos": [],
     "inscripciones": []
