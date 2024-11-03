@@ -6,6 +6,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './features/auth/auth.module';
 import { DashboardModule } from './features/dashboard/dashboard.module';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -19,8 +22,9 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
     DashboardModule
   ],
   providers: [
-    provideAnimationsAsync('noop'),
-    provideAnimationsAsync()
+    provideNativeDateAdapter(),
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

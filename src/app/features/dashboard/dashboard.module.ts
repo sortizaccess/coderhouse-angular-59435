@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared/shared.module';
-import { AppRoutingModule } from '../../app-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { SharedModule } from '../../shared/shared.module';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { CursosModule } from './cursos/cursos.module';
 import { ClasesModule } from './clases/clases.module';
-import { HomeModule } from './home/home.module';
 import { InscripcionesModule } from './inscripciones/inscripciones.module';
 
 @NgModule({
@@ -15,12 +14,11 @@ import { InscripcionesModule } from './inscripciones/inscripciones.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
+    DashboardRoutingModule,
     SharedModule,
     AlumnosModule,
     CursosModule,
     ClasesModule,
-    HomeModule,
     InscripcionesModule
   ]
 })
