@@ -42,7 +42,7 @@ export class ListarClasesComponent implements OnInit {
       console.error('Error al confirmar la eliminación');
     });
   }
-  modificarClase(id: number, claseModificada: Clase): void {
+  modificarClase(id: string, claseModificada: Clase): void {
     this.clasesService.update(id, claseModificada).subscribe({
       next: (clases) => {
         this.dataSource = clases

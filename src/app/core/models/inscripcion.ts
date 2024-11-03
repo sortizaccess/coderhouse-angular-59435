@@ -1,11 +1,11 @@
 export class Inscripcion {
-    id: number;
+    id: string;
     idAlumno: number;
     idCurso: number;
     fechaInscripcion: Date;
     estado: string;
     
-    constructor(id:number, idAlumno: number, idCurso: number, fechaInscripcion: Date, estado: string) {
+    constructor(id: string, idAlumno: number, idCurso: number, fechaInscripcion: Date, estado: string) {
         this.id = id;
         this.idAlumno = idAlumno;
         this.idCurso = idCurso;

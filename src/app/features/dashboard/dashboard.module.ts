@@ -7,10 +7,12 @@ import { AlumnosModule } from './alumnos/alumnos.module';
 import { CursosModule } from './cursos/cursos.module';
 import { ClasesModule } from './clases/clases.module';
 import { InscripcionesModule } from './inscripciones/inscripciones.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

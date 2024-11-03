@@ -44,7 +44,7 @@ export class ListarInscripcionesComponent implements OnInit {
       console.error('Error al confirmar la eliminación');
     });
   }
-  modificarInscripcion(id: number, inscripcionModificada: Inscripcion): void {
+  modificarInscripcion(id: string, inscripcionModificada: Inscripcion): void {
     this.inscripcionesService.update(id, inscripcionModificada).subscribe({
       next: (inscripciones) => {
         this.dataSource = inscripciones

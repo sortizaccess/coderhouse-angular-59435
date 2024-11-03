@@ -1,51 +1,31 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { concatMap, Observable } from 'rxjs';
 import { Clase } from '../models/clase';
-import { generarIdRandom } from '../../shared/utils';
-
-export let DATABASE: Clase[] = [
-  // new Clase(1, 'Matemáticas', { nombre: 'Juan', apellido: 'Pérez', fechaNacimiento: new Date('1980-05-10'), genero: 'Masculino' }, 'Aula 101'),
-  // new Clase(2, 'Física', { nombre: 'María', apellido: 'López', fechaNacimiento: new Date('1975-03-22'), genero: 'Femenino' }, 'Aula 202'),
-  // new Clase(3, 'Química', { nombre: 'Carlos', apellido: 'González', fechaNacimiento: new Date('1982-08-15'), genero: 'Masculino' }, 'Aula 303'),
-  // new Clase(4, 'Historia', { nombre: 'Laura', apellido: 'Fernández', fechaNacimiento: new Date('1978-11-30'), genero: 'Femenino' }, 'Aula 404'),
-  // new Clase(5, 'Literatura', { nombre: 'Jorge', apellido: 'Ramírez', fechaNacimiento: new Date('1985-01-25'), genero: 'Masculino' }, 'Aula 505')
-
-  new Clase(1, 'Variables y Tipos de Datos', 'Juan', 'Aula 101'),
-  new Clase(2, 'Funciones y Objetos', 'María', 'Aula 202'),
-  new Clase(3, 'Promesas y Async/Await', 'Carlos', 'Aula 303'),
-  new Clase(4, 'React y Angular', 'Laura', 'Aula 404'),
-  new Clase(5, 'DOM y Eventos', 'Jorge', 'Aula 505')
-];
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ClasesService {
-  get(id: number): Observable<Clase | undefined> {
-    return this.getAll().pipe(map((x) => x.find((y) => y.id === id)));
-  }
+  private baseURL = environment.apiBaseURL;
+  constructor(private httpClient: HttpClient) { }
 
+  get(id: string): Observable<Clase | undefined> {
+    return this.httpClient.get<Clase>(`${this.baseURL}clases/${id}`);
+  }
   getAll(): Observable<Clase[]> {
-    return of([...DATABASE]);
+    return this.httpClient.get<Clase[]>(`${this.baseURL}clases`);
+  }
+  add(data: Omit<Clase, 'id'>): Observable<Clase> {
+    return this.httpClient.post<Clase>(`${this.baseURL}clases`, { ...data });
+  }  
+  delete(id: string): Observable<Clase[]>{
+    return this.httpClient.delete<Clase>(`${this.baseURL}clases/${id}`).pipe(concatMap(() => this.getAll()));
+  }
+  update(id: string, modificar: Partial<Clase>) {
+    return this.httpClient.patch(`${this.baseURL}clases/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
 
-  delete(id: number): Observable<Clase[]>{
-    DATABASE = DATABASE.filter((x) => x.id != id);
-    return this.getAll();
-  }
-
-  update(id: number, modificar: Partial<Clase>) {
-    DATABASE = DATABASE.map((x) =>
-      x.id === id ? { ...x, ...modificar } : x
-    );
-    return this.getAll();
-  }
-
-  add(data: Omit<Clase, 'legajo'>): Observable<Clase[]> {
-    DATABASE.push({ ...data, id: generarIdRandom() });
-    return this.getAll();
-  }
-
-  constructor() { }
 }

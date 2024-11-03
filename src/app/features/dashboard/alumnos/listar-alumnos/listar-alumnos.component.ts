@@ -12,7 +12,7 @@ import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.componen
 })
 
 export class ListarAlumnosComponent implements OnInit  {
-  displayedColumns: string[] = ['legajo', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
+  displayedColumns: string[] = ['id', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource: Alumno[] = [];
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
   constructor(private matDialog: MatDialog, private alumnosService: AlumnosService){ }

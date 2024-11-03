@@ -1,12 +1,12 @@
 
 export class Curso {
-    id: number;
+    id: string;
     nombre: string;
     descripcion: string;
     fechaInicio: Date;
     dificultad: string; // Por ejemplo, "Principiante", "Intermedio", "Avanzado"
 
-    constructor(id: number, nombre: string, descripcion: string, fechaInicio: Date, dificultad: string) {
+    constructor(id: string, nombre: string, descripcion: string, fechaInicio: Date, dificultad: string) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;

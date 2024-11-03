@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { concatMap, Observable } from 'rxjs';
 import { Curso } from '../models/curso';
-import { generarIdRandom } from '../../shared/utils';
-
-export let DATABASE: Curso[] = [
-  new Curso(991, 'Introducción a la Programación', 'Curso básico para aprender los fundamentos de la programación.', new Date('2024-01-15'), 'Principiante'),
-  new Curso(992, 'JavaScript Avanzado', 'Aprende técnicas avanzadas de desarrollo con JavaScript.', new Date('2024-02-20'), 'Avanzado'),
-  new Curso(993, 'Diseño de Bases de Datos', 'Diseño y normalización de bases de datos relacionales.', new Date('2024-03-10'), 'Intermedio'),
-  new Curso(994, 'Fundamentos de Redes', 'Conceptos básicos de redes y protocolos de comunicación.', new Date('2024-04-05'), 'Principiante'),
-  new Curso(995, 'Machine Learning', 'Introducción al aprendizaje automático y sus aplicaciones.', new Date('2024-05-01'), 'Avanzado')
-];
+import { environment } from '../../../environments/environment.development';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -17,30 +10,24 @@ export let DATABASE: Curso[] = [
 })
 
 export class CursosService {
-  get(id: number): Observable<Curso | undefined> {
-    return this.getAll().pipe(map((x) => x.find((y) => y.id === id)));
-  }
+  private baseURL = environment.apiBaseURL;
+  constructor(private httpClient: HttpClient) { }
 
+  get(id: string): Observable<Curso | undefined> {
+    return this.httpClient.get<Curso>(`${this.baseURL}cursos/${id}`);
+  }
   getAll(): Observable<Curso[]> {
-    return of([...DATABASE]);
+    return this.httpClient.get<Curso[]>(`${this.baseURL}cursos`);
+  }
+  add(data: Omit<Curso, 'id'>): Observable<Curso> {
+    return this.httpClient.post<Curso>(`${this.baseURL}cursos`, { ...data });
+  }  
+  delete(id: string): Observable<Curso[]>{
+    return this.httpClient.delete<Curso>(`${this.baseURL}cursos/${id}`).pipe(concatMap(() => this.getAll()));
+  }
+  update(id: string, modificar: Partial<Curso>) {
+    return this.httpClient.patch(`${this.baseURL}cursos/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
 
-  delete(id: number): Observable<Curso[]>{
-    DATABASE = DATABASE.filter((x) => x.id != id);
-    return this.getAll();
-  }
 
-  update(id: number, modificar: Partial<Curso>) {
-    DATABASE = DATABASE.map((x) =>
-      x.id === id ? { ...x, ...modificar } : x
-    );
-    return this.getAll();
-  }
-
-  add(data: Omit<Curso, 'legajo'>): Observable<Curso[]> {
-    DATABASE.push({ ...data, id: generarIdRandom() });
-    return this.getAll();
-  }
-
-  constructor() { }
 }

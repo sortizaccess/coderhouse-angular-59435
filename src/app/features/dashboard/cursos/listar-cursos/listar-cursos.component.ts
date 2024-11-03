@@ -43,8 +43,8 @@ export class ListarCursosComponent implements OnInit {
       console.error('Error al confirmar la eliminación');
     });
   }
-  modificarCurso(legajo: number, cursoModificado: Curso): void {
-    this.cursosService.update(legajo, cursoModificado).subscribe({
+  modificarCurso(id: string, cursoModificado: Curso): void {
+    this.cursosService.update(id, cursoModificado).subscribe({
       next: (cursos) => {
         this.dataSource = cursos
       }

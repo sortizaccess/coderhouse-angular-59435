@@ -1,17 +1,71 @@
 {
   "alumnos": [
     {
+      "id": "123",
       "email": "admin_test@email.com",
-      "legajo": 123,
       "nombre": "Sebastián",
       "apellido": "Ortiz",
       "fechaNacimiento": "2024-11-03T09:32:02.250Z",
       "genero": "Masculino",
       "password": "1234",
       "token": "ASD123"
+    },
+    {
+      "id": 1296,
+      "nombre": "pepe",
+      "apellido": "pepe",
+      "email": "admin_test@email.com",
+      "fechaNacimiento": "2024-11-07T03:00:00.000Z",
+      "genero": "Masculino",
+      "password": "12345"
     }
   ],
-  "clases": [],
-  "cursos": [],
-  "inscripciones": []
+  "clases": [
+    [
+      {
+        "id": "CL001",
+        "contenido": "Matemáticas Avanzadas",
+        "profesor": "Dr. Juan Pérez",
+        "aula": "Aula 101"
+      },
+      {
+        "id": "CL002",
+        "contenido": "Historia Universal",
+        "profesor": "Prof. María García",
+        "aula": "Aula 202"
+      }
+    ]
+  ],
+  "cursos": [
+    {
+      "id": "CRS001",
+      "nombre": "Programación I",
+      "descripcion": "Curso básico de programación orientado a principiantes.",
+      "fechaInicio": "2024-01-15T09:00:00Z",
+      "dificultad": "Principiante"
+    },
+    {
+      "id": "CRS002",
+      "nombre": "Desarrollo Web",
+      "descripcion": "Aplicaciones web interactivas con JavaScript.",
+      "fechaInicio": "2024-02-01T10:00:00Z",
+      "dificultad": "Intermedio"
+    }
+  ],
+  "inscripciones": [
+    {
+      "id": "INS001",
+      "idAlumno": 101,
+      "idCurso": 1,
+      "fechaInscripcion": "2024-01-10T10:30:00",
+      "estado": "Confirmada"
+    },
+    {
+      "id": "INS002",
+      "idAlumno": 102,
+      "idCurso": 2,
+      "fechaInscripcion": "2024-01-15T12:00:00",
+      "estado": "Pendiente"
+    }
+  ]
 }

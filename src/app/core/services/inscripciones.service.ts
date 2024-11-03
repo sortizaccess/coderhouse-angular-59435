@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
-import { generarIdRandom } from '../../shared/utils';
+import { concatMap, Observable } from 'rxjs';
 import { Inscripcion } from '../models/inscripcion';
-
-export let DATABASE: Inscripcion[] = [
-    new Inscripcion(1, 101, 501, new Date('2023-03-01'), 'Activo'),
-    new Inscripcion(2, 102, 502, new Date('2023-05-15'), 'Completado'),
-    new Inscripcion(3, 103, 503, new Date('2023-07-20'), 'Inactivo')
-];
+import { environment } from '../../../environments/environment.development';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -15,30 +10,22 @@ export let DATABASE: Inscripcion[] = [
 })
 
 export class InscripcionesService {
-  get(id: number): Observable<Inscripcion | undefined> {
-    return this.getAll().pipe(map((x) => x.find((y) => y.id === id)));
-  }
+  private baseURL = environment.apiBaseURL;
+  constructor(private httpClient: HttpClient) { }
 
+  get(id: string): Observable<Inscripcion | undefined> {
+    return this.httpClient.get<Inscripcion>(`${this.baseURL}inscripciones/${id}`);
+  }
   getAll(): Observable<Inscripcion[]> {
-    return of([...DATABASE]);
+    return this.httpClient.get<Inscripcion[]>(`${this.baseURL}inscripciones`);
   }
-
-  delete(id: number): Observable<Inscripcion[]>{
-    DATABASE = DATABASE.filter((x) => x.id != id);
-    return this.getAll();
+  add(data: Omit<Inscripcion, 'id'>): Observable<Inscripcion> {
+    return this.httpClient.post<Inscripcion>(`${this.baseURL}inscripciones`, { ...data });
+  }  
+  delete(id: string): Observable<Inscripcion[]>{
+    return this.httpClient.delete<Inscripcion>(`${this.baseURL}inscripciones/${id}`).pipe(concatMap(() => this.getAll()));
   }
-
-  update(id: number, modificar: Partial<Inscripcion>) {
-    DATABASE = DATABASE.map((x) =>
-      x.id === id ? { ...x, ...modificar } : x
-    );
-    return this.getAll();
+  update(id: string, modificar: Partial<Inscripcion>) {
+    return this.httpClient.patch(`${this.baseURL}inscripciones/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
-
-  add(data: Omit<Inscripcion, 'legajo'>): Observable<Inscripcion[]> {
-    DATABASE.push({ ...data, id: generarIdRandom() });
-    return this.getAll();
-  }
-
-  constructor() { }
 }
