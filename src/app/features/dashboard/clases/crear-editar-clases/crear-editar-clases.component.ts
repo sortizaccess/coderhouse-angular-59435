@@ -24,7 +24,7 @@ export class CrearEditarClasesComponent {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data?: claseDialogData) {
     this.claseForm = this.formBuilder.group({
-      materia: [null],
+      contenido: [null],
       aula: [null],
       profesor: [null]
     });
