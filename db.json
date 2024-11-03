@@ -21,20 +21,18 @@
     }
   ],
   "clases": [
-    [
-      {
-        "id": "CL001",
-        "contenido": "Matemáticas Avanzadas",
-        "profesor": "Dr. Juan Pérez",
-        "aula": "Aula 101"
-      },
-      {
-        "id": "CL002",
-        "contenido": "Historia Universal",
-        "profesor": "Prof. María García",
-        "aula": "Aula 202"
-      }
-    ]
+    {
+      "id": "CL001",
+      "contenido": "Matemáticas Avanzadas",
+      "profesor": "Dr. Juan Pérez",
+      "aula": "Aula 101"
+    },
+    {
+      "id": "CL002",
+      "contenido": "Historia Universal",
+      "profesor": "Prof. María García",
+      "aula": "Aula 202"
+    }
   ],
   "cursos": [
     {
