@@ -1,8 +1,15 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 // Generar un ID aleatorio
-export function generarIdRandom(): number {
-    return Math.floor(Math.random() * (999 - 100 + 1)) + 999;
+export function generarIdRandom(): string {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let id = '';
+  
+  for (let i = 0; i < 5; i++) { 
+      id += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+  }
+
+  return id;
 }
 
 // Permitir solo letras
