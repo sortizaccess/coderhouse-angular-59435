@@ -1,18 +1,18 @@
-<form>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-card-title appTitulos class="my-3 text-center mb-4">Iniciar Sesión</mat-card-title>
     <div class="mx-5 pt-2">
         <p>
             <mat-form-field>
-                <mat-icon matPrefix>person_outline</mat-icon>
-                <mat-label>Usuario</mat-label>
-                <input type="text" matInput>
+                <mat-icon matPrefix>alternate_email</mat-icon>
+                <mat-label>Email</mat-label>
+                <input type="text" matInput formControlName="email">
             </mat-form-field>
         </p>   
         <p>
             <mat-form-field>
                 <mat-icon matPrefix>lock_outline</mat-icon>
                 <mat-label>Contraseña</mat-label>
-                <input type="password" matInput>
+                <input type="password" matInput formControlName="password">
             </mat-form-field>
         </p>
         <div class="d-flex justify-content-center my-3 pt-2">

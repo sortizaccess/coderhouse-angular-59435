@@ -32,7 +32,7 @@
         </span>
       </a>
 
-      <a mat-list-item routerLink="/auth/login">
+      <a mat-list-item routerLink="/auth/login" (click)="logout()">
         <span class="d-flex align-items-center">
           <mat-icon class="mx-2" color="primary">power_settings_new</mat-icon>Cerrar Sesión
         </span>
@@ -42,18 +42,17 @@
 
   <div class="example-sidenav-content">
     <mat-toolbar>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-        (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span appTitulos class="px-5">Aplicación de Gestión de Cursos</span>
-      <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
+      <div class="d-flex justify-content-between align-items-center w-100 h-100">
+        <div class="d-flex">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+              <mat-icon>menu</mat-icon>
+            </button>
+          <span appTitulos class="px-5 align-self-center">Aplicación de Gestión de Cursos</span>
+        </div>       
+        <div class="align-self-center" *ngIf="authAlumno$ | async; let authAlumno">
+          <p class="my-0 mx-5">{{authAlumno.nombre}} {{authAlumno.apellido}}</p>
+        </div>
+      </div>
     </mat-toolbar>
     <br>
 
