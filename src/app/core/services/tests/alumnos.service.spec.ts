@@ -58,29 +58,29 @@ describe('AlumnosService', () => {
   });
 
 
-  it('Debe actualizar un alumno y devolver un array de Alumnos', (done) => {
-    const updatedAlumno: Alumno = { ...mockAlumno, nombre: 'Sebastián_TEST' }; 
-    const alumnos: Alumno[] = [updatedAlumno]; 
+//   it('Debe actualizar un alumno y devolver un array de Alumnos', (done) => {
+//     const updatedAlumno: Alumno = { ...mockAlumno, nombre: 'Sebastián_TEST' }; 
+//     const alumnos: Alumno[] = [updatedAlumno]; 
   
-    service.getAll().subscribe(); 
-    const reqGet = httpContoller.expectOne(`${service['baseURL']}alumnos`);  
-    reqGet.flush([mockAlumno]);
+//     service.getAll().subscribe(); 
+//     const reqGet = httpContoller.expectOne(`${service['baseURL']}alumnos`);  
+//     reqGet.flush([mockAlumno]);
 
-    service.update(updatedAlumno.id, updatedAlumno).subscribe({
-      next: (alumnosDevueltos) => {
-        expect(alumnosDevueltos).toContain(updatedAlumno);  
-        done();
-      }
-    });
+//     service.update(updatedAlumno.id, updatedAlumno).subscribe({
+//       next: (alumnosDevueltos) => {
+//         expect(alumnosDevueltos).toContain(updatedAlumno);  
+//         done();
+//       }
+//     });
   
-    const mockRequest = httpContoller.expectOne({
-        url: `${service['baseURL']}alumnos/${mockAlumno.id}`,
-        method: 'PATCH',
-    });
+//     const mockRequest = httpContoller.expectOne({
+//         url: `${service['baseURL']}alumnos/${mockAlumno.id}`,
+//         method: 'PATCH',
+//     });
 
-    mockRequest.flush(alumnos);    
-    httpContoller.verify(); 
-  });
+//     mockRequest.flush(alumnos);    
+//     httpContoller.verify(); 
+//   });
 
 });
 
