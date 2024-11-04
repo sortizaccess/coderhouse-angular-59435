@@ -36,6 +36,7 @@ describe('ClasesService', () => {
     expect(service).toBeTruthy();
   });
 
+  // ADD
   it('Debe enviar una clase para el alta', (done) => {
     service.add(mockClase).subscribe({
         next: (clase) => {
@@ -51,6 +52,55 @@ describe('ClasesService', () => {
 
       mockRequest.flush(mockClase);  
       httpContoller.verify();
+  });
+
+  // DELETE
+  it('Debe eliminar una clase y devolver un array de clases sin la clase eliminada', (done) => {
+    const clasesRestantes: Clase[] = [];
+
+    service.delete(mockClase.id).subscribe({
+      next: (clasesDevueltas) => {
+        expect(clasesDevueltas).not.toContain(mockClase); 
+        expect(clasesDevueltas).toEqual(clasesRestantes); 
+        done();
+      }
+    });
+  
+    const reqDelete = httpContoller.expectOne({
+      url: `${service['baseURL']}clases/${mockClase.id}`,
+      method: 'DELETE',
+    });
+    reqDelete.flush(null);
+
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}clases`);
+    reqGet.flush(clasesRestantes); 
+  
+    httpContoller.verify();
+  });
+  
+  // UPDATE
+  it('Debe actualizar una clase y devolver un array de clases con la clase modificada', (done) => {
+    const updatedClase: Clase = { ...mockClase, contenido: 'Programación_TEST' };
+    const clasesActualizadas: Clase[] = [updatedClase]; 
+  
+    service.update(updatedClase.id, updatedClase).subscribe({
+      next: (clasesDevueltas) => {
+        expect(clasesDevueltas).toContain(updatedClase);
+        expect(clasesDevueltas).toEqual(clasesActualizadas); 
+        done();
+      }
+    });
+  
+    const reqPatch = httpContoller.expectOne({
+      url: `${service['baseURL']}clases/${updatedClase.id}`,
+      method: 'PATCH',
+    });
+    reqPatch.flush(updatedClase); 
+  
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}clases`);
+    reqGet.flush(clasesActualizadas); 
+  
+    httpContoller.verify(); 
   });
 
 });

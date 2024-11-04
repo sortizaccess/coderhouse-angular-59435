@@ -13,7 +13,7 @@ const mockInscripcion: Inscripcion = {
     estado: "Confirmada"
   };
 
-describe('AlumnosService', () => {
+describe('InscripcionesService', () => {
   let service: InscripcionesService;
   let httpContoller: HttpTestingController;
   let router: Router;
@@ -36,6 +36,7 @@ describe('AlumnosService', () => {
     expect(service).toBeTruthy();
   });
 
+  // ADD 
   it('Debe enviar una inscripcion para el alta', (done) => {
     service.add(mockInscripcion).subscribe({
         next: (inscripcion) => {
@@ -51,6 +52,55 @@ describe('AlumnosService', () => {
 
       mockRequest.flush(mockInscripcion);  
       httpContoller.verify();
+  });
+
+  // DELETE
+  it('Debe eliminar una inscripcion y devolver un array de inscripciones sin la inscripcion eliminada', (done) => {
+    const inscripcionesRestantes: Inscripcion[] = [];
+
+    service.delete(mockInscripcion.id).subscribe({
+      next: (inscripcionesDevueltas) => {
+        expect(inscripcionesDevueltas).not.toContain(mockInscripcion); 
+        expect(inscripcionesDevueltas).toEqual(inscripcionesRestantes); 
+        done();
+      }
+    });
+  
+    const reqDelete = httpContoller.expectOne({
+      url: `${service['baseURL']}inscripciones/${mockInscripcion.id}`,
+      method: 'DELETE',
+    });
+    reqDelete.flush(null);
+
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}inscripciones`);
+    reqGet.flush(inscripcionesRestantes); 
+  
+    httpContoller.verify();
+  });
+  
+  // UPDATE
+  it('Debe actualizar una inscripcion y devolver un array de inscripciones con la inscripcion modificada', (done) => {
+    const updatedInscripcion: Inscripcion = { ...mockInscripcion, estado: 'Estado_TEST' };
+    const inscripcionesActualizadas: Inscripcion[] = [updatedInscripcion]; 
+  
+    service.update(updatedInscripcion.id, updatedInscripcion).subscribe({
+      next: (inscripcionesDevueltas) => {
+        expect(inscripcionesDevueltas).toContain(updatedInscripcion);
+        expect(inscripcionesDevueltas).toEqual(inscripcionesActualizadas); 
+        done();
+      }
+    });
+  
+    const reqPatch = httpContoller.expectOne({
+      url: `${service['baseURL']}inscripciones/${updatedInscripcion.id}`,
+      method: 'PATCH',
+    });
+    reqPatch.flush(updatedInscripcion); 
+  
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}inscripciones`);
+    reqGet.flush(inscripcionesActualizadas); 
+  
+    httpContoller.verify(); 
   });
 
 });

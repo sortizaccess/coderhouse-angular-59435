@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { Alumno } from '../../models/alumno';
 import { AlumnosService } from '../alumnos.service';
@@ -15,7 +15,6 @@ const mockAlumno: Alumno = {
   fechaNacimiento: new Date(),
   token: 'ASD123',
 };
-
 
 describe('AlumnosService', () => {
   let service: AlumnosService;
@@ -40,6 +39,8 @@ describe('AlumnosService', () => {
     expect(service).toBeTruthy();
   });
 
+
+  // ADD
   it('Debe enviar un alumno para el alta', (done) => {
     service.add(mockAlumno).subscribe({
         next: (alumno) => {
@@ -57,30 +58,55 @@ describe('AlumnosService', () => {
       httpContoller.verify();
   });
 
+  // DELETE
+  it('Debe eliminar un alumno y devolver un array de alumnos sin el alumno eliminado', (done) => {
+    const alumnosRestantes: Alumno[] = [];
 
-//   it('Debe actualizar un alumno y devolver un array de Alumnos', (done) => {
-//     const updatedAlumno: Alumno = { ...mockAlumno, nombre: 'Sebastián_TEST' }; 
-//     const alumnos: Alumno[] = [updatedAlumno]; 
+    service.delete(mockAlumno.id).subscribe({
+      next: (alumnosDevueltos) => {
+        expect(alumnosDevueltos).not.toContain(mockAlumno); 
+        expect(alumnosDevueltos).toEqual(alumnosRestantes); 
+        done();
+      }
+    });
   
-//     service.getAll().subscribe(); 
-//     const reqGet = httpContoller.expectOne(`${service['baseURL']}alumnos`);  
-//     reqGet.flush([mockAlumno]);
+    const reqDelete = httpContoller.expectOne({
+      url: `${service['baseURL']}alumnos/${mockAlumno.id}`,
+      method: 'DELETE',
+    });
+    reqDelete.flush(null);
 
-//     service.update(updatedAlumno.id, updatedAlumno).subscribe({
-//       next: (alumnosDevueltos) => {
-//         expect(alumnosDevueltos).toContain(updatedAlumno);  
-//         done();
-//       }
-//     });
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}alumnos`);
+    reqGet.flush(alumnosRestantes); 
   
-//     const mockRequest = httpContoller.expectOne({
-//         url: `${service['baseURL']}alumnos/${mockAlumno.id}`,
-//         method: 'PATCH',
-//     });
-
-//     mockRequest.flush(alumnos);    
-//     httpContoller.verify(); 
-//   });
+    httpContoller.verify();
+  });
+  
+  // UPDATE
+  it('Debe actualizar un alumno y devolver un array de alumnos con el alumno modificado', (done) => {
+    const updatedAlumno: Alumno = { ...mockAlumno, nombre: 'Sebastián_TEST' };
+    const alumnosActualizados: Alumno[] = [updatedAlumno]; 
+  
+    service.update(updatedAlumno.id, updatedAlumno).subscribe({
+      next: (alumnosDevueltos) => {
+        expect(alumnosDevueltos).toContain(updatedAlumno);
+        expect(alumnosDevueltos).toEqual(alumnosActualizados); 
+        done();
+      }
+    });
+  
+    const reqPatch = httpContoller.expectOne({
+      url: `${service['baseURL']}alumnos/${updatedAlumno.id}`,
+      method: 'PATCH',
+    });
+    reqPatch.flush(updatedAlumno); 
+  
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}alumnos`);
+    reqGet.flush(alumnosActualizados); 
+  
+    httpContoller.verify(); 
+  });
+  
 
 });
 

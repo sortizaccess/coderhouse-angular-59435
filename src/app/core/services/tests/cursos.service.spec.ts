@@ -14,7 +14,7 @@ const mockCurso: Curso = {
   };
 
 
-describe('AlumnosService', () => {
+describe('CursosService', () => {
   let service: CursosService;
   let httpContoller: HttpTestingController;
   let router: Router;
@@ -37,6 +37,7 @@ describe('AlumnosService', () => {
     expect(service).toBeTruthy();
   });
 
+  // ADD
   it('Debe enviar un curso para el alta', (done) => {
     service.add(mockCurso).subscribe({
         next: (curso) => {
@@ -52,6 +53,55 @@ describe('AlumnosService', () => {
 
       mockRequest.flush(mockCurso);  
       httpContoller.verify();
+  });
+
+  // DELETE
+  it('Debe eliminar un curso y devolver un array de cursos sin el curso eliminado', (done) => {
+    const cursosRestantes: Curso[] = [];
+
+    service.delete(mockCurso.id).subscribe({
+      next: (cursosDevueltos) => {
+        expect(cursosDevueltos).not.toContain(mockCurso); 
+        expect(cursosDevueltos).toEqual(cursosRestantes); 
+        done();
+      }
+    });
+  
+    const reqDelete = httpContoller.expectOne({
+      url: `${service['baseURL']}cursos/${mockCurso.id}`,
+      method: 'DELETE',
+    });
+    reqDelete.flush(null);
+
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}cursos`);
+    reqGet.flush(cursosRestantes); 
+  
+    httpContoller.verify();
+  });
+  
+  // UPDATE
+  it('Debe actualizar un alumno y devolver un array de Alumnos con el modificado', (done) => {
+    const updatedCurso: Curso = { ...mockCurso, nombre: 'Curso_TEST' };
+    const cursosActualizados: Curso[] = [updatedCurso]; 
+  
+    service.update(updatedCurso.id, updatedCurso).subscribe({
+      next: (cursosDevueltos) => {
+        expect(cursosDevueltos).toContain(updatedCurso);
+        expect(cursosDevueltos).toEqual(cursosActualizados); 
+        done();
+      }
+    });
+  
+    const reqPatch = httpContoller.expectOne({
+      url: `${service['baseURL']}cursos/${updatedCurso.id}`,
+      method: 'PATCH',
+    });
+    reqPatch.flush(updatedCurso); 
+  
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}cursos`);
+    reqGet.flush(cursosActualizados); 
+  
+    httpContoller.verify(); 
   });
 
 });
