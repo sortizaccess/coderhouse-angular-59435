@@ -67,9 +67,7 @@ export class ListarCursosComponent implements OnInit {
           if (cursoModificado) {
             this.modificarCurso(cursoModificado.id, result);            
           } else {
-            this.dataSource = [
-              ...this.dataSource, {...result}
-            ];
+            this.cursosService.add(result).subscribe({ next: () => this.listarCursos()});   
           }
 
           this.toast.show();         

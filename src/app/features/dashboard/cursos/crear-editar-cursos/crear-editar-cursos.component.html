@@ -9,11 +9,11 @@
           <mat-icon matPrefix>book</mat-icon>
           <mat-label>Nombre</mat-label>
           <input formControlName="nombre" matInput />
-          <!-- <mat-error>
+          <mat-error>
             @if(cursoForm.get('nombre')?.hasError('required')){
               Requerido
             }
-          </mat-error> -->
+          </mat-error>
         </mat-form-field>        
       </div>
       <div class="col-6">
@@ -21,11 +21,11 @@
           <mat-icon matPrefix>description</mat-icon>
           <mat-label>Descripción</mat-label>
           <input formControlName="descripcion" matInput />
-          <!-- <mat-error>
-            @if(cursoForm.get('apellido')?.hasError('required')){
+          <mat-error>
+            @if(cursoForm.get('descripcion')?.hasError('required')){
               Requerido
             }
-          </mat-error> -->
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -36,11 +36,11 @@
           <mat-icon matPrefix>summarize</mat-icon>     
           <mat-label>Dificultad</mat-label>
           <input formControlName="dificultad" matInput />
-            <!-- <mat-error>
-              @if(cursoForm.get('email')?.hasError('required')){
+            <mat-error>
+              @if(cursoForm.get('dificultad')?.hasError('required')){
                 Requerido
               }
-            </mat-error> -->
+            </mat-error>
         </mat-form-field>
       </div>  
 
@@ -48,29 +48,16 @@
         <mat-form-field>          
           <mat-label>Fecha de Inicio</mat-label>
           <input formControlName="fechaInicio" matInput [matDatepicker]="picker" />
-          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
           <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-          <!-- <mat-error>
-            @if(cursoForm.get('fechaNacimiento')?.hasError('required')){
+          <mat-error>
+            @if(cursoForm.get('fechaInicio')?.hasError('required')){
               Requerido
             }
-          </mat-error> -->
+          </mat-error>
         </mat-form-field>                                 
       </div>
     </div>
-
-    <!-- <div class="row my-2">
-      <div class="col-12 d-flex justify-content-end">
-        <mat-form-field appearance="fill">
-          <mat-icon matPrefix>notes</mat-icon>   
-          <mat-label>Clases</mat-label>
-          <mat-select formControlName="idClase">
-            <mat-option [value]="clase.id" *ngFor="let clase of clases$ | async">{{ clase.contenido }}</mat-option>
-          </mat-select>
-        </mat-form-field>                                      
-      </div>
-    </div> -->
 
   </form>
   <hr>

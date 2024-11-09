@@ -68,9 +68,7 @@ export class ListarInscripcionesComponent implements OnInit {
           if (inscripcionModificada) {
             this.modificarInscripcion(inscripcionModificada.id, result);            
           } else {
-            this.dataSource = [
-              ...this.dataSource, {...result}
-            ];
+              this.inscripcionesService.add(result).subscribe({ next: () => this.listarInscripciones()});    
           }
 
           this.toast.show();         
