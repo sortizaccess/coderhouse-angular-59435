@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private router: Router, private httpClient: HttpClient){}
 
   login(data: AuthData): Observable<Alumno> {
-    return this.httpClient.get<Alumno[]>(`${this.baseURL}alumnos?email=${data.email}&password=${data.password}`)
+    return this.httpClient.get<Alumno[]>(`${this.baseURL}/alumnos?email=${data.email}&password=${data.password}`)
     .pipe(map((alumnos) => {
       const alumno = this.autentificarToken(alumnos);
 
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   validarToken(): Observable<boolean>{
-    return this.httpClient.get<Alumno[]>(`${this.baseURL}alumnos?token=${localStorage.getItem('token')}`)
+    return this.httpClient.get<Alumno[]>(`${this.baseURL}/alumnos?token=${localStorage.getItem('token')}`)
     .pipe(map((alumnos) => {
       const alumno = this.autentificarToken(alumnos);
       return !!alumno;

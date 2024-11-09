@@ -14,18 +14,18 @@ export class InscripcionesService {
   constructor(private httpClient: HttpClient) { }
 
   get(id: string): Observable<Inscripcion | undefined> {
-    return this.httpClient.get<Inscripcion>(`${this.baseURL}inscripciones/${id}`);
+    return this.httpClient.get<Inscripcion>(`${this.baseURL}/inscripciones/${id}`);
   }
   getAll(): Observable<Inscripcion[]> {
-    return this.httpClient.get<Inscripcion[]>(`${this.baseURL}inscripciones`);
+    return this.httpClient.get<Inscripcion[]>(`${this.baseURL}/inscripciones`);
   }
   add(data: Omit<Inscripcion, 'id'>): Observable<Inscripcion> {
-    return this.httpClient.post<Inscripcion>(`${this.baseURL}inscripciones`, { ...data });
+    return this.httpClient.post<Inscripcion>(`${this.baseURL}/inscripciones`, { ...data });
   }  
   delete(id: string): Observable<Inscripcion[]>{
-    return this.httpClient.delete<Inscripcion>(`${this.baseURL}inscripciones/${id}`).pipe(concatMap(() => this.getAll()));
+    return this.httpClient.delete<Inscripcion>(`${this.baseURL}/inscripciones/${id}`).pipe(concatMap(() => this.getAll()));
   }
   update(id: string, modificar: Partial<Inscripcion>) {
-    return this.httpClient.patch(`${this.baseURL}inscripciones/${id}`, modificar).pipe(concatMap(() => this.getAll()));
+    return this.httpClient.patch(`${this.baseURL}/inscripciones/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
 }

@@ -14,19 +14,19 @@ export class CursosService {
   constructor(private httpClient: HttpClient) { }
 
   get(id: string): Observable<Curso | undefined> {
-    return this.httpClient.get<Curso>(`${this.baseURL}cursos/${id}`);
+    return this.httpClient.get<Curso>(`${this.baseURL}/cursos/${id}`);
   }
   getAll(): Observable<Curso[]> {
-    return this.httpClient.get<Curso[]>(`${this.baseURL}cursos`);
+    return this.httpClient.get<Curso[]>(`${this.baseURL}/cursos`);
   }
   add(data: Omit<Curso, 'id'>): Observable<Curso> {
-    return this.httpClient.post<Curso>(`${this.baseURL}cursos`, { ...data });
+    return this.httpClient.post<Curso>(`${this.baseURL}/cursos`, { ...data });
   }  
   delete(id: string): Observable<Curso[]>{
-    return this.httpClient.delete<Curso>(`${this.baseURL}cursos/${id}`).pipe(concatMap(() => this.getAll()));
+    return this.httpClient.delete<Curso>(`${this.baseURL}/cursos/${id}`).pipe(concatMap(() => this.getAll()));
   }
   update(id: string, modificar: Partial<Curso>) {
-    return this.httpClient.patch(`${this.baseURL}cursos/${id}`, modificar).pipe(concatMap(() => this.getAll()));
+    return this.httpClient.patch(`${this.baseURL}/cursos/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
 
 

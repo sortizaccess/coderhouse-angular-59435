@@ -13,7 +13,7 @@ export class DashboardService {
   constructor(private router: Router, private httpClient: HttpClient){}
 
   validarToken(): Observable<boolean>{
-    return this.httpClient.get<Alumno[]>(`${this.baseURL}alumnos?token=${localStorage.getItem('token')}`)
+    return this.httpClient.get<Alumno[]>(`${this.baseURL}/alumnos?token=${localStorage.getItem('token')}`)
     .pipe(map((alumnos) => {
       const alumno = this.autentificarToken(alumnos);
       return !alumno;

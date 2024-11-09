@@ -13,19 +13,19 @@ export class ClasesService {
   constructor(private httpClient: HttpClient) { }
 
   get(id: string): Observable<Clase | undefined> {
-    return this.httpClient.get<Clase>(`${this.baseURL}clases/${id}`);
+    return this.httpClient.get<Clase>(`${this.baseURL}/clases/${id}`);
   }
   getAll(): Observable<Clase[]> {
-    return this.httpClient.get<Clase[]>(`${this.baseURL}clases`);
+    return this.httpClient.get<Clase[]>(`${this.baseURL}/clases`);
   }
   add(data: Omit<Clase, 'id'>): Observable<Clase> {
-    return this.httpClient.post<Clase>(`${this.baseURL}clases`, { ...data });
+    return this.httpClient.post<Clase>(`${this.baseURL}/clases`, { ...data });
   }  
   delete(id: string): Observable<Clase[]>{
-    return this.httpClient.delete<Clase>(`${this.baseURL}clases/${id}`).pipe(concatMap(() => this.getAll()));
+    return this.httpClient.delete<Clase>(`${this.baseURL}/clases/${id}`).pipe(concatMap(() => this.getAll()));
   }
   update(id: string, modificar: Partial<Clase>) {
-    return this.httpClient.patch(`${this.baseURL}clases/${id}`, modificar).pipe(concatMap(() => this.getAll()));
+    return this.httpClient.patch(`${this.baseURL}/clases/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
 
 }

@@ -66,9 +66,7 @@ export class ListarClasesComponent implements OnInit {
           if (claseModificada) {
             this.modificarClase(claseModificada.id, result);            
           } else {
-            this.dataSource = [
-              ...this.dataSource, {...result}
-            ];
+            this.clasesService.add(result).subscribe({ next: () => this.listarClases()});   
           }
 
           this.toast.show();        
