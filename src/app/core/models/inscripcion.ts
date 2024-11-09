@@ -3,7 +3,7 @@ export class Inscripcion {
     idAlumno: number;
     idCurso: number;
     fechaInscripcion: Date;
-    estado: string;
+    estado: string; // Por ejemplo, "Pendiente", "Confirmada", "Anulada"
     
     constructor(id: string, idAlumno: number, idCurso: number, fechaInscripcion: Date, estado: string) {
         this.id = id;
