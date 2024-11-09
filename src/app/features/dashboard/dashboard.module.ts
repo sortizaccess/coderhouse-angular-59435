@@ -8,11 +8,13 @@ import { CursosModule } from './cursos/cursos.module';
 import { ClasesModule } from './clases/clases.module';
 import { InscripcionesModule } from './inscripciones/inscripciones.module';
 import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    NotfoundComponent
   ],
   imports: [
     CommonModule,

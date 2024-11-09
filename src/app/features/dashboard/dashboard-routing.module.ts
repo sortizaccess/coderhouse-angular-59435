@@ -5,6 +5,7 @@ import { ListarAlumnosComponent } from './alumnos/listar-alumnos/listar-alumnos.
 import { ListarCursosComponent } from './cursos/listar-cursos/listar-cursos.component';
 import { ListarClasesComponent } from './clases/listar-clases/listar-clases.component';
 import { ListarInscripcionesComponent } from './inscripciones/listar-inscripciones/listar-inscripciones.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home',
+    component: NotfoundComponent
   },
 ];
 

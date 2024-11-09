@@ -9,15 +9,6 @@
       "genero": "Masculino",
       "password": "1234",
       "token": "ASD123"
-    },
-    {
-      "id": 1296,
-      "nombre": "pepe",
-      "apellido": "pepe",
-      "email": "admin_test@email.com",
-      "fechaNacimiento": "2024-11-07T03:00:00.000Z",
-      "genero": "Masculino",
-      "password": "12345"
     }
   ],
   "clases": [
