@@ -4,9 +4,9 @@ Proyecto creado con [Angular CLI](https://github.com/angular/angular-cli) 18.2.4
 
 ## Credenciales para Test
 
-<b>Admin:</b> 
-<b>Email: </b>admin_test@email.com
-<b>Password: </b>1234
+<b>Administrador:</b> 
+<p><b>Email: </b>admin_test@email.com</p>
+<p><b>Password: </b>1234</p>
 
 ## Consignas
 
