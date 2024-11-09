@@ -2,6 +2,12 @@
 
 Proyecto creado con [Angular CLI](https://github.com/angular/angular-cli) 18.2.4.
 
+## Credenciales para Test
+
+<b>Admin:</b> 
+<b>Email: </b>admin_test@email.com
+<b>Password: </b>1234
+
 ## Consignas
 
 <b>Curso Angular: Proyecto Final</b>
