@@ -30,7 +30,7 @@ export class CrearEditarAlumnosComponent {
       email: [null, [Validators.required, Validators.email, Validators.maxLength(30), Validators.minLength(15)]],
       fechaNacimiento: [null, [Validators.required]],
       genero: [null, [Validators.required]],
-      password: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(5)]]
+      password: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4)]]
     });
 
     this.patchFormValue();

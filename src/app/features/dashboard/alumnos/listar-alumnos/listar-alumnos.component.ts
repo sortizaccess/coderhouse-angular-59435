@@ -31,10 +31,13 @@ export class ListarAlumnosComponent implements OnInit  {
    }
 
   ngOnInit(): void {
-    this.store.dispatch(AlumnoActions.loadAlumnos());
+    this.listarAlumnos();
   }
 
-
+  //ABM ALUMNOS
+  listarAlumnos(): void {
+    this.store.dispatch(AlumnoActions.loadAlumnos());
+  }
   eliminarAlumno(alumno: Alumno): void {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
@@ -73,14 +76,13 @@ export class ListarAlumnosComponent implements OnInit  {
             this.modificarAlumno(alumnoModificado.id, result);            
           } else {
             this.alumnosService.add(result).subscribe({ next: () => this.store.dispatch(AlumnoActions.loadAlumnos())});
+            //this.store.dispatch(AlumnoActions.createAlumno(result));            
           }
-
           this.toast.show();          
         }
       }
     });
   }
-  
 }
 
 

@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { AlumnoActions } from './alumno.actions';
 import { Alumno } from '../../../../core/models/alumno';
+import { generarIdRandom } from '../../../../shared/utils';
 
 export const alumnoFeatureKey = 'alumno';
 
@@ -21,6 +22,12 @@ export const reducer = createReducer(
       alumnos: action.data
     }
   }),
+
+  on(AlumnoActions.createAlumno, (state) => {
+    return {
+      ...state
+    };
+  })
 );
 
 export const alumnoFeature = createFeature({

@@ -6,6 +6,10 @@ export const AlumnoActions = createActionGroup({
   events: {
     'Load Alumnos': emptyProps(),
     'Load Alumnos Success': props<{ data: Alumno[] }>(),
-    'Load Alumnos Failure': props<{ error: unknown }>()
+    'Load Alumnos Failure': props<{ error: unknown }>(),
+
+    'Create Alumno': props<{ data: Alumno }>(),
+    'Create Alumno Success': props<{ data: Alumno }>(),
+    'Create Alumno Failure': props<{ error: Error }>(),
   }
 });
