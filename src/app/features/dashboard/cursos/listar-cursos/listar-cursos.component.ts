@@ -53,9 +53,7 @@ export class ListarCursosComponent implements OnInit {
   }
   modificarCurso(id: string, cursoModificado: Curso): void {
     this.cursosService.update(id, cursoModificado).subscribe({
-      next: (cursos) => {
-        this.dataSource = cursos
-      }
+      next: () => { this.listarCursos(); }
     });
   }
 

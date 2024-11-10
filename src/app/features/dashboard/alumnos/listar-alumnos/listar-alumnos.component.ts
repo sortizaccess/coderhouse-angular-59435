@@ -52,9 +52,7 @@ export class ListarAlumnosComponent implements OnInit  {
   }
   modificarAlumno(id: string, alumnoModificado: Alumno): void {
     this.alumnosService.update(id, alumnoModificado).subscribe({
-      next: (alumnos) => {
-        this.dataSource = alumnos
-      }
+      next: () => { this.listarAlumnos(); }
     });
   }
 

@@ -52,8 +52,8 @@ export class ListarClasesComponent implements OnInit {
   }
   modificarClase(id: string, claseModificada: Clase): void {
     this.clasesService.update(id, claseModificada).subscribe({
-      next: (clases) => {
-        this.dataSource = clases
+      next: () => {
+        this.listarClases();
       }
     });
   }
