@@ -1,11 +1,8 @@
-import { ActionReducerMap } from "@ngrx/store";
+import { ActionReducerMap } from '@ngrx/store';
+import { authFeatureName,authReducer,AuthState } from './reducers/auth.reducer';
 
-interface RootState {
+interface RootState { [authFeatureName]: AuthState; }
 
-};
-
-const RootReducer: ActionReducerMap<RootState> = {
-
-};
+const RootReducer: ActionReducerMap<RootState> = { [authFeatureName]: authReducer };
 
 export { RootReducer };
