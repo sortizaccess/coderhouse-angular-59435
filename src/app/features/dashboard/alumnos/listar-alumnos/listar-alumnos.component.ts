@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AlumnoActions } from '../store/alumno.actions';
 import { selectAlumnos } from '../store/alumno.selectors';
+import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
 
 @Component({
   selector: 'app-listar-alumnos',
@@ -19,13 +20,13 @@ import { selectAlumnos } from '../store/alumno.selectors';
 export class ListarAlumnosComponent implements OnInit  {
   displayedColumns: string[] = ['id', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource: Alumno[] = [];
-  authAlumno$: Observable<Alumno | null>;
 
+  authAlumno$: Observable<Alumno | null>;
   alumnos$: Observable<Alumno[]>;
 
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
   constructor(private matDialog: MatDialog, private alumnosService: AlumnosService, private authService: AuthService, private store: Store){
-    this.authAlumno$ = this.authService.authAlumno$;
+    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
     this.alumnos$ = this.store.select(selectAlumnos);
    }
 
@@ -33,14 +34,7 @@ export class ListarAlumnosComponent implements OnInit  {
     this.store.dispatch(AlumnoActions.loadAlumnos());
   }
 
-  //ABM ALUMNOS
-  listarAlumnos(): void {
-    this.alumnosService.getAll().subscribe({
-      next: (alumnos) => {
-        this.dataSource = alumnos
-      }
-    });
-  }
+
   eliminarAlumno(alumno: Alumno): void {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
@@ -78,7 +72,7 @@ export class ListarAlumnosComponent implements OnInit  {
           if (alumnoModificado) {
             this.modificarAlumno(alumnoModificado.id, result);            
           } else {
-            this.alumnosService.add(result).subscribe({ next: () => this.listarAlumnos()});
+            this.alumnosService.add(result).subscribe({ next: () => this.store.dispatch(AlumnoActions.loadAlumnos())});
           }
 
           this.toast.show();          
