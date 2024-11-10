@@ -6,6 +6,9 @@ import { AlumnosService } from '../../../../core/services/alumnos.service';
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AlumnoActions } from '../store/alumno.actions';
+import { selectAlumnos } from '../store/alumno.selectors';
 
 @Component({
   selector: 'app-listar-alumnos',
@@ -18,13 +21,16 @@ export class ListarAlumnosComponent implements OnInit  {
   dataSource: Alumno[] = [];
   authAlumno$: Observable<Alumno | null>;
 
+  alumnos$: Observable<Alumno[]>;
+
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
-  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService, private authService: AuthService){
+  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService, private authService: AuthService, private store: Store){
     this.authAlumno$ = this.authService.authAlumno$;
+    this.alumnos$ = this.store.select(selectAlumnos);
    }
 
   ngOnInit(): void {
-    this.listarAlumnos();
+    this.store.dispatch(AlumnoActions.loadAlumnos());
   }
 
   //ABM ALUMNOS

@@ -5,6 +5,8 @@ import { ListarAlumnosComponent } from '../alumnos/listar-alumnos/listar-alumnos
 import { SharedModule } from '../../../shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { AlumnoEffects } from './store/alumno.effects';
+import { StoreModule } from '@ngrx/store';
+import { alumnoFeature } from './store/alumno.reducer';
 
 
 @NgModule({
@@ -15,6 +17,7 @@ import { AlumnoEffects } from './store/alumno.effects';
   imports: [
     CommonModule,
     SharedModule,
+    StoreModule.forFeature(alumnoFeature),
     EffectsModule.forFeature([AlumnoEffects])
   ]
 })
