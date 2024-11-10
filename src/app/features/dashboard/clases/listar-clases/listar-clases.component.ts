@@ -4,6 +4,9 @@ import { ClasesService } from '../../../../core/services/clases.service';
 import { Clase } from '../../../../core/models/clase';
 import { CrearEditarClasesComponent } from '../crear-editar-clases/crear-editar-clases.component';
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
+import { Observable } from 'rxjs';
+import { Alumno } from '../../../../core/models/alumno';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-listar-clases',
@@ -13,9 +16,12 @@ import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.componen
 export class ListarClasesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'contenido', 'profesor', 'aula', 'acciones'];
   dataSource: Clase[] = [];
+  authAlumno$: Observable<Alumno | null>;
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
 
-  constructor(private matDialog: MatDialog, private clasesService: ClasesService){ }
+  constructor(private matDialog: MatDialog, private clasesService: ClasesService, private authService: AuthService){
+    this.authAlumno$ = this.authService.authAlumno$;
+   }
 
   ngOnInit(): void {
     this.listarClases();

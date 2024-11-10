@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrearEditarAlumnosComponent } from '../crear-editar-alumnos/crear-editar-alumnos.component';
 import { AlumnosService } from '../../../../core/services/alumnos.service';
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-listar-alumnos',
@@ -14,8 +16,12 @@ import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.componen
 export class ListarAlumnosComponent implements OnInit  {
   displayedColumns: string[] = ['id', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource: Alumno[] = [];
+  authAlumno$: Observable<Alumno | null>;
+
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
-  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService){ }
+  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService, private authService: AuthService){
+    this.authAlumno$ = this.authService.authAlumno$;
+   }
 
   ngOnInit(): void {
     this.listarAlumnos();

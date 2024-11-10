@@ -5,6 +5,9 @@ import { Inscripcion } from '../../../../core/models/inscripcion';
 
 import { InscripcionesService } from '../../../../core/services/inscripciones.service';
 import { CrearEditarInscripcionesComponent } from '../crear-editar-inscripciones/crear-editar-inscripciones.component';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Observable } from 'rxjs';
+import { Alumno } from '../../../../core/models/alumno';
 
 
 @Component({
@@ -15,9 +18,13 @@ import { CrearEditarInscripcionesComponent } from '../crear-editar-inscripciones
 export class ListarInscripcionesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'idAlumno', 'idCurso', 'fechaInscripcion', 'estado', 'acciones'];
   dataSource: Inscripcion[] = [];
+  authAlumno$: Observable<Alumno | null>;
+  
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
   
-  constructor(private matDialog: MatDialog, private inscripcionesService: InscripcionesService){ }
+  constructor(private matDialog: MatDialog, private inscripcionesService: InscripcionesService, private authService: AuthService){
+    this.authAlumno$ = this.authService.authAlumno$;
+   }
 
   ngOnInit(): void {
     this.listarInscripciones();

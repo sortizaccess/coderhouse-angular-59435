@@ -24,7 +24,8 @@ describe('ListarAlumnosComponent', () => {
           fechaNacimiento: new Date(),
           genero: '',
           password: '',
-          token: ''
+          token: '',
+          esAdmin: false
       },
       {
           id: '2', 
@@ -34,7 +35,8 @@ describe('ListarAlumnosComponent', () => {
           fechaNacimiento: new Date(),
           genero: '',
           password: '',
-          token: ''
+          token: '',
+          esAdmin: false
       }
     ];
   
