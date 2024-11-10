@@ -40,7 +40,7 @@
                     </button>
                 </a> 
                 <a (click)="eliminarInscripcion(inscripcion)">
-                    <button mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
+                    <button [disabled]="!(authAlumno$ | async)?.esAdmin" mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </a>

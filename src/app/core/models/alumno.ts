@@ -13,6 +13,6 @@ export class Alumno extends Persona {
         this.email = email;
         this.password = password;
         this.token = token;
-        this.esAdmin = esAdmin;
+        this.esAdmin = false;
     }
 }

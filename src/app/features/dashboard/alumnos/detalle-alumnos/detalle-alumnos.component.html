@@ -2,8 +2,8 @@
   <div class="row col-4">
     <div class="card mb-5">
       <div class="card-body">
-          <p *ngIf="alumno?.esAdmin">Administrador</p>
-          <p *ngIf="!alumno?.esAdmin">Cliente</p>
+          <p *ngIf="alumno?.esAdmin">Alumno Administrador</p>
+          <p *ngIf="!alumno?.esAdmin">Alumno</p>
           {{ alumno?.genero }} - {{ alumno?.fechaNacimiento | date }}        
           <h5 class="card-title mb-2">{{ {nombre: alumno?.nombre, apellido: alumno?.apellido} | nombreCompleto}}</h5>
           <span>{{alumno?.email}}</span>
