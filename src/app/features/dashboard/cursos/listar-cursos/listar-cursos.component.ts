@@ -42,9 +42,7 @@ export class ListarCursosComponent implements OnInit {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
         this.cursosService.delete(curso.id).subscribe({
-          next: (cursos) => {
-            this.dataSource = cursos
-          }
+          next: () => { this.listarCursos(); }
         });
       }
     }).catch(() => {

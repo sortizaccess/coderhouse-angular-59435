@@ -13,7 +13,7 @@ export class CursosService {
   private baseURL = environment.apiBaseURL;
   constructor(private httpClient: HttpClient) { }
 
-  get(id: string): Observable<Curso | undefined> {
+  get(id: string): Observable<Curso> {
     return this.httpClient.get<Curso>(`${this.baseURL}/cursos/${id}`);
   }
   getAll(): Observable<Curso[]> {
@@ -28,6 +28,5 @@ export class CursosService {
   update(id: string, modificar: Partial<Curso>) {
     return this.httpClient.patch(`${this.baseURL}/cursos/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
-
 
 }

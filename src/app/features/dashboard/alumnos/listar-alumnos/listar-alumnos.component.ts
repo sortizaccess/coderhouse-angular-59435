@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { AlumnoActions } from '../store/alumno.actions';
 import { selectAlumnos } from '../store/alumno.selectors';
 import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-alumnos',
@@ -24,7 +25,13 @@ export class ListarAlumnosComponent implements OnInit  {
   alumnos$: Observable<Alumno[]>;
 
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
-  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService, private store: Store){
+  constructor(
+    private matDialog: MatDialog, 
+    private alumnosService: AlumnosService, 
+    private store: Store, 
+    private router: Router, 
+    private activatedRoute: ActivatedRoute
+  ){
     this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
     this.alumnos$ = this.store.select(selectAlumnos);
    }
@@ -41,9 +48,7 @@ export class ListarAlumnosComponent implements OnInit  {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
         this.alumnosService.delete(alumno.id).subscribe({
-          next: (alumnos) => {
-            this.dataSource = alumnos
-          }
+          next: () => { this.listarAlumnos(); }
         });
       }
     }).catch(() => {
@@ -53,6 +58,12 @@ export class ListarAlumnosComponent implements OnInit  {
   modificarAlumno(id: string, alumnoModificado: Alumno): void {
     this.alumnosService.update(id, alumnoModificado).subscribe({
       next: () => { this.listarAlumnos(); }
+    });
+  }
+
+  verDetalle(id: string) : void {
+    this.router.navigate([id, 'detalle'], {
+      relativeTo: this.activatedRoute,
     });
   }
 

@@ -7,18 +7,25 @@ import { EffectsModule } from '@ngrx/effects';
 import { AlumnoEffects } from './store/alumno.effects';
 import { StoreModule } from '@ngrx/store';
 import { alumnoFeature } from './store/alumno.reducer';
+import { DetalleAlumnosComponent } from './detalle-alumnos/detalle-alumnos.component';
+import { AlumnosRoutingModule } from './alumnos-routing.module';
 
 
 @NgModule({
   declarations: [
     CrearEditarAlumnosComponent,
-    ListarAlumnosComponent
+    ListarAlumnosComponent,
+    DetalleAlumnosComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    AlumnosRoutingModule,
     StoreModule.forFeature(alumnoFeature),
     EffectsModule.forFeature([AlumnoEffects])
+  ],
+  exports: [
+    ListarAlumnosComponent
   ]
 })
 export class AlumnosModule { }

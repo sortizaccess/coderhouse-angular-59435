@@ -14,7 +14,6 @@ const routes: Routes = [
   },
   {
     path: 'alumnos',
-    component: ListarAlumnosComponent,
     loadChildren: () => import('./alumnos/alumnos.module').then((m) => m.AlumnosModule),
   },
   {

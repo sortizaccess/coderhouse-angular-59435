@@ -41,9 +41,7 @@ export class ListarClasesComponent implements OnInit {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
         this.clasesService.delete(clase.id).subscribe({
-          next: (clases) => {
-            this.dataSource = clases
-          }
+          next: () => { this.listarClases(); }
         });
       }
     }).catch(() => {
@@ -52,9 +50,7 @@ export class ListarClasesComponent implements OnInit {
   }
   modificarClase(id: string, claseModificada: Clase): void {
     this.clasesService.update(id, claseModificada).subscribe({
-      next: () => {
-        this.listarClases();
-      }
+      next: () => { this.listarClases(); }
     });
   }
 

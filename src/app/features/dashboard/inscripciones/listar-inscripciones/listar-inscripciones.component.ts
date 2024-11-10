@@ -42,9 +42,7 @@ export class ListarInscripcionesComponent implements OnInit {
     this.toast.confirmarToast().then((confirmed) => {
       if (confirmed) {
         this.inscripcionesService.delete(inscripcion.id).subscribe({
-          next: (inscripciones) => {
-            this.dataSource = inscripciones
-          }
+          next: () => { this.listarInscripciones(); }
         });
       }
     }).catch(() => {

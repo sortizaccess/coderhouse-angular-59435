@@ -28,4 +28,9 @@ export class InscripcionesService {
   update(id: string, modificar: Partial<Inscripcion>) {
     return this.httpClient.patch(`${this.baseURL}/inscripciones/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
+
+  
+  getAllByAlumno(idAlumno?: string): Observable<Inscripcion[]> {
+    return this.httpClient.get<Inscripcion[]>(`${this.baseURL}/inscripciones?idAlumno=${idAlumno}`);
+  }
 }

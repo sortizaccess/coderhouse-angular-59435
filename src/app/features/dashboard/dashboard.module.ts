@@ -19,8 +19,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule,
     AlumnosModule,
+    SharedModule,
     CursosModule,
     ClasesModule,
     InscripcionesModule
