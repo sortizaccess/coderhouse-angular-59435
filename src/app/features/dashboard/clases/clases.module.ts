@@ -5,6 +5,8 @@ import { ListarClasesComponent } from './listar-clases/listar-clases.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { ClaseEffects } from './store/clase.effects';
+import { claseFeature } from './store/clase.reducer';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -16,6 +18,7 @@ import { ClaseEffects } from './store/clase.effects';
   imports: [
     CommonModule,
     SharedModule,
+    StoreModule.forFeature(claseFeature),
     EffectsModule.forFeature([ClaseEffects])
   ]
 })

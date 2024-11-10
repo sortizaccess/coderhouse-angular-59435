@@ -5,6 +5,8 @@ import { ListarInscripcionesComponent } from './listar-inscripciones/listar-insc
 import { SharedModule } from '../../../shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { InscripcionEffects } from './store/inscripcion.effects';
+import { StoreModule } from '@ngrx/store';
+import { inscripcionFeature } from './store/inscripcion.reducer';
 
 
 
@@ -16,6 +18,7 @@ import { InscripcionEffects } from './store/inscripcion.effects';
   imports: [
     CommonModule,
     SharedModule,
+    StoreModule.forFeature(inscripcionFeature),
     EffectsModule.forFeature([InscripcionEffects])
   ]
 })

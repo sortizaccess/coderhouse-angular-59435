@@ -5,6 +5,8 @@ import { CrearEditarCursosComponent } from './crear-editar-cursos/crear-editar-c
 import { SharedModule } from '../../../shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { CursoEffects } from './store/curso.effects';
+import { StoreModule } from '@ngrx/store';
+import { cursoFeature } from './store/curso.reducer';
 
 
 
@@ -16,6 +18,7 @@ import { CursoEffects } from './store/curso.effects';
   imports: [
     CommonModule,
     SharedModule,
+    StoreModule.forFeature(cursoFeature),
     EffectsModule.forFeature([CursoEffects])
   ]
 })

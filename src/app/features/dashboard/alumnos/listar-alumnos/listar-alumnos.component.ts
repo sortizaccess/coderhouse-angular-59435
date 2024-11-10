@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { CrearEditarAlumnosComponent } from '../crear-editar-alumnos/crear-editar-alumnos.component';
 import { AlumnosService } from '../../../../core/services/alumnos.service';
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
-import { AuthService } from '../../../../core/services/auth.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AlumnoActions } from '../store/alumno.actions';
@@ -25,7 +24,7 @@ export class ListarAlumnosComponent implements OnInit  {
   alumnos$: Observable<Alumno[]>;
 
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
-  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService, private authService: AuthService, private store: Store){
+  constructor(private matDialog: MatDialog, private alumnosService: AlumnosService, private store: Store){
     this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
     this.alumnos$ = this.store.select(selectAlumnos);
    }

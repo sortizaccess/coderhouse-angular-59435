@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
 import { catchError, concatMap, map } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 import { AlumnoActions } from './alumno.actions';
@@ -17,6 +16,7 @@ export class AlumnoEffects {
     private actions$: Actions,
     private alumnosService: AlumnosService,
   ) { 
+    
     this.loadAlumnos$ = createEffect(() => {
       return this.actions$.pipe(
         ofType(AlumnoActions.loadAlumnos),
@@ -44,7 +44,6 @@ export class AlumnoEffects {
         )
       );
     });
-
     this.createAlumnoSuccess$ = createEffect(() => {
       return this.actions$.pipe(
         ofType(AlumnoActions.createAlumnoSuccess),

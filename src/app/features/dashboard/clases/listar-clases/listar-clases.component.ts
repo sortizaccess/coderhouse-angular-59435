@@ -6,7 +6,10 @@ import { CrearEditarClasesComponent } from '../crear-editar-clases/crear-editar-
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
 import { Observable } from 'rxjs';
 import { Alumno } from '../../../../core/models/alumno';
-import { AuthService } from '../../../../core/services/auth.service';
+import { Store } from '@ngrx/store';
+import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
+import { selectClases } from '../store/clase.selectors';
+import { ClaseActions } from '../store/clase.actions';
 
 @Component({
   selector: 'app-listar-clases',
@@ -16,11 +19,14 @@ import { AuthService } from '../../../../core/services/auth.service';
 export class ListarClasesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'contenido', 'profesor', 'aula', 'acciones'];
   dataSource: Clase[] = [];
-  authAlumno$: Observable<Alumno | null>;
-  @ViewChild(ToastsComponent) toast!: ToastsComponent;
 
-  constructor(private matDialog: MatDialog, private clasesService: ClasesService, private authService: AuthService){
-    this.authAlumno$ = this.authService.authAlumno$;
+  authAlumno$: Observable<Alumno | null>;
+  clases$: Observable<Clase[]>;
+
+  @ViewChild(ToastsComponent) toast!: ToastsComponent;
+  constructor(private matDialog: MatDialog, private clasesService: ClasesService, private store: Store){
+    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
+    this.clases$ = this.store.select(selectClases);
    }
 
   ngOnInit(): void {
@@ -29,11 +35,7 @@ export class ListarClasesComponent implements OnInit {
 
   //ABM CLASES
   listarClases(): void {
-    this.clasesService.getAll().subscribe({
-      next: (clases) => {
-        this.dataSource = clases
-      }
-    });
+    this.store.dispatch(ClaseActions.loadClases());
   }
   eliminarClase(clase: Clase): void {
     this.toast.confirmarToast().then((confirmed) => {
