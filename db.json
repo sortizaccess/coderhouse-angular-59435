@@ -8,7 +8,30 @@
       "fechaNacimiento": "2024-11-03T09:32:02.250Z",
       "genero": "Masculino",
       "password": "1234",
-      "token": "ASD123"
+      "token": "ASD123",
+      "esAdmin": true
+    },
+    {
+      "id": "xGwoAw",
+      "nombre": "pep",
+      "apellido": "pepe",
+      "email": "admin_test2@email.com",
+      "fechaNacimiento": "2024-11-11T03:00:00.000Z",
+      "genero": "Masculino",
+      "password": "1234",
+      "token": "eenCVJ",
+      "esAdmin": false
+    },
+    {
+      "id": "o45dVQ",
+      "nombre": "asd",
+      "apellido": "asd",
+      "email": "admin_test3@email.com",
+      "fechaNacimiento": "2024-11-06T03:00:00.000Z",
+      "genero": "Masculino",
+      "password": "1234",
+      "token": "u9AgeW",
+      "esAdmin": false
     }
   ],
   "clases": [
@@ -19,10 +42,16 @@
       "aula": "Aula 101"
     },
     {
-      "id": "CL002",
-      "contenido": "Historia Universal",
-      "profesor": "Prof. María García",
-      "aula": "Aula 202"
+      "id": "u1K9qc",
+      "contenido": "asd",
+      "aula": "test",
+      "profesor": "test"
+    },
+    {
+      "id": "M8DOWm",
+      "contenido": "asd",
+      "aula": "asd",
+      "profesor": "asd"
     }
   ],
   "cursos": [
@@ -44,17 +73,38 @@
   "inscripciones": [
     {
       "id": "INS001",
-      "idAlumno": 101,
-      "idCurso": 1,
+      "idAlumno": "5tpjMa",
+      "idCurso": "CRS001",
       "fechaInscripcion": "2024-01-10T10:30:00",
       "estado": "Confirmada"
     },
     {
-      "id": "INS002",
-      "idAlumno": 102,
-      "idCurso": 2,
-      "fechaInscripcion": "2024-01-15T12:00:00",
-      "estado": "Pendiente"
+      "id": "8Znn3Z",
+      "idAlumno": "123",
+      "idCurso": "CRS002",
+      "fechaInscripcion": "2024-11-05T03:00:00.000Z",
+      "estado": "asd"
+    },
+    {
+      "id": "XuxdGB",
+      "idAlumno": "123",
+      "idCurso": "CRS001",
+      "fechaInscripcion": "2024-11-21T03:00:00.000Z",
+      "estado": "asd"
+    },
+    {
+      "id": "CK0frG",
+      "idAlumno": "o45dVQ",
+      "idCurso": "CRS001",
+      "fechaInscripcion": "2024-11-12T03:00:00.000Z",
+      "estado": "asd"
+    },
+    {
+      "id": "VBitx9",
+      "idAlumno": "o45dVQ",
+      "idCurso": "CRS002",
+      "fechaInscripcion": "2024-11-12T03:00:00.000Z",
+      "estado": "dfss"
     }
   ]
 }
