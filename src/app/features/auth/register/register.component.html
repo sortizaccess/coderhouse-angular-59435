@@ -1,28 +1,36 @@
-<form>
-    <mat-card-title appTitulos class="my-3 text-center mb-4">¡Regístrate!</mat-card-title>
-    <div class="mx-5 pt-2">
-        <p>
+
+<mat-card-title appTitulos class="my-3 text-center mb-4">¡Regístrate!</mat-card-title>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="mx-5">
+        <div>
             <mat-form-field>
                 <mat-icon matPrefix>alternate_email</mat-icon>
                 <mat-label>Email</mat-label>
-                <input autofocus type="email" matInput>
+                <input autofocus type="email" formControlName="email" matInput>
             </mat-form-field>
-        </p>
-        <p>
+        </div>
+        <div>
             <mat-form-field>
                 <mat-icon matPrefix>person_outline</mat-icon>
-                <mat-label>Usuario</mat-label>
-                <input autofocus type="text" matInput>
+                <mat-label>Nombre</mat-label>
+                <input autofocus type="text" formControlName="nombre" matInput>
             </mat-form-field>
-        </p>
-        <p>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-icon matPrefix>person_outline</mat-icon>
+                <mat-label>Apellido</mat-label>
+                <input autofocus type="text" formControlName="apellido" matInput>
+            </mat-form-field>
+        </div>
+        <div>
             <mat-form-field>
                 <mat-icon matPrefix>lock_outline</mat-icon>
                 <mat-label>Contraseña</mat-label>
-                <input type="password" autocomplete="false" matInput>
+                <input type="password" autocomplete="false" formControlName="password" matInput>
             </mat-form-field>
-        </p>
-        <div class="d-flex justify-content-center my-3 pt-2">
+        </div>
+        <div class="d-flex justify-content-center my-2">
             <button type="submit" mat-fab extended color="primary" class="shadow-sm">
                 <mat-icon>add</mat-icon><label style="font-family: Lato;">Registrarse</label>
             </button>

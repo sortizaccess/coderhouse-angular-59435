@@ -22,7 +22,6 @@ export class AuthService {
     return this.httpClient.get<Alumno[]>(`${this.baseURL}/alumnos?email=${data.email}&password=${data.password}`)
     .pipe(map((alumnos) => {
       const alumno = this.autentificarToken(alumnos);
-
       if (alumno) {
         return alumno
       }
@@ -31,6 +30,11 @@ export class AuthService {
       }
     }));
   }
+
+  register(data: Alumno): void {
+    this.httpClient.post<Alumno>(`${this.baseURL}/alumnos`, data);
+  }
+
 
   logout(): void {
     this.store.dispatch(AuthActions.logoutAlumno());
