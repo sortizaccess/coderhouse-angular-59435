@@ -8,63 +8,30 @@
       "fechaNacimiento": "2024-11-03T09:32:02.250Z",
       "genero": "Masculino",
       "password": "1234",
-      "token": "ASD123",
+      "token": "eenCVJ",
       "esAdmin": true
     },
     {
-      "id": "xGwoAw",
-      "nombre": "pep",
-      "apellido": "pepe",
-      "email": "admin_test2@email.com",
-      "fechaNacimiento": "2024-11-11T03:00:00.000Z",
-      "genero": "Masculino",
-      "password": "1234",
-      "token": "eenCVJ",
+      "id": "124",
+      "email": "maria_smith@email.com",
+      "nombre": "María",
+      "apellido": "Smith",
+      "fechaNacimiento": "2001-05-15T12:00:00Z",
+      "genero": "Femenino",
+      "password": "abcd1234",
+      "token": "aK12QR",
       "esAdmin": false
     },
     {
-      "id": "o45dVQ",
-      "nombre": "asd",
-      "apellido": "asd",
-      "email": "admin_test3@email.com",
-      "fechaNacimiento": "2024-11-06T03:00:00.000Z",
+      "id": "125",
+      "email": "luis_ramirez@email.com",
+      "nombre": "Luis",
+      "apellido": "Ramírez",
+      "fechaNacimiento": "1998-09-25T08:45:00Z",
       "genero": "Masculino",
-      "password": "1234",
-      "token": "u9AgeW",
+      "password": "luis98pass",
+      "token": "Zx78PL",
       "esAdmin": false
-    },
-    {
-      "id": "3de5",
-      "email": "admin_test6@email.com",
-      "nombre": "asd",
-      "apellido": "asd",
-      "password": "12346346",
-      "token": "OmVXgA",
-      "esAdmin": false,
-      "fechaNacimiento": "2024-11-12T21:05:54.341Z",
-      "genero": "Test"
-    },
-    {
-      "id": "3bfb",
-      "email": "admin_test35@email.com",
-      "nombre": "qwe",
-      "apellido": "asd",
-      "password": "12341231",
-      "token": "umQu3B",
-      "esAdmin": false,
-      "fechaNacimiento": "2024-11-12T21:07:04.704Z",
-      "genero": "Test"
-    },
-    {
-      "id": "c1e1",
-      "email": "admin_test@email.com",
-      "nombre": "asdq",
-      "apellido": "asdq",
-      "password": "1234123",
-      "token": "KTjcbp",
-      "esAdmin": false,
-      "fechaNacimiento": "2024-11-12T21:16:37.918Z",
-      "genero": ""
     }
   ],
   "clases": [
@@ -75,16 +42,10 @@
       "aula": "Aula 101"
     },
     {
-      "id": "u1K9qc",
-      "contenido": "asd",
-      "aula": "test",
-      "profesor": "test"
-    },
-    {
-      "id": "M8DOWm",
-      "contenido": "asd",
-      "aula": "asd",
-      "profesor": "asd"
+      "id": "CL002",
+      "contenido": "Física Teórica",
+      "profesor": "Dra. Ana López",
+      "aula": "Aula 202"
     }
   ],
   "cursos": [
@@ -101,43 +62,29 @@
       "descripcion": "Aplicaciones web interactivas con JavaScript.",
       "fechaInicio": "2024-02-01T10:00:00Z",
       "dificultad": "Intermedio"
+    },
+    {
+      "id": "CRS003",
+      "nombre": "Bases de Datos",
+      "descripcion": "Introducción a los conceptos fundamentales de bases de datos y SQL.",
+      "fechaInicio": "2024-03-01T11:00:00Z",
+      "dificultad": "Intermedio"
     }
   ],
   "inscripciones": [
     {
-      "id": "INS001",
-      "idAlumno": "5tpjMa",
-      "idCurso": "CRS001",
-      "fechaInscripcion": "2024-01-10T10:30:00",
-      "estado": "Confirmada"
-    },
-    {
-      "id": "8Znn3Z",
-      "idAlumno": "123",
-      "idCurso": "CRS002",
-      "fechaInscripcion": "2024-11-05T03:00:00.000Z",
-      "estado": "asd"
-    },
-    {
-      "id": "XuxdGB",
+      "id": "rtUI6u",
       "idAlumno": "123",
       "idCurso": "CRS001",
-      "fechaInscripcion": "2024-11-21T03:00:00.000Z",
-      "estado": "asd"
-    },
-    {
-      "id": "CK0frG",
-      "idAlumno": "o45dVQ",
-      "idCurso": "CRS001",
       "fechaInscripcion": "2024-11-12T03:00:00.000Z",
-      "estado": "asd"
+      "estado": "Pendiente"
     },
     {
-      "id": "VBitx9",
-      "idAlumno": "o45dVQ",
+      "id": "kGicpZ",
+      "idAlumno": "124",
       "idCurso": "CRS002",
-      "fechaInscripcion": "2024-11-12T03:00:00.000Z",
-      "estado": "dfss"
+      "fechaInscripcion": "2024-11-13T03:00:00.000Z",
+      "estado": "Anulada"
     }
   ]
 }
