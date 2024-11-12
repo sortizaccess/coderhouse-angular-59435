@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { Alumno } from '../../../core/models/alumno';
 import { generarIdRandom } from '../../../shared/utils';
 import { AlumnosService } from '../../../core/services/alumnos.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
