@@ -4,6 +4,8 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { Alumno } from '../../../core/models/alumno';
 import { generarIdRandom } from '../../../shared/utils';
+import { AlumnosService } from '../../../core/services/alumnos.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -12,16 +14,19 @@ import { generarIdRandom } from '../../../shared/utils';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  alumno?: Alumno;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private alumnosService: AlumnosService,
     private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      nombre: [null, [Validators.required, Validators.minLength(4)]],
+      apellido: [null, [Validators.required, Validators.minLength(4)]],
+      genero: [null, [Validators.required]],
+      fechaNacimiento: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.minLength(4)]]
     });
   }
 
@@ -30,15 +35,23 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
     }
     else {
-      this.authService.register(this.registerForm.value);
-      this.authService.login(this.registerForm.value).subscribe({
-        next: () => {
-          this.router.navigate(['dashboard', 'home']);
-        },
-        error: (err) => {
-          alert(err.message);
-        }
-      });
+      if (this.registerForm.valid) {
+        const alumnoData: Omit<Alumno, 'id'> = {
+          nombre: this.registerForm.get('nombre')?.value,
+          apellido: this.registerForm.get('apellido')?.value,
+          genero: this.registerForm.get('genero')?.value,
+          fechaNacimiento: this.registerForm.get('fechaNacimiento')?.value,
+          email: this.registerForm.get('email')?.value,
+          password: this.registerForm.get('password')?.value,
+          token: generarIdRandom(),
+          esAdmin: false
+        };
+
+        localStorage.setItem('token', alumnoData.token);  
+        this.alumnosService.add(alumnoData).subscribe({ next: () => this.router.navigate(['dashboard', 'home']) });
+      } 
     }
   }
+
+
 }

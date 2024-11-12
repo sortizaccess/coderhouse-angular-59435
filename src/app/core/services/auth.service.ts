@@ -31,11 +31,6 @@ export class AuthService {
     }));
   }
 
-  register(data: Alumno): void {
-    this.httpClient.post<Alumno>(`${this.baseURL}/alumnos`, data);
-  }
-
-
   logout(): void {
     this.store.dispatch(AuthActions.logoutAlumno());
     localStorage.removeItem('token');
