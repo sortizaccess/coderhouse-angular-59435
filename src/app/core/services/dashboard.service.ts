@@ -15,7 +15,7 @@ export class DashboardService {
   validarToken(): Observable<boolean>{
     return this.httpClient.get<Usuario[]>(`${this.baseURL}/usuarios?token=${localStorage.getItem('token')}`)
     .pipe(map((usuarios) => {
-      const usuario = this.autentificarToken(usuarios);
+      const usuario = this.setToken(usuarios);
       return !usuario;
     }));
   }
@@ -23,12 +23,12 @@ export class DashboardService {
   esAdmin(): Observable<boolean>{
     return this.httpClient.get<Usuario[]>(`${this.baseURL}/usuarios?token=${localStorage.getItem('token')}`)
     .pipe(map((usuarios) => {
-      const usuario = this.autentificarToken(usuarios);
+      const usuario = this.setToken(usuarios);
       return !usuario?.esAdmin;
     }));
   }
 
-  autentificarToken(usuarios: Usuario[]): Usuario | null {
+  setToken(usuarios: Usuario[]): Usuario | null {
     if(usuarios[0]){
       localStorage.setItem('token', usuarios[0].token);
       this._authUsuario$.next(usuarios[0]);

@@ -45,7 +45,7 @@ export class AuthService {
     }));
   }
 
-  private autentificarToken(usuarios: Usuario[]): Usuario | null {
+  autentificarToken(usuarios: Usuario[]): Usuario | null {
     if(usuarios[0]){
       this.store.dispatch(AuthActions.loginUsuario({ usuario: usuarios[0] }));
       localStorage.setItem('token', usuarios[0].token);      
