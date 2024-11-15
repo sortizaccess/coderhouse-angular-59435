@@ -20,23 +20,15 @@ describe('ListarAlumnosComponent', () => {
           id: '1', 
           nombre: 'Juan Pérez',
           apellido: '',
-          email: '',
           fechaNacimiento: new Date(),
-          genero: '',
-          password: '',
-          token: '',
-          esAdmin: false
+          genero: ''
       },
       {
           id: '2', 
           nombre: 'María López',
           apellido: '',
-          email: '',
           fechaNacimiento: new Date(),
-          genero: '',
-          password: '',
-          token: '',
-          esAdmin: false
+          genero: ''
       }
     ];
   

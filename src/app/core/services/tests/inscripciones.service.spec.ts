@@ -7,8 +7,8 @@ import { Inscripcion } from '../../models/inscripcion';
 
 const mockInscripcion: Inscripcion = {
     id: "INS001",
-    idAlumno: 101,
-    idCurso: 1,
+    idAlumno: '101',
+    idCurso: '1',
     fechaInscripcion: new Date(),
     estado: "Confirmada"
   };

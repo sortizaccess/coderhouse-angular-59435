@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-
 import { Alumno } from '../../models/alumno';
 import { AlumnosService } from '../alumnos.service';
 
@@ -9,11 +8,8 @@ const mockAlumno: Alumno = {
   id: '123',
   nombre: 'Sebastián',
   apellido: 'Ortiz',
-  email: 'admin_test@email.com',
-  password: '1234',
   genero: 'Masculino',
-  fechaNacimiento: new Date(),
-  token: 'ASD123',
+  fechaNacimiento: new Date()
 };
 
 describe('AlumnosService', () => {

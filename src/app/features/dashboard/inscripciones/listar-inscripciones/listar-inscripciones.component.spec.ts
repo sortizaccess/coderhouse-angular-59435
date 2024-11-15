@@ -18,15 +18,15 @@ describe('ListarInscripcionesComponent', () => {
     const mockInscripcion: Inscripcion[] = [
       {
           id: '1',
-          idAlumno: 1,
-          idCurso: 1,
+          idAlumno: '1',
+          idCurso: '1',
           fechaInscripcion: new Date,
           estado: 'TEST_2'
       },
       {
           id: '2',
-          idAlumno: 1,
-          idCurso: 1,
+          idAlumno: '1',
+          idCurso: '1',
           fechaInscripcion: new Date,
           estado: 'TEST_2'
       }
