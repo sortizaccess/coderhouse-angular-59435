@@ -13,8 +13,8 @@
       "id": "DOXd1T",
       "nombre": "Luis",
       "apellido": "Ramírez",
-      "email": "luis_ramirez@email.com",
-      "password": "luis98pass",
+      "email": "usuario_test@email.com",
+      "password": "1234",
       "token": "YwooiR",
       "esAdmin": false
     }
