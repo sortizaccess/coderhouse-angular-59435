@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { generarIdRandom } from '../../../shared/utils';
 import { Usuario } from '../../../core/models/usuario';
 import { UsuariosService } from '../../../core/services/usuarios.service';
+import { ToastsComponent } from '../../../shared/utils/toasts/toasts.component';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ import { UsuariosService } from '../../../core/services/usuarios.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-
+  
+  @ViewChild(ToastsComponent) toast!: ToastsComponent; 
   constructor(
     private formBuilder: FormBuilder,
     private usuariosService: UsuariosService,
@@ -41,11 +43,20 @@ export class RegisterComponent {
           esAdmin: false
         };
 
-        localStorage.setItem('token', usuarioData.token);  
-        this.usuariosService.add(usuarioData).subscribe({ next: () => this.router.navigate(['dashboard', 'home']) });
-      } 
-    }
+        this.usuariosService.getByEmail(usuarioData.email).subscribe({
+          next: (usuario) => {
+            if (usuario) {
+              this.toast.showError('El email ya está registrado')
+            } else {
+              localStorage.setItem('token', usuarioData.token);  
+              this.usuariosService.add(usuarioData).subscribe({ next: () => this.router.navigate(['dashboard', 'home']) });
+            }
+          },
+          error: (err) => {
+            this.toast.showError('Error al verificar el email')
+          }
+        });
+      }
+    } 
   }
-
-
 }

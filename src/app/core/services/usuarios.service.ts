@@ -28,4 +28,7 @@ export class UsuariosService {
     return this.httpClient.patch(`${this.baseURL}/usuarios/${id}`, modificar).pipe(concatMap(() => this.getAll()));
   }
 
+  getByEmail(email: string): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${this.baseURL}/usuarios?email=${email}`);
+  }
 }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastsComponent } from '../../../shared/utils/toasts/toasts.component';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
+  @ViewChild(ToastsComponent) toast!: ToastsComponent; 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -32,7 +34,7 @@ export class LoginComponent {
           this.router.navigate(['dashboard', 'home']);
         },
         error: (err) => {
-          alert(err.message);
+          this.toast.showError('Acceso incorrecto')
         }
       });
     }

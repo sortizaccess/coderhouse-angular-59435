@@ -1,29 +1,36 @@
 
-<mat-card-title appTitulos class="my-3 text-center mb-4">Iniciar Sesión 👋</mat-card-title>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="mx-5">
-        <div>
-            <mat-form-field>
-                <mat-icon matPrefix>alternate_email</mat-icon>
-                <mat-label>Email</mat-label>
-                <input type="text" matInput formControlName="email">
-            </mat-form-field>
-        </div>   
-        <div>
-            <mat-form-field>
-                <mat-icon matPrefix>lock_outline</mat-icon>
-                <mat-label>Contraseña</mat-label>
-                <input type="password" matInput formControlName="password">
-            </mat-form-field>
-        </div>
-        <div class="d-flex justify-content-center my-2">
-            <button type="submit" mat-fab extended color="primary" class="shadow-sm">
-                <mat-icon>keyboard_arrow_right</mat-icon><label style="font-family: Lato;">Ingresar</label>
-            </button>
-        </div>
-    </div>
-</form>
-<p class="text-center pt-2" style="font-size: 13px;">¿No tienes una cuenta? <a routerLink="/auth/register">Regístrate ahora</a></p>
+<div style="background-color: darkgray; height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <mat-card>
+        <mat-card-content>
+            <div class="container">                
+                <mat-card-title appTitulos class="my-3 text-center mb-4">Iniciar Sesión 👋</mat-card-title>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="mx-5">
+                        <div>
+                            <mat-form-field>
+                                <mat-icon matPrefix>alternate_email</mat-icon>
+                                <mat-label>Email</mat-label>
+                                <input type="text" matInput formControlName="email">
+                            </mat-form-field>
+                        </div>   
+                        <div>
+                            <mat-form-field>
+                                <mat-icon matPrefix>lock_outline</mat-icon>
+                                <mat-label>Contraseña</mat-label>
+                                <input type="password" matInput formControlName="password">
+                            </mat-form-field>
+                        </div>
+                        <div class="d-flex justify-content-center my-2">
+                            <button type="submit" mat-fab extended color="primary" class="shadow-sm">
+                                <mat-icon>keyboard_arrow_right</mat-icon><label style="font-family: Lato;">Ingresar</label>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <p class="text-center pt-2" style="font-size: 13px;">¿No tienes una cuenta? <a routerLink="/auth/register">Regístrate ahora</a></p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
 
-
-
+<app-toasts></app-toasts>

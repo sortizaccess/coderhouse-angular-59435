@@ -1,63 +1,72 @@
+<div style="background-color: darkgray; height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <mat-card>
+        <mat-card-content>
+            <div class="container">
+                <mat-card-title appTitulos class="my-3 text-center mb-4">¡Regístrate!</mat-card-title>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="mx-5">
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-form-field>
+                                    <mat-icon matPrefix>person_outline</mat-icon>
+                                    <mat-label>Nombre</mat-label>
+                                    <input autofocus type="text" formControlName="nombre" matInput>
+                                    <mat-error>
+                                        @if(registerForm.get('nombre')?.hasError('required')){
+                                        Requerido
+                                        }
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field>
+                                    <mat-icon matPrefix>person_outline</mat-icon>
+                                    <mat-label>Apellido</mat-label>
+                                    <input autofocus type="text" formControlName="apellido" matInput>
+                                    <mat-error>
+                                        @if(registerForm.get('apellido')?.hasError('required')){
+                                        Requerido
+                                        }
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-form-field>
+                                    <mat-icon matPrefix>alternate_email</mat-icon>
+                                    <mat-label>Email</mat-label>
+                                    <input autofocus type="email" formControlName="email" matInput>
+                                    <mat-error>
+                                        @if(registerForm.get('email')?.hasError('required')){
+                                        Requerido
+                                        }
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field>
+                                    <mat-icon matPrefix>lock_outline</mat-icon>
+                                    <mat-label>Contraseña</mat-label>
+                                    <input type="password" autocomplete="false" formControlName="password" matInput>
+                                    <mat-error>
+                                        @if(registerForm.get('password')?.hasError('required')){
+                                        Requerido
+                                        }
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-2">
+                            <button type="submit" mat-fab extended color="primary" class="shadow-sm">
+                                <mat-icon>add</mat-icon><label style="font-family: Lato;">Registrarse</label>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
 
-<mat-card-title appTitulos class="my-3 text-center mb-4">¡Regístrate!</mat-card-title>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="mx-5">
-        <div class="row">
-            <div class="col-6">
-                <mat-form-field>
-                    <mat-icon matPrefix>person_outline</mat-icon>
-                    <mat-label>Nombre</mat-label>
-                    <input autofocus type="text" formControlName="nombre" matInput>
-                    <mat-error>
-                        @if(registerForm.get('nombre')?.hasError('required')){
-                          Requerido
-                        }
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="col-6">
-                <mat-form-field>
-                    <mat-icon matPrefix>person_outline</mat-icon>
-                    <mat-label>Apellido</mat-label>
-                    <input autofocus type="text" formControlName="apellido" matInput>
-                    <mat-error>
-                        @if(registerForm.get('apellido')?.hasError('required')){
-                          Requerido
-                        }
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <mat-form-field>
-                    <mat-icon matPrefix>alternate_email</mat-icon>
-                    <mat-label>Email</mat-label>
-                    <input autofocus type="email" formControlName="email" matInput>
-                    <mat-error>
-                        @if(registerForm.get('email')?.hasError('required')){
-                        Requerido
-                        }
-                    </mat-error>
-                </mat-form-field>
-            </div> 
-            <div class="col-6">
-                <mat-form-field>
-                    <mat-icon matPrefix>lock_outline</mat-icon>
-                    <mat-label>Contraseña</mat-label>
-                    <input type="password" autocomplete="false" formControlName="password" matInput>
-                    <mat-error>
-                        @if(registerForm.get('password')?.hasError('required')){
-                        Requerido
-                        }
-                    </mat-error>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center my-2">
-            <button type="submit" mat-fab extended color="primary" class="shadow-sm">
-                <mat-icon>add</mat-icon><label style="font-family: Lato;">Registrarse</label>
-            </button>
-        </div>
-    </div>
-</form>
+<app-toasts></app-toasts>
