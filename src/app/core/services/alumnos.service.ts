@@ -12,7 +12,7 @@ export class AlumnosService {
   private baseURL = environment.apiBaseURL;
   constructor(private httpClient: HttpClient) { }
 
-  get(id: string): Observable<Alumno | undefined> {
+  get(id: string): Observable<Alumno> {
     return this.httpClient.get<Alumno>(`${this.baseURL}/alumnos/${id}`);
   }
   getAll(): Observable<Alumno[]> {

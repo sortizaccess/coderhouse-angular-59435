@@ -33,4 +33,7 @@ export class InscripcionesService {
   getAllByAlumno(idAlumno?: string): Observable<Inscripcion[]> {
     return this.httpClient.get<Inscripcion[]>(`${this.baseURL}/inscripciones?idAlumno=${idAlumno}`);
   }
+  getAllByCurso(idCurso?: string): Observable<Inscripcion[]> {
+    return this.httpClient.get<Inscripcion[]>(`${this.baseURL}/inscripciones?idCurso=${idCurso}`);
+  }
 }

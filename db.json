@@ -85,6 +85,27 @@
       "idCurso": "CRS002",
       "fechaInscripcion": "2024-11-13T03:00:00.000Z",
       "estado": "Anulada"
+    },
+    {
+      "id": "zeocem",
+      "idAlumno": "124",
+      "idCurso": "CRS003",
+      "fechaInscripcion": "2024-11-07T03:00:00.000Z",
+      "estado": "Test1"
+    },
+    {
+      "id": "yBlPmD",
+      "idAlumno": "125",
+      "idCurso": "CRS003",
+      "fechaInscripcion": "2024-11-15T03:00:00.000Z",
+      "estado": "test"
+    },
+    {
+      "id": "SACVwL",
+      "idAlumno": "125",
+      "idCurso": "CRS003",
+      "fechaInscripcion": "2024-11-15T03:00:00.000Z",
+      "estado": "Confirmada"
     }
   ]
 }

@@ -7,19 +7,26 @@ import { EffectsModule } from '@ngrx/effects';
 import { CursoEffects } from './store/curso.effects';
 import { StoreModule } from '@ngrx/store';
 import { cursoFeature } from './store/curso.reducer';
+import { DetalleCursosComponent } from './detalle-cursos/detalle-cursos.component';
+import { CursosRoutingModule } from './cursos-routing.module';
 
 
 
 @NgModule({
   declarations: [
     ListarCursosComponent,
-    CrearEditarCursosComponent
+    CrearEditarCursosComponent,
+    DetalleCursosComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    CursosRoutingModule,
     StoreModule.forFeature(cursoFeature),
     EffectsModule.forFeature([CursoEffects])
+  ],
+  exports: [
+    ListarCursosComponent
   ]
 })
 export class CursosModule { }

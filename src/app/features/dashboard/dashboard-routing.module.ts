@@ -18,7 +18,6 @@ const routes: Routes = [
   },
   {
     path: 'cursos',
-    component: ListarCursosComponent,
     loadChildren: () => import('./cursos/cursos.module').then((m) => m.CursosModule),
   },
   {

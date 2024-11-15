@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
 import { selectCursos } from '../store/curso.selectors';
 import { CursoActions } from '../store/curso.actions';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -20,12 +21,16 @@ import { CursoActions } from '../store/curso.actions';
 export class ListarCursosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'fechaInicio', 'dificultad', 'acciones'];
   dataSource: Curso[] = [];
-
   authAlumno$: Observable<Alumno | null>;
   cursos$: Observable<Curso[]>;
 
   @ViewChild(ToastsComponent) toast!: ToastsComponent; 
-  constructor(private matDialog: MatDialog, private cursosService: CursosService, private store: Store){
+  constructor(private matDialog: MatDialog, 
+    private cursosService: CursosService, 
+    private store: Store, 
+    private router: Router, 
+    private activatedRoute: ActivatedRoute
+  ){
     this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
     this.cursos$ = this.store.select(selectCursos);
    }
@@ -52,6 +57,12 @@ export class ListarCursosComponent implements OnInit {
   modificarCurso(id: string, cursoModificado: Curso): void {
     this.cursosService.update(id, cursoModificado).subscribe({
       next: () => { this.listarCursos(); }
+    });
+  }
+
+  verDetalle(id: string) : void {
+    this.router.navigate([id, 'detalle'], {
+      relativeTo: this.activatedRoute,
     });
   }
 
