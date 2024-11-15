@@ -5,6 +5,7 @@ import { ListarClasesComponent } from './clases/listar-clases/listar-clases.comp
 import { ListarInscripcionesComponent } from './inscripciones/listar-inscripciones/listar-inscripciones.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ListarUsuariosComponent } from './usuarios/listar-usuarios/listar-usuarios.component';
+import { usuariosGuard } from '../../core/guards/usuarios.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'usuarios',
+    canActivate: [usuariosGuard],
     component: ListarUsuariosComponent,
     loadChildren: () => import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
   },
