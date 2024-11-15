@@ -27,10 +27,8 @@ export class CrearEditarAlumnosComponent {
     this.alumnoForm = this.formBuilder.group({
       nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
       apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
-      email: [null, [Validators.required, Validators.email, Validators.maxLength(30), Validators.minLength(15)]],
       fechaNacimiento: [null, [Validators.required]],
-      genero: [null, [Validators.required]],
-      password: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4)]]
+      genero: [null, [Validators.required]]
     });
 
     this.patchFormValue();
@@ -52,8 +50,7 @@ export class CrearEditarAlumnosComponent {
     } else {
       this.matDialogRef.close({
         ...this.alumnoForm.value,
-        id: this.esModificar ? this.data!.alumnoModificado!.id : generarIdRandom(),
-        token: this.esModificar ? this.data!.alumnoModificado!.token : generarIdRandom()
+        id: this.esModificar ? this.data!.alumnoModificado!.id : generarIdRandom()
       });
     }
   }

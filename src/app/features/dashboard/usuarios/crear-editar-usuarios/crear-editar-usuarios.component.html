@@ -1,0 +1,99 @@
+
+<h2 appTitulos mat-dialog-title> {{data?.usuarioModificado ? 'Editar' : 'Crear'}} Usuario</h2>
+<mat-dialog-content>
+  <hr>
+  <form [formGroup]="usuarioForm">
+    <div class="row my-2" appTitulos>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-icon matPrefix>assignment_ind</mat-icon>
+          <mat-label>Nombre</mat-label>
+          <input formControlName="nombre" matInput />
+          <mat-error>
+            @if(usuarioForm.get('nombre')?.hasError('required')){
+              Requerido
+            }
+            @else if (usuarioForm.get('nombre')?.hasError('maxlength')) {
+              Máximo 15 caracteres
+            }
+            @else if (usuarioForm.get('nombre')?.hasError('minlength')) {
+              Mínimo 3 caracteres
+            }
+            @else if (usuarioForm.get('nombre')?.hasError('soloLetras')) {
+              Caracteres inválidos
+            }
+          </mat-error>
+        </mat-form-field>        
+      </div>
+      <div class="col-6">
+        <mat-form-field>
+          <mat-icon matPrefix>assignment_ind</mat-icon>
+          <mat-label>Apellido</mat-label>
+          <input formControlName="apellido" matInput />
+          <mat-error>
+            @if(usuarioForm.get('apellido')?.hasError('required')){
+              Requerido
+            }
+            @else if (usuarioForm.get('apellido')?.hasError('maxlength')) {
+              Máximo 15 caracteres
+            }
+            @else if (usuarioForm.get('apellido')?.hasError('minlength')) {
+              Mínimo 3 caracteres
+            }
+            @else if (usuarioForm.get('apellido')?.hasError('soloLetras')) {
+              Caracteres inválidos
+            }
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-6">
+        <mat-form-field>
+          <mat-icon matPrefix>email</mat-icon>     
+          <mat-label>Email</mat-label>
+          <input
+            formControlName="email"
+            matInput
+            placeholder="ejemplo@ejemplo.com" />
+            <mat-error>
+              @if(usuarioForm.get('email')?.hasError('required')){
+                Requerido
+              }
+              @else if (usuarioForm.get('email')?.hasError('maxlength')) {
+                Máximo 30 caracteres
+              }
+              @else if (usuarioForm.get('email')?.hasError('minlength')) {
+                Mínimo 12 caracteres
+              }
+            </mat-error>
+        </mat-form-field>  
+      </div>
+
+      <div class="col-6">
+        <mat-form-field>
+          <mat-icon matPrefix>lock_outline</mat-icon>     
+          <mat-label>Contraseña</mat-label>
+          <input formControlName="password" matInput type="password" />
+            <mat-error>
+              @if(usuarioForm.get('password')?.hasError('required')){
+                Requerido
+              }
+              @else if (usuarioForm.get('password')?.hasError('maxlength')) {
+                Máximo 15 caracteres
+              }
+              @else if (usuarioForm.get('password')?.hasError('minlength')) {
+                Mínimo 4 caracteres
+              }
+            </mat-error>
+        </mat-form-field>     
+      </div>      
+    </div>
+  </form>
+  <hr>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onSave()">Guardar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

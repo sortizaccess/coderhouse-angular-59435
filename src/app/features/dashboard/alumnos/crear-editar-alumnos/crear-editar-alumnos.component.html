@@ -79,49 +79,6 @@
         </mat-form-field>  
       </div>  
     </div>
-
-    <div class="row my-2">
-      <div class="col-6">
-        <mat-form-field>
-          <mat-icon matPrefix>email</mat-icon>     
-          <mat-label>Email</mat-label>
-          <input
-            formControlName="email"
-            matInput
-            placeholder="ejemplo@ejemplo.com" />
-            <mat-error>
-              @if(alumnoForm.get('email')?.hasError('required')){
-                Requerido
-              }
-              @else if (alumnoForm.get('email')?.hasError('maxlength')) {
-                Máximo 30 caracteres
-              }
-              @else if (alumnoForm.get('email')?.hasError('minlength')) {
-                Mínimo 12 caracteres
-              }
-            </mat-error>
-        </mat-form-field>  
-      </div>
-
-      <div class="col-6">
-        <mat-form-field>
-          <mat-icon matPrefix>lock_outline</mat-icon>     
-          <mat-label>Contraseña</mat-label>
-          <input formControlName="password" matInput type="password" />
-            <mat-error>
-              @if(alumnoForm.get('password')?.hasError('required')){
-                Requerido
-              }
-              @else if (alumnoForm.get('password')?.hasError('maxlength')) {
-                Máximo 15 caracteres
-              }
-              @else if (alumnoForm.get('password')?.hasError('minlength')) {
-                Mínimo 5 caracteres
-              }
-            </mat-error>
-        </mat-form-field>     
-      </div>      
-    </div>
   </form>
   <hr>
 </mat-dialog-content>

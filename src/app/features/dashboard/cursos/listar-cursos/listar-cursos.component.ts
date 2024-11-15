@@ -5,12 +5,12 @@ import { CursosService } from '../../../../core/services/cursos.service';
 import { Curso } from '../../../../core/models/curso';
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
 import { Observable } from 'rxjs';
-import { Alumno } from '../../../../core/models/alumno';
 import { Store } from '@ngrx/store';
-import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
+import { selectUsuarioAutenticado } from '../../../../store/selectors/auth.selector';
 import { selectCursos } from '../store/curso.selectors';
 import { CursoActions } from '../store/curso.actions';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from '../../../../core/models/usuario';
 
 
 @Component({
@@ -21,7 +21,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ListarCursosComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'fechaInicio', 'dificultad', 'acciones'];
   dataSource: Curso[] = [];
-  authAlumno$: Observable<Alumno | null>;
+  authUsuario$: Observable<Usuario | null>;
   cursos$: Observable<Curso[]>;
 
   @ViewChild(ToastsComponent) toast!: ToastsComponent; 
@@ -31,7 +31,7 @@ export class ListarCursosComponent implements OnInit {
     private router: Router, 
     private activatedRoute: ActivatedRoute
   ){
-    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
+    this.authUsuario$ = this.store.select(selectUsuarioAutenticado);
     this.cursos$ = this.store.select(selectCursos);
    }
 

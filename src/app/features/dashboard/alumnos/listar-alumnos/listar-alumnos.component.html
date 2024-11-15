@@ -1,6 +1,6 @@
 <div class="container">    
     <section class="pb-3">
-         <button type="submit" mat-fab extended color="primary" [disabled]="!(authAlumno$ | async)?.esAdmin" (click)="openModal()">
+         <button type="submit" mat-fab extended color="primary" [disabled]="!(authUsuario$ | async)?.esAdmin" (click)="openModal()">
             <mat-icon>add</mat-icon><label style="font-family: Lato;">Crear Alumno</label>
         </button>
     </section>
@@ -35,17 +35,17 @@
             <th mat-header-cell *matHeaderCellDef class="text-center"> Acciones </th>
             <td mat-cell *matCellDef="let alumno" class="text-center"> 
                 <a (click)="verDetalle(alumno.id)">
-                    <button [disabled]="!((authAlumno$ | async)?.esAdmin || (authAlumno$ | async)?.id === alumno.id)" color="tertiary" mat-mini-fab aria-label="Ver" class="mx-1 shadow-none">
+                    <button [disabled]="!((authUsuario$ | async)?.esAdmin)" color="tertiary" mat-mini-fab aria-label="Ver" class="mx-1 shadow-none">
                         <mat-icon>visibility</mat-icon>
                     </button>
                 </a> 
                 <a (click)="openModal(alumno)">
-                    <button [disabled]="!(authAlumno$ | async)?.esAdmin" color="tertiary" mat-mini-fab aria-label="Modificar" class="mx-1 shadow-none">
+                    <button [disabled]="!(authUsuario$ | async)?.esAdmin" color="tertiary" mat-mini-fab aria-label="Modificar" class="mx-1 shadow-none">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </a> 
                 <a (click)="eliminarAlumno(alumno)">
-                    <button [disabled]="!(authAlumno$ | async)?.esAdmin" mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
+                    <button [disabled]="!(authUsuario$ | async)?.esAdmin" mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </a>

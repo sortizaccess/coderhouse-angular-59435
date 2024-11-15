@@ -71,7 +71,6 @@ export class DetalleAlumnosComponent implements OnInit {
   anularInscripcion(idCurso: string): void {
     const idInscripcion = this.inscripciones.find((inscripcion) => inscripcion.idCurso === idCurso)?.id;
     if (idInscripcion) {
-
       this.toast.confirmarToast().then((confirmed) => {
         if (confirmed) {
           this.inscripcionesService.delete(idInscripcion).subscribe({

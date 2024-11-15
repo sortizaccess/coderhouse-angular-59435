@@ -1,37 +1,45 @@
 {
-  "alumnos": [
+  "usuarios": [
     {
-      "id": "123",
+      "id": "362c",
+      "nombre": "test1",
+      "apellido": "test2",
       "email": "admin_test@email.com",
-      "nombre": "Sebastián",
-      "apellido": "Ortiz",
-      "fechaNacimiento": "2024-11-03T09:32:02.250Z",
-      "genero": "Masculino",
       "password": "1234",
-      "token": "eenCVJ",
+      "token": "OImAPw",
       "esAdmin": true
     },
     {
+      "id": "DOXd1T",
+      "nombre": "eeeee",
+      "apellido": "cccccc",
+      "email": "admin_test@email.com",
+      "password": "1234",
+      "token": "YwooiR",
+      "esAdmin": false
+    }
+  ],
+  "alumnos": [
+    {
+      "id": "123",
+      "nombre": "Sebastián",
+      "apellido": "Ortiz",
+      "fechaNacimiento": "2024-11-03T09:32:02.250Z",
+      "genero": "Masculino"
+    },
+    {
       "id": "124",
-      "email": "maria_smith@email.com",
       "nombre": "María",
       "apellido": "Smith",
       "fechaNacimiento": "2001-05-15T12:00:00Z",
-      "genero": "Femenino",
-      "password": "abcd1234",
-      "token": "aK12QR",
-      "esAdmin": false
+      "genero": "Femenino"
     },
     {
       "id": "125",
-      "email": "luis_ramirez@email.com",
       "nombre": "Luis",
       "apellido": "Ramírez",
       "fechaNacimiento": "1998-09-25T08:45:00Z",
-      "genero": "Masculino",
-      "password": "luis98pass",
-      "token": "Zx78PL",
-      "esAdmin": false
+      "genero": "Masculino"
     }
   ],
   "clases": [
@@ -73,13 +81,6 @@
   ],
   "inscripciones": [
     {
-      "id": "rtUI6u",
-      "idAlumno": "123",
-      "idCurso": "CRS001",
-      "fechaInscripcion": "2024-11-12T03:00:00.000Z",
-      "estado": "Pendiente"
-    },
-    {
       "id": "kGicpZ",
       "idAlumno": "124",
       "idCurso": "CRS002",
@@ -94,18 +95,25 @@
       "estado": "Test1"
     },
     {
-      "id": "yBlPmD",
-      "idAlumno": "125",
-      "idCurso": "CRS003",
-      "fechaInscripcion": "2024-11-15T03:00:00.000Z",
-      "estado": "test"
-    },
-    {
       "id": "SACVwL",
       "idAlumno": "125",
       "idCurso": "CRS003",
       "fechaInscripcion": "2024-11-15T03:00:00.000Z",
       "estado": "Confirmada"
+    },
+    {
+      "id": "8MZus4",
+      "idAlumno": "123",
+      "idCurso": "CRS003",
+      "fechaInscripcion": "2024-11-04T03:00:00.000Z",
+      "estado": "asd"
+    },
+    {
+      "id": "lDjabq",
+      "idAlumno": "123",
+      "idCurso": "CRS001",
+      "fechaInscripcion": "2024-11-12T03:00:00.000Z",
+      "estado": "asd"
     }
   ]
 }

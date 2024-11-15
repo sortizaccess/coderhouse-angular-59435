@@ -1,29 +1,29 @@
 import { createReducer, on } from '@ngrx/store';
-import { Alumno } from '../../core/models/alumno';
 import { AuthActions } from '../actions/auth.actions';
+import { Usuario } from '../../core/models/usuario';
 
 export const authFeatureName = 'auth';
 
 export interface AuthState {
-    alumnoAutenticado: Alumno | null;
+  usuarioAutenticado: Usuario | null;
 }
 
 const initialState: AuthState = {
-    alumnoAutenticado: null,
+  usuarioAutenticado: null,
 };
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.loginAlumno, (state, action) => {
+  on(AuthActions.loginUsuario, (state, action) => {
     return {
       ...state,
-      alumnoAutenticado: action.alumno,
+      usuarioAutenticado: action.usuario,
     };
   }),
-  on(AuthActions.logoutAlumno, (state) => {
+  on(AuthActions.logoutUsuario, (state) => {
     return {
       ...state,
-      alumnoAutenticado: null,
+      usuarioAutenticado: null,
     };
   })
 );

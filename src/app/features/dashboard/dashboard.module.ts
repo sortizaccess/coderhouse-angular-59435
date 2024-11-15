@@ -9,6 +9,7 @@ import { ClasesModule } from './clases/clases.module';
 import { InscripcionesModule } from './inscripciones/inscripciones.module';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     SharedModule,
     CursosModule,
     ClasesModule,
-    InscripcionesModule
+    InscripcionesModule,
+    UsuariosModule
   ]
 })
 export class DashboardModule { }

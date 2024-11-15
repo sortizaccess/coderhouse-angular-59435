@@ -45,4 +45,17 @@ export class ToastsComponent {
       toastSuccess.show();
     }    
   }
+
+  showError(mensaje: string): void {
+    const toastElementError = document.getElementById('id-toast-error');
+    if (toastElementError) {
+      const messageElement = document.getElementById('message');
+      if (messageElement) {
+        messageElement.textContent = mensaje;
+      }
+ 
+      const toastError = new Toast(toastElementError);
+      toastError.show();
+    }
+  }
 }

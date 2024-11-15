@@ -1,6 +1,6 @@
 <div class="mx-5">    
     <section class="pb-3">
-         <button type="submit" [disabled]="!(authAlumno$ | async)?.esAdmin" mat-fab extended color="primary" (click)="openModal()">
+         <button type="submit" [disabled]="!(authUsuario$ | async)?.esAdmin" mat-fab extended color="primary" (click)="openModal()">
             <mat-icon>add</mat-icon><label style="font-family: Lato;">Crear Curso</label>
         </button>
     </section>
@@ -40,12 +40,12 @@
                     </button>
                 </a> 
                 <a (click)="openModal(curso)">
-                    <button [disabled]="!(authAlumno$ | async)?.esAdmin" color="tertiary" mat-mini-fab aria-label="Modificar" class="mx-1 shadow-none">
+                    <button [disabled]="!(authUsuario$ | async)?.esAdmin" color="tertiary" mat-mini-fab aria-label="Modificar" class="mx-1 shadow-none">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </a> 
                 <a (click)="eliminarCurso(curso)">
-                    <button [disabled]="!(authAlumno$ | async)?.esAdmin" mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
+                    <button [disabled]="!(authUsuario$ | async)?.esAdmin" mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </a>

@@ -6,11 +6,12 @@ import { Inscripcion } from '../../../../core/models/inscripcion';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { CursosService } from '../../../../core/services/cursos.service';
 import { Curso } from '../../../../core/models/curso';
-import { filter, map, Observable, of, switchMap } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AlumnosService } from '../../../../core/services/alumnos.service';
 import { Alumno } from '../../../../core/models/alumno';
 import { Store } from '@ngrx/store';
-import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
+import { selectUsuarioAutenticado } from '../../../../store/selectors/auth.selector';
+import { Usuario } from '../../../../core/models/usuario';
 
 interface cursoDialogData {
   inscripcionModificada?: Inscripcion
@@ -28,8 +29,8 @@ export class CrearEditarInscripcionesComponent implements OnInit {
   public inscripcionForm: FormGroup;
   public cursos$: Observable<Curso[]>;
   public alumnos$: Observable<Alumno[]> = of([]);
-  public authAlumno$: Observable<Alumno | null>;
-  public authAlumno: Alumno | null = null;
+  public authUsuario$: Observable<Usuario | null>;
+  public authUsuario: Usuario | null = null;
 
   constructor(
     private matDialogRef: MatDialogRef<CrearEditarInscripcionesComponent>, 
@@ -45,30 +46,16 @@ export class CrearEditarInscripcionesComponent implements OnInit {
       fechaInscripcion: [null, [Validators.required]],
       estado: [null, [Validators.required]]
     });
-    this.authAlumno$ = this.store.select(selectAlumnoAutenticado); 
-    this.authAlumno$.subscribe(auth => { this.authAlumno = auth; });
+    this.authUsuario$ = this.store.select(selectUsuarioAutenticado); 
+    this.authUsuario$.subscribe(auth => { this.authUsuario = auth; });
     this.cursos$ = this.cursosService.getAll();
   }
 
   ngOnInit(): void {
-    this.authAlumno$.pipe(
-      switchMap(authAlumno => {
-        this.authAlumno = authAlumno; 
-        
-        if (authAlumno?.esAdmin) {
-          return this.alumnosService.getAll();  
-        } else if (authAlumno?.id) {
-          return this.alumnosService.get(authAlumno.id).pipe(
-            map(alumno => alumno ? [alumno] : [])  
-          );
-        }
-        return of([]);  
-      }),
-      filter(alumnos => alumnos !== undefined)  
-    ).subscribe(alumnos => {
-      this.alumnos$ = of(alumnos);  
+    this.alumnosService.getAll().subscribe(alumnos => {
+      this.alumnos$ = of(alumnos);
     });
-
+  
     this.patchFormValue();
   }
 
@@ -78,8 +65,7 @@ export class CrearEditarInscripcionesComponent implements OnInit {
   }
 
   patchFormValue() {
-    if(this.data?.inscripcionModificada){
-      
+    if(this.data?.inscripcionModificada){      
       this.inscripcionForm.patchValue(this.data.inscripcionModificada);
     }
   }

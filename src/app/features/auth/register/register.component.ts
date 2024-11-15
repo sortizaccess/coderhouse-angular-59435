@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Alumno } from '../../../core/models/alumno';
 import { generarIdRandom } from '../../../shared/utils';
-import { AlumnosService } from '../../../core/services/alumnos.service';
+import { Usuario } from '../../../core/models/usuario';
+import { UsuariosService } from '../../../core/services/usuarios.service';
 
 @Component({
   selector: 'app-register',
@@ -15,15 +15,13 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private alumnosService: AlumnosService,
+    private usuariosService: UsuariosService,
     private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       nombre: [null, [Validators.required, Validators.minLength(4)]],
       apellido: [null, [Validators.required, Validators.minLength(4)]],
-      genero: [null, [Validators.required]],
-      fechaNacimiento: [null, [Validators.required]],
       password: [null, [Validators.required, Validators.minLength(4)]]
     });
   }
@@ -34,19 +32,17 @@ export class RegisterComponent {
     }
     else {
       if (this.registerForm.valid) {
-        const alumnoData: Omit<Alumno, 'id'> = {
+        const usuarioData: Omit<Usuario, 'id'> = {
           nombre: this.registerForm.get('nombre')?.value,
           apellido: this.registerForm.get('apellido')?.value,
-          genero: this.registerForm.get('genero')?.value,
-          fechaNacimiento: this.registerForm.get('fechaNacimiento')?.value,
           email: this.registerForm.get('email')?.value,
           password: this.registerForm.get('password')?.value,
           token: generarIdRandom(),
           esAdmin: false
         };
 
-        localStorage.setItem('token', alumnoData.token);  
-        this.alumnosService.add(alumnoData).subscribe({ next: () => this.router.navigate(['dashboard', 'home']) });
+        localStorage.setItem('token', usuarioData.token);  
+        this.usuariosService.add(usuarioData).subscribe({ next: () => this.router.navigate(['dashboard', 'home']) });
       } 
     }
   }

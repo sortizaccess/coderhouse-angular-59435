@@ -30,36 +30,6 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <mat-form-field appearance="fill">
-                    <mat-icon matPrefix>group</mat-icon>   
-                    <mat-label>Género</mat-label>
-                    <mat-select formControlName="genero">
-                      <mat-option [value]="'Masculino'">Masculino</mat-option>
-                      <mat-option [value]="'Femenino'">Femenino</mat-option>
-                    </mat-select>
-                    <mat-error>
-                      @if(registerForm.get('genero')?.hasError('required')){
-                        Requerido
-                      }
-                    </mat-error>
-                </mat-form-field>  
-            </div>
-            <div class="col-6">
-                <mat-form-field>          
-                  <mat-label>Fecha de Nacimiento</mat-label>
-                  <input formControlName="fechaNacimiento" matInput [matDatepicker]="picker" />
-                  <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-error>
-                    @if(registerForm.get('fechaNacimiento')?.hasError('required')){
-                      Requerido
-                    }
-                  </mat-error>
-                </mat-form-field>  
-              </div> 
-        </div>
-        <div class="row">
-            <div class="col-6">
                 <mat-form-field>
                     <mat-icon matPrefix>alternate_email</mat-icon>
                     <mat-label>Email</mat-label>

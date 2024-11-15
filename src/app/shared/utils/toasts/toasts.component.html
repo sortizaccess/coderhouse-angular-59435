@@ -24,17 +24,21 @@
   </div>
 </div>
 
-<div class="toast text-bg-danger" role="alert" id="id-toast-error">
-  <div class="toast-body">
-    <div class="d-flex gap-4">
-      <span><i class="fa-solid fa-circle-exclamation fa-lg"></i></span>
-      <div class="d-flex flex-grow-1 align-items-center">
-        <span class="fw-semibold">We are having issues</span>
-        ...
-      </div>
+
+<div aria-live="polite" aria-atomic="true" class="toast-container bottom-0 start-50 translate-middle-x p-3">
+  <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="id-toast-error">
+    <div class="d-flex">
+        <div class="toast-body d-flex align-items-center">
+          <span class="d-flex align-items-center">
+            <mat-icon class="mx-2">error</mat-icon>
+            <strong class="mx-1" id="message"></strong>
+          </span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
 </div>
+
 
 <div class="toast text-bg-warning" role="alert" id="id-warning-toast">
   <div class="toast-body">

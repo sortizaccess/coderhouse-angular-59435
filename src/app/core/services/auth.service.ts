@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, throwError } from 'rxjs';
-import { Alumno } from '../../core/models/alumno';
 import { AuthData } from '../../core/models/authData';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { Store } from '@ngrx/store';
-import { selectAlumnoAutenticado } from '../../store/selectors/auth.selector';
 import { AuthActions } from '../../store/actions/auth.actions';
+import { Usuario } from '../models/usuario';
+import { selectUsuarioAutenticado } from '../../store/selectors/auth.selector';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  public authAlumno$: Observable<Alumno | null>;
+  public authUsuario$: Observable<Usuario | null>;
   private baseURL = environment.apiBaseURL;
   
   constructor(private router: Router, private httpClient: HttpClient, private store: Store){
-    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
+    this.authUsuario$ = this.store.select(selectUsuarioAutenticado);
   }
 
-  login(data: AuthData): Observable<Alumno> {
-    return this.httpClient.get<Alumno[]>(`${this.baseURL}/alumnos?email=${data.email}&password=${data.password}`)
-    .pipe(map((alumnos) => {
-      const alumno = this.autentificarToken(alumnos);
+  login(data: AuthData): Observable<Usuario> {
+    return this.httpClient.get<Usuario[]>(`${this.baseURL}/usuarios?email=${data.email}&password=${data.password}`)
+    .pipe(map((usuarios) => {
+      const alumno = this.autentificarToken(usuarios);
       if (alumno) {
         return alumno
       }
@@ -32,24 +32,24 @@ export class AuthService {
   }
 
   logout(): void {
-    this.store.dispatch(AuthActions.logoutAlumno());
+    this.store.dispatch(AuthActions.logoutUsuario());
     localStorage.removeItem('token');
     this.router.navigate(['auth','login']);
   }
 
   validarToken(): Observable<boolean>{
-    return this.httpClient.get<Alumno[]>(`${this.baseURL}/alumnos?token=${localStorage.getItem('token')}`)
-    .pipe(map((alumnos) => {
-      const alumno = this.autentificarToken(alumnos);
-      return !!alumno;
+    return this.httpClient.get<Usuario[]>(`${this.baseURL}/usuarios?token=${localStorage.getItem('token')}`)
+    .pipe(map((usuarios) => {
+      const usuario = this.autentificarToken(usuarios);
+      return !!usuario;
     }));
   }
 
-  private autentificarToken(alumnos: Alumno[]): Alumno | null {
-    if(alumnos[0]){
-      this.store.dispatch(AuthActions.loginAlumno({ alumno: alumnos[0] }));
-      localStorage.setItem('token', alumnos[0].token);      
-      return alumnos[0];
+  private autentificarToken(usuarios: Usuario[]): Usuario | null {
+    if(usuarios[0]){
+      this.store.dispatch(AuthActions.loginUsuario({ usuario: usuarios[0] }));
+      localStorage.setItem('token', usuarios[0].token);      
+      return usuarios[0];
     }
     else {
       return null;

@@ -5,11 +5,11 @@ import { Clase } from '../../../../core/models/clase';
 import { CrearEditarClasesComponent } from '../crear-editar-clases/crear-editar-clases.component';
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
 import { Observable } from 'rxjs';
-import { Alumno } from '../../../../core/models/alumno';
 import { Store } from '@ngrx/store';
-import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
+import { selectUsuarioAutenticado } from '../../../../store/selectors/auth.selector';
 import { selectClases } from '../store/clase.selectors';
 import { ClaseActions } from '../store/clase.actions';
+import { Usuario } from '../../../../core/models/usuario';
 
 @Component({
   selector: 'app-listar-clases',
@@ -20,12 +20,12 @@ export class ListarClasesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'contenido', 'profesor', 'aula', 'acciones'];
   dataSource: Clase[] = [];
 
-  authAlumno$: Observable<Alumno | null>;
+  authUsuario$: Observable<Usuario | null>;
   clases$: Observable<Clase[]>;
 
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
   constructor(private matDialog: MatDialog, private clasesService: ClasesService, private store: Store){
-    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
+    this.authUsuario$ = this.store.select(selectUsuarioAutenticado);
     this.clases$ = this.store.select(selectClases);
    }
 

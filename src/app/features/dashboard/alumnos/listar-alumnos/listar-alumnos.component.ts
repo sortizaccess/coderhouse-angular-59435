@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AlumnoActions } from '../store/alumno.actions';
 import { selectAlumnos } from '../store/alumno.selectors';
-import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
+import { selectUsuarioAutenticado } from '../../../../store/selectors/auth.selector';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from '../../../../core/models/usuario';
 
 @Component({
   selector: 'app-listar-alumnos',
@@ -21,7 +22,7 @@ export class ListarAlumnosComponent implements OnInit  {
   displayedColumns: string[] = ['id', 'nombre', 'email', 'fechaNacimiento', 'genero', 'acciones'];
   dataSource: Alumno[] = [];
 
-  authAlumno$: Observable<Alumno | null>;
+  authUsuario$: Observable<Usuario | null>;
   alumnos$: Observable<Alumno[]>;
 
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
@@ -32,7 +33,7 @@ export class ListarAlumnosComponent implements OnInit  {
     private router: Router, 
     private activatedRoute: ActivatedRoute
   ){
-    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
+    this.authUsuario$ = this.store.select(selectUsuarioAutenticado);
     this.alumnos$ = this.store.select(selectAlumnos);
    }
 
@@ -83,8 +84,7 @@ export class ListarAlumnosComponent implements OnInit  {
           if (alumnoModificado) {
             this.modificarAlumno(alumnoModificado.id, result);            
           } else {
-            this.alumnosService.add(result).subscribe({ next: () => this.store.dispatch(AlumnoActions.loadAlumnos())});
-            //this.store.dispatch(AlumnoActions.createAlumno(result));            
+            this.alumnosService.add(result).subscribe({ next: () => this.store.dispatch(AlumnoActions.loadAlumnos())});          
           }
           this.toast.show();          
         }

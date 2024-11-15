@@ -2,17 +2,13 @@ import { Persona } from './persona';
 
 export class Alumno extends Persona {
     id: string;
-    email: string;
-    password: string;
-    token: string;
-    esAdmin: boolean;
-
-    constructor(id: string, email: string, password: string, token: string, esAdmin: boolean) {
+    fechaNacimiento: Date;
+    genero: string;
+    
+    constructor(id: string, genero: string, fechaNacimiento: Date) {
         super();
         this.id = id;
-        this.email = email;
-        this.password = password;
-        this.token = token;
-        this.esAdmin = false;
+        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;
     }
 }

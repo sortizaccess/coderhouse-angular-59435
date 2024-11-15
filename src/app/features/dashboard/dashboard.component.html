@@ -8,6 +8,17 @@
         </span>
       </a>
 
+      <ng-container *ngIf="authUsuario$ | async let authUsuario;">
+        <a mat-list-item 
+            routerLink="usuarios" 
+            routerLinkActive #usuariosLink="routerLinkActive" 
+            *ngIf="authUsuario.esAdmin">
+            <span class="d-flex align-items-center">
+                <mat-icon class="mx-2" color="primary">person</mat-icon>Usuarios
+            </span>
+        </a>
+      </ng-container>
+
       <a mat-list-item routerLink="alumnos" routerLinkActive #alumnosLink="routerLinkActive">
         <span class="d-flex align-items-center">
           <mat-icon class="mx-2" color="primary">group</mat-icon>Alumnos
@@ -49,8 +60,8 @@
             </button>
           <span appTitulos class="px-5 align-self-center">Aplicación de Gestión</span>
         </div>       
-        <div class="align-self-center" *ngIf="authAlumno$ | async; let authAlumno">
-          <p class="my-0 mx-5">{{ {nombre: authAlumno.nombre, apellido: authAlumno.apellido} | nombreCompleto}}</p>
+        <div class="align-self-center" *ngIf="authUsuario$ | async; let authUsuario">
+          <p class="my-0 mx-5">{{ {nombre: authUsuario.nombre, apellido: authUsuario.apellido} | nombreCompleto}}</p>
         </div>
       </div>
     </mat-toolbar>

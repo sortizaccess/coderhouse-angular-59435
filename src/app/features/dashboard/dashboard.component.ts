@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { Observable } from 'rxjs';
-import { Alumno } from '../../core/models/alumno';
 import { Store } from '@ngrx/store';
-import { selectAlumnoAutenticado } from '../../store/selectors/auth.selector';
+import { selectUsuarioAutenticado } from '../../store/selectors/auth.selector';
+import { Usuario } from '../../core/models/usuario';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,10 +12,10 @@ import { selectAlumnoAutenticado } from '../../store/selectors/auth.selector';
 })
 export class DashboardComponent {
   showFiller = false;
-  authAlumno$: Observable<Alumno | null>;
+  authUsuario$: Observable<Usuario | null>;
 
   constructor(private authService: AuthService, private store: Store) {
-    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
+    this.authUsuario$ = this.store.select(selectUsuarioAutenticado);
   }
 
   logout(): void {

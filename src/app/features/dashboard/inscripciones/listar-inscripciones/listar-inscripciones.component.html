@@ -1,6 +1,6 @@
 <div class="container">    
     <section class="pb-3">
-         <button type="submit" mat-fab extended color="primary" (click)="openModal()">
+         <button [disabled]="!(authUsuario$ | async)?.esAdmin" type="submit" mat-fab extended color="primary" (click)="openModal()">
             <mat-icon>add</mat-icon><label style="font-family: Lato;">Crear Inscripción</label>
         </button>
     </section>
@@ -35,12 +35,12 @@
             <th mat-header-cell *matHeaderCellDef class="text-center"> Acciones </th>
             <td mat-cell *matCellDef="let inscripcion" class="text-center"> 
                 <a (click)="openModal(inscripcion)">
-                    <button [disabled]="!(authAlumno$ | async)?.esAdmin" color="tertiary" mat-mini-fab aria-label="Modificar" class="mx-1 shadow-none">
+                    <button [disabled]="!(authUsuario$ | async)?.esAdmin" color="tertiary" mat-mini-fab aria-label="Modificar" class="mx-1 shadow-none">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </a> 
                 <a (click)="eliminarInscripcion(inscripcion)">
-                    <button [disabled]="!(authAlumno$ | async)?.esAdmin" mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
+                    <button [disabled]="!(authUsuario$ | async)?.esAdmin" mat-mini-fab aria-label="Eliminar" class="mx-1 shadow-none">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </a>

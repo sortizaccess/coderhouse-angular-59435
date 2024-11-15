@@ -9,7 +9,8 @@ import { Alumno } from '../../../../core/models/alumno';
 import { ToastsComponent } from '../../../../shared/utils/toasts/toasts.component';
 import { forkJoin, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectAlumnoAutenticado } from '../../../../store/selectors/auth.selector';
+import { selectUsuarioAutenticado } from '../../../../store/selectors/auth.selector';
+import { Usuario } from '../../../../core/models/usuario';
 
 @Component({
   selector: 'app-detalle-cursos',
@@ -21,7 +22,7 @@ export class DetalleCursosComponent implements OnInit {
   curso?: Curso;
   inscripciones: Inscripcion[] = [];
   alumnos: Alumno[] = [];
-  authAlumno$: Observable<Alumno | null>;
+  authUsuario$: Observable<Usuario | null>;
   displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'email', 'fechaNacimiento', 'acciones'];
   dataSource: Alumno[] = [];
   @ViewChild(ToastsComponent) toast!: ToastsComponent;
@@ -33,7 +34,7 @@ export class DetalleCursosComponent implements OnInit {
     private store: Store, 
   ) {
     this.idCurso = activatedRoute.snapshot.params['id'];
-    this.authAlumno$ = this.store.select(selectAlumnoAutenticado);
+    this.authUsuario$ = this.store.select(selectUsuarioAutenticado);
   }
 
   ngOnInit(): void {
