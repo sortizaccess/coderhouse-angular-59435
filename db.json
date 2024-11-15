@@ -2,8 +2,8 @@
   "usuarios": [
     {
       "id": "362c",
-      "nombre": "test1",
-      "apellido": "test2",
+      "nombre": "Sebastián",
+      "apellido": "Ortiz",
       "email": "admin_test@email.com",
       "password": "1234",
       "token": "OImAPw",
@@ -11,10 +11,10 @@
     },
     {
       "id": "DOXd1T",
-      "nombre": "eeeee",
-      "apellido": "cccccc",
-      "email": "admin_test@email.com",
-      "password": "1234",
+      "nombre": "Luis",
+      "apellido": "Ramírez",
+      "email": "luis_ramirez@email.com",
+      "password": "luis98pass",
       "token": "YwooiR",
       "esAdmin": false
     }
@@ -36,8 +36,8 @@
     },
     {
       "id": "125",
-      "nombre": "Luis",
-      "apellido": "Ramírez",
+      "nombre": "Marcos",
+      "apellido": "Peréz",
       "fechaNacimiento": "1998-09-25T08:45:00Z",
       "genero": "Masculino"
     }
@@ -92,7 +92,7 @@
       "idAlumno": "124",
       "idCurso": "CRS003",
       "fechaInscripcion": "2024-11-07T03:00:00.000Z",
-      "estado": "Test1"
+      "estado": "Anulada"
     },
     {
       "id": "SACVwL",
@@ -106,14 +106,14 @@
       "idAlumno": "123",
       "idCurso": "CRS003",
       "fechaInscripcion": "2024-11-04T03:00:00.000Z",
-      "estado": "asd"
+      "estado": "Confirmada"
     },
     {
       "id": "lDjabq",
       "idAlumno": "123",
       "idCurso": "CRS001",
       "fechaInscripcion": "2024-11-12T03:00:00.000Z",
-      "estado": "asd"
+      "estado": "Confirmada"
     }
   ]
 }
