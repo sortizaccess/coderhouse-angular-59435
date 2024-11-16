@@ -47,7 +47,7 @@ describe('CursosService', () => {
       });
     
       const mockRequest = httpContoller.expectOne({
-        url: `${service['baseURL']}cursos`,
+        url: `${service['baseURL']}/cursos`,
         method: 'POST',
       });
 
@@ -68,12 +68,12 @@ describe('CursosService', () => {
     });
   
     const reqDelete = httpContoller.expectOne({
-      url: `${service['baseURL']}cursos/${mockCurso.id}`,
+      url: `${service['baseURL']}/cursos/${mockCurso.id}`,
       method: 'DELETE',
     });
     reqDelete.flush(null);
 
-    const reqGet = httpContoller.expectOne(`${service['baseURL']}cursos`);
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}/cursos`);
     reqGet.flush(cursosRestantes); 
   
     httpContoller.verify();
@@ -93,12 +93,12 @@ describe('CursosService', () => {
     });
   
     const reqPatch = httpContoller.expectOne({
-      url: `${service['baseURL']}cursos/${updatedCurso.id}`,
+      url: `${service['baseURL']}/cursos/${updatedCurso.id}`,
       method: 'PATCH',
     });
     reqPatch.flush(updatedCurso); 
   
-    const reqGet = httpContoller.expectOne(`${service['baseURL']}cursos`);
+    const reqGet = httpContoller.expectOne(`${service['baseURL']}/cursos`);
     reqGet.flush(cursosActualizados); 
   
     httpContoller.verify(); 

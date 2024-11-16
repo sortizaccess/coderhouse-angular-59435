@@ -45,8 +45,8 @@ describe('LoginComponent', () => {
 
   it('Al llamar onSubmit debe llamar a login de AuthService', () => {
     component.loginForm.setValue({
-      email: 'test@email.com',
-      password: '12345',
+      email: 'admin_test@email.com',
+      password: '1234',
     });
 
     const spyOnLogin = spyOn(component, 'onSubmit');

@@ -53,7 +53,7 @@ describe('AuthService', () => {
     });
 
     const mockRequest = httpContoller.expectOne({
-      url: `${service['baseURL']}usuarios?email=${mockAuthData.email}&password=${mockAuthData.password}`,
+      url: `${service['baseURL']}/usuarios?email=${mockAuthData.email}&password=${mockAuthData.password}`,
       method: 'GET',
     });
 

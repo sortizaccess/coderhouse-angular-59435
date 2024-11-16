@@ -51,7 +51,7 @@ describe('ListarCursosComponent', () => {
     it('Debe listar los cursos y asignarlos al dataSource', () => {
       component.listarCursos();
   
-      const req = httpController.expectOne(`${cursosService['baseURL']}cursos`);
+      const req = httpController.expectOne(`${cursosService['baseURL']}/cursos`);
       req.flush(mockCursos);
   
       expect(component.dataSource).toEqual(mockCursos);

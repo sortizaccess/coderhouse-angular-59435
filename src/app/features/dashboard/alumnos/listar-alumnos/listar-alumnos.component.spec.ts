@@ -49,7 +49,7 @@ describe('ListarAlumnosComponent', () => {
     it('Debe listar los alumnos y asignarlos al dataSource', () => {
       component.listarAlumnos();
   
-      const req = httpController.expectOne(`${alumnosService['baseURL']}alumnos`);
+      const req = httpController.expectOne(`${alumnosService['baseURL']}/alumnos`);
       req.flush(mockAlumnos);
   
       expect(component.dataSource).toEqual(mockAlumnos);
