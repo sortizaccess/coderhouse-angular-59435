@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { generarIdRandom } from '../../../shared/utils';
+import { generarIdRandom, soloLetras } from '../../../shared/utils';
 import { Usuario } from '../../../core/models/usuario';
 import { UsuariosService } from '../../../core/services/usuarios.service';
 import { ToastsComponent } from '../../../shared/utils/toasts/toasts.component';
@@ -21,10 +21,10 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.registerForm = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
-      nombre: [null, [Validators.required, Validators.minLength(4)]],
-      apellido: [null, [Validators.required, Validators.minLength(4)]],
-      password: [null, [Validators.required, Validators.minLength(4)]]
+      nombre: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(15), soloLetras()]],
+      apellido: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(15), soloLetras()]],
+      email: [null, [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(10)]],
+      password: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(15)]]
     });
   }
 
@@ -46,7 +46,7 @@ export class RegisterComponent {
         this.usuariosService.getByEmail(usuarioData.email).subscribe({
           next: (usuario) => {
             if (usuario) {
-              this.toast.showError('El email ya está registrado')
+              this.toast.showError('¡El email ya está registrado!')
             } else {
               localStorage.setItem('token', usuarioData.token);  
               this.usuariosService.add(usuarioData).subscribe({ next: () => this.router.navigate(['dashboard', 'home']) });

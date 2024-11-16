@@ -25,8 +25,8 @@ export class CrearEditarAlumnosComponent {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data?: alumnoDialogData) {
     this.alumnoForm = this.formBuilder.group({
-      nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
-      apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
+      nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4), soloLetras()]],
+      apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4), soloLetras()]],
       fechaNacimiento: [null, [Validators.required]],
       genero: [null, [Validators.required]]
     });

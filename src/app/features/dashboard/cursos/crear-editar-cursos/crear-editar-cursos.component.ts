@@ -24,10 +24,10 @@ export class CrearEditarCursosComponent {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data?: cursoDialogData) {
     this.cursoForm = this.formBuilder.group({
-      nombre: [null, [Validators.required]],
+      nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4)]],
       fechaInicio: [null, [Validators.required]],
-      dificultad: [null, [Validators.required]],
-      descripcion: [null, [Validators.required]]
+      dificultad: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4)]],
+      descripcion: [null, [Validators.required, Validators.maxLength(50), Validators.minLength(5)]]
     });
 
     this.patchFormValue();

@@ -25,9 +25,9 @@ export class CrearEditarUsuariosComponent {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data?: usuarioDialogData) {
     this.usuarioForm = this.formBuilder.group({
-      nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
-      apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(3), soloLetras()]],
-      email: [null, [Validators.required, Validators.email, Validators.maxLength(35)]],
+      nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4), soloLetras()]],
+      apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4), soloLetras()]],
+      email: [null, [Validators.required, Validators.email, Validators.maxLength(35), Validators.minLength(10)]],
       password: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4)]]
     });
 

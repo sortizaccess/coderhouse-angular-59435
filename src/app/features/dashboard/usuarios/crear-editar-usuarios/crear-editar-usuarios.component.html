@@ -17,7 +17,7 @@
               Máximo 15 caracteres
             }
             @else if (usuarioForm.get('nombre')?.hasError('minlength')) {
-              Mínimo 3 caracteres
+              Mínimo 4 caracteres
             }
             @else if (usuarioForm.get('nombre')?.hasError('soloLetras')) {
               Caracteres inválidos
@@ -38,7 +38,7 @@
               Máximo 15 caracteres
             }
             @else if (usuarioForm.get('apellido')?.hasError('minlength')) {
-              Mínimo 3 caracteres
+              Mínimo 4 caracteres
             }
             @else if (usuarioForm.get('apellido')?.hasError('soloLetras')) {
               Caracteres inválidos
@@ -62,10 +62,10 @@
                 Requerido
               }
               @else if (usuarioForm.get('email')?.hasError('maxlength')) {
-                Máximo 30 caracteres
+                Máximo 35 caracteres
               }
               @else if (usuarioForm.get('email')?.hasError('minlength')) {
-                Mínimo 12 caracteres
+                Mínimo 10 caracteres
               }
             </mat-error>
         </mat-form-field>  

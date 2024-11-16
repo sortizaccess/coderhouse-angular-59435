@@ -48,6 +48,12 @@
               @if(inscripcionForm.get('estado')?.hasError('required')){
                 Requerido
               }
+              @else if (inscripcionForm.get('estado')?.hasError('maxlength')) {
+                Máximo 15 caracteres
+              }
+              @else if (inscripcionForm.get('estado')?.hasError('minlength')) {
+                Mínimo 4 caracteres
+              }
             </mat-error>
         </mat-form-field>
       </div>  

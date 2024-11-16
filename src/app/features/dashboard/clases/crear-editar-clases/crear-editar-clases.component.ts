@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
-import { generarIdRandom } from '../../../../shared/utils';
+import { generarIdRandom, soloLetras } from '../../../../shared/utils';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Curso } from '../../../../core/models/curso';
@@ -24,9 +24,9 @@ export class CrearEditarClasesComponent {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data?: claseDialogData) {
     this.claseForm = this.formBuilder.group({
-      contenido: [null, [Validators.required]],
-      aula: [null, [Validators.required]],
-      profesor: [null, [Validators.required]]
+      contenido: [null, [Validators.required, Validators.maxLength(25), Validators.minLength(4)]],
+      aula: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(2)]],
+      profesor: [null, [Validators.required, Validators.maxLength(20), Validators.minLength(4), soloLetras()]]
     });
 
     this.patchFormValue();
