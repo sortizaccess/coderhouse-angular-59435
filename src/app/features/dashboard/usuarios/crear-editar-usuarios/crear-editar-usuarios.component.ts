@@ -27,7 +27,7 @@ export class CrearEditarUsuariosComponent {
     this.usuarioForm = this.formBuilder.group({
       nombre: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4), soloLetras()]],
       apellido: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4), soloLetras()]],
-      email: [null, [Validators.required, Validators.email, Validators.maxLength(35), Validators.minLength(10)]],
+      email: [null, [Validators.required, Validators.email, Validators.maxLength(45), Validators.minLength(10)]],
       password: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4)]]
     });
 

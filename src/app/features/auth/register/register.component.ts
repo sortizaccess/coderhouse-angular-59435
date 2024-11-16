@@ -23,7 +23,7 @@ export class RegisterComponent {
     this.registerForm = this.formBuilder.group({
       nombre: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(15), soloLetras()]],
       apellido: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(15), soloLetras()]],
-      email: [null, [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(10)]],
+      email: [null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(45)]],
       password: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(15)]]
     });
   }
