@@ -44,7 +44,7 @@ export class CrearEditarInscripcionesComponent implements OnInit {
       idAlumno: [null, [Validators.required]],
       idCurso: [null, [Validators.required]],
       fechaInscripcion: [null, [Validators.required]],
-      estado: [null, [Validators.required, Validators.maxLength(15), Validators.minLength(4)]]
+      estado: [null, [Validators.required]]
     });
     this.authUsuario$ = this.store.select(selectUsuarioAutenticado); 
     this.authUsuario$.subscribe(auth => { this.authUsuario = auth; });

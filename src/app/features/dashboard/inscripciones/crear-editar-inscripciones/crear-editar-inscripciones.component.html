@@ -43,16 +43,14 @@
         <mat-form-field>
           <mat-icon matPrefix>summarize</mat-icon>     
           <mat-label>Estado</mat-label>
-          <input formControlName="estado" matInput placeholder="Pendiente" />
+          <mat-select formControlName="estado" matInput>
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="Confirmada">Confirmada</mat-option>
+            <mat-option value="Anulada">Anulada</mat-option>
+        </mat-select>
             <mat-error>
               @if(inscripcionForm.get('estado')?.hasError('required')){
                 Requerido
-              }
-              @else if (inscripcionForm.get('estado')?.hasError('maxlength')) {
-                Máximo 15 caracteres
-              }
-              @else if (inscripcionForm.get('estado')?.hasError('minlength')) {
-                Mínimo 4 caracteres
               }
             </mat-error>
         </mat-form-field>
