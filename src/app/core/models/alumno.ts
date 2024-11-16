@@ -1,13 +1,15 @@
-import { Persona } from './persona'; 
 
-export class Alumno extends Persona {
+export class Alumno {
     id: string;
+    nombre: string;
+    apellido: string;
     fechaNacimiento: Date;
     genero: string;
     
-    constructor(id: string, genero: string, fechaNacimiento: Date) {
-        super();
+    constructor(id: string, nombre: string, apellido: string, genero: string, fechaNacimiento: Date) {
         this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
     }
