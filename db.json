@@ -106,7 +106,7 @@
       "idAlumno": "123",
       "idCurso": "CRS003",
       "fechaInscripcion": "2024-11-04T03:00:00.000Z",
-      "estado": "Confirmada"
+      "estado": "Pendiente"
     },
     {
       "id": "lDjabq",
