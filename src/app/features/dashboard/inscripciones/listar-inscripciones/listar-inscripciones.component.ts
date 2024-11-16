@@ -74,7 +74,7 @@ export class ListarInscripcionesComponent implements OnInit {
           } else {
             this.inscripcionesService.getAllByCurso(result.idCurso).subscribe(inscripciones => {
               if (inscripciones.length > 1) {
-                this.toast.showError('Ya tiene una inscripción activa');
+                this.toast.showError('¡Ya tiene una inscripción activa!');
               } else {
                 this.inscripcionesService.add(result).subscribe({ next: () => this.listarInscripciones()});    
                 this.toast.show();  

@@ -21,9 +21,9 @@ export class AuthService {
   login(data: AuthData): Observable<Usuario> {
     return this.httpClient.get<Usuario[]>(`${this.baseURL}/usuarios?email=${data.email}&password=${data.password}`)
     .pipe(map((usuarios) => {
-      const alumno = this.autentificarToken(usuarios);
-      if (alumno) {
-        return alumno
+      const usuario = this.autentificarToken(usuarios);
+      if (usuario) {
+        return usuario
       }
       else {
         throw throwError(() => new Error('Acceso incorrecto'));

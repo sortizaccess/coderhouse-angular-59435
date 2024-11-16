@@ -34,7 +34,7 @@ export class LoginComponent {
           this.router.navigate(['dashboard', 'home']);
         },
         error: (err) => {
-          this.toast.showError('Acceso incorrecto')
+          this.toast.showError('¡Credenciales inválidas!')
         }
       });
     }
