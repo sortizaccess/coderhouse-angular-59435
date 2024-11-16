@@ -53,19 +53,14 @@
         <mat-form-field>
           <mat-icon matPrefix>summarize</mat-icon>     
           <mat-label>Dificultad</mat-label>
-          <input formControlName="dificultad" matInput />
+          <mat-select formControlName="dificultad" matInput>
+              <mat-option value="Principiante">Principiante</mat-option>
+              <mat-option value="Intermedio">Intermedio</mat-option>
+              <mat-option value="Avanzado">Avanzado</mat-option>
+          </mat-select>
             <mat-error>
               @if(cursoForm.get('dificultad')?.hasError('required')){
                 Requerido
-              }
-              @else if (cursoForm.get('dificultad')?.hasError('maxlength')) {
-                Máximo 15 caracteres
-              }
-              @else if (cursoForm.get('dificultad')?.hasError('minlength')) {
-                Mínimo 4 caracteres
-              }
-              @else if (cursoForm.get('dificultad')?.hasError('soloLetras')) {
-                Caracteres inválidos
               }
             </mat-error>
         </mat-form-field>
